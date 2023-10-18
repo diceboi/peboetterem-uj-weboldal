@@ -3,7 +3,7 @@ import React from 'react'
 export default function Mainnav() {
   return (
     <nav>
-        <ul>
+        <ul className='flex sticky top-0'>
             <li>Napi menü</li>
             <li>Étlap</li>
             <li>Rólunk</li>

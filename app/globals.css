@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --navy: #2a2d36;
+    --okker: #dcad4d;
+    --grey: #dadada;
+    --alert: #c4281a;
+}
 
 body {
     font-family: var(--font-inter);
@@ -11,6 +17,12 @@ h1 {
     font-size: 3em;
     font-family: var(--font-playball);
     color: #dcad4d;
+}
+
+p {
+    font-family: var(--font-inter);
+    font-size: 1.125em;
+    color: var(--grey);
 }
 
 .widecontainer {
