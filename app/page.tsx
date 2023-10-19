@@ -48,7 +48,7 @@ export default function HomaPage() {
   return (
     <>
       <Hero herobg={pages.fooldal.heroBackground.sourceUrl} herologo={pages.fooldal.heroLogo.sourceUrl} herologoalt={pages.fooldal.heroLogo.altText} shortdescription={pages.fooldal.heroText} />
-      <DailyMenu />
+      <DailyMenu dailymenuprice={""}/>
       <Menu />
       <AboutUs />
       <Gallery />

@@ -7,6 +7,7 @@
     --okker: #dcad4d;
     --grey: #dadada;
     --alert: #c4281a;
+    --lightnavy: #3a3f47;
 }
 
 body {
@@ -16,13 +17,49 @@ body {
 h1 {
     font-size: 3em;
     font-family: var(--font-playball);
-    color: #dcad4d;
+    color: var(--okker);
+}
+
+li {
+    font-size: 1.5em;
+    font-family: var(--font-bebas);
+    letter-spacing: .125rem;
+}
+
+.opening {
+    font-size: 1.5em;
+    font-family: var(--font-bebas);
+    letter-spacing: .125rem;
+    color: var(--okker);
+}
+
+.open {
+    font-family: var(--font-bebas);
+    letter-spacing: .125rem;
+    color: #09ff00;
+    text-shadow: 0px 0px 10px #09ff00;
+}
+
+.price {
+    font-size: 1.5em;
+    font-family: var(--font-inter);
+    font-weight: 700;
+    color: var(--navy);
+    padding: .25em .5em .25em .5em;
+    background: var(--okker);
+}
+
+.day {
+    font-family: var(--font-playball);
+    font-size: 1.5em;
+    color: var(--okker);
 }
 
 p {
     font-family: var(--font-inter);
     font-size: 1.125em;
     color: var(--grey);
+    letter-spacing: .125rem;
 }
 
 .widecontainer {
