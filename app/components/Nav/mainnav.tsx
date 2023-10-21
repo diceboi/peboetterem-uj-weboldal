@@ -3,7 +3,7 @@ import { TbPhoneCall } from 'react-icons/tb'
 export default function Mainnav() {
   return (
     <nav className='w-full sticky top-10 z-50 h-0'>
-        <div className='w-full lg:w-10/12 flex gap-16 justify-between items-center m-auto bg-transparent backdrop-blur-xl py-2 px-8'>
+        <div className='w-full lg:w-10/12 flex gap-16 justify-between items-center m-auto bg-transparent py-2 px-8'>
             <ul className='flex justify-between w-6/12'>
               <li className='text-[--grey]'>Napi menü</li>
               <li className='text-[--grey]'>Étlap</li>
@@ -20,7 +20,7 @@ export default function Mainnav() {
                 </ul>
               </div>
               <div className='flex flex-col'>
-                <p className='opening flex flex-nowrap gap-2'>Jelenleg <p className='open'>Nyitva</p> vagyunk</p>
+                <div className='flex flex-nowrap gap-2'><p className='opening '>Jelenleg </p> <p className='open'>Nyitva</p> <p className='opening'> vagyunk</p></div>
                 <p>H - P: 10:30 - 22:30</p>
               </div>
             </div>

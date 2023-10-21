@@ -24,21 +24,21 @@ export default function DailyMenu({ dailymenuprice }:DailyMenu) {
             <div className="flex flex-col gap-1 border-b border-[--navy] mt-4 pb-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <p>Lencseleves</p>
+                <div className='flex gap-2'><p>Lencseleves</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <p>Kolozsvári rakott káposzta</p>
+                <div className='flex gap-2'><p>Kolozsvári rakott káposzta</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
             </div>
             <div className="flex flex-col gap-1 py-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <p>Lencseleves</p>
+                <div className='flex gap-2'><p>Lencseleves</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <p>Kolozsvári rakott káposzta</p>
+                <div className='flex gap-2'><p>Kolozsvári rakott káposzta</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
             </div>
           </div>
@@ -52,21 +52,21 @@ export default function DailyMenu({ dailymenuprice }:DailyMenu) {
             <div className="flex flex-col gap-1 border-b border-[--navy] mt-4 pb-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <p>Lencseleves</p>
+                <div className='flex gap-2'><p>Lencseleves</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <p>Kolozsvári rakott káposzta</p>
+                <div className='flex gap-2'><p>Kolozsvári rakott káposzta</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
             </div>
             <div className="flex flex-col gap-1 py-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <p>Lencseleves</p>
+                <div className='flex gap-2'><p>Lencseleves</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <p>Kolozsvári rakott káposzta</p>
+                <div className='flex gap-2'><p>Kolozsvári rakott káposzta</p><p className='text-[--grey] opacity-30'>1,3,7,9</p></div>
               </div>
             </div>
           </div>
