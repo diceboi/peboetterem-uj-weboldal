@@ -1,19 +1,46 @@
+"use client"
+
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 
-interface HeroBg {
-  herobg: string;
-  herologo: string;
-  herologoalt: string;
-  shortdescription: string;
-}
+import { gql } from "@apollo/client"
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
-export default function Hero({ herobg, herologo, herologoalt, shortdescription }:HeroBg) {
+const GET_FOOLDAL = gql`
+query getFooldal {
+  pages(where: {id: 11}) {
+    edges {
+      node {
+        fooldal {
+          heroBackground {
+            altText
+            sourceUrl
+          }
+          heroLogo {
+            altText
+            sourceUrl
+          }
+          heroText
+        }
+        id
+      }
+    }
+  }
+}`
+
+export default function Hero() {
+
+  const { data }:any = useSuspenseQuery(GET_FOOLDAL);
+
+  const pages = data.pages.edges[0].node;
+
   return (
     <section id="mainhero" className="relative flex flex-col justify-center gap-10 w-full h-[90vh] bg-[--navy]">
-      <div style={{backgroundImage: `url("${herobg}")`}} className="absolute w-full h-full opacity-50 mix-blend-overlay bg-cover bg-no-repeat bg-center"></div>
+      <div style={{backgroundImage: `url("${pages.fooldal.heroBackground.sourceUrl}")`}} className="absolute w-full h-full opacity-50 mix-blend-overlay bg-cover bg-no-repeat bg-center"></div>
       <div className="container m-auto flex flex-col gap-10 justify-center items-center z-10">
-        <Image src={herologo} alt={herologoalt} width={300} height={300} className=""/>
-        <p className="w-11/12 lg:w-1/2 text-center">{shortdescription}</p>
+        <Image src={pages.fooldal.heroLogo.sourceUrl} alt={pages.fooldal.heroLogo.altText} width={300} height={300} className=""/>
+        <p className="w-11/12 lg:w-1/2 text-center">{pages.fooldal.heroText}</p>
 
       </div>
 

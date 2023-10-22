@@ -1,10 +1,13 @@
 "use client"
 
+export const dynamic = "force-dynamic";
+
 import Image from "next/image"
 import Smartprice from "./UI/Smartprice"
 
-import { gql, useQuery } from "@apollo/client"
+import { gql } from "@apollo/client"
 import { useState } from 'react'
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 const GET_CATEGORIES = gql`
 query getCategories {
@@ -332,27 +335,18 @@ export default function Menu() {
 
   const [activeCategory, setActiveCategory] = useState('eloetelek');
 
-  const { loading: loadingCategories, error: errorCategories, data: dataCategories } = useQuery(GET_CATEGORIES);
-  const { loading: loadingEloetelek, error: errorEloetelek, data: dataEloetelek } = useQuery(GET_ELOETELEK);
-  const { loading: loadingLevesek, error: errorLevesek, data: dataLevesek } = useQuery(GET_LEVESEK);
-  const { loading: loadingTesztak, error: errorTesztak, data: dataTesztak } = useQuery(GET_TESZTAK);
-  const { loading: loadingSertes, error: errorSertes, data: dataSertes } = useQuery(GET_SERTES);
-  const { loading: loadingSzarnyas, error: errorSzarnyas, data: dataSzarnyas } = useQuery(GET_SZARNYAS);
-  const { loading: loadingKoretek, error: errorKoretek, data: dataKoretek } = useQuery(GET_KORETEK);
-  const { loading: loadingSavanyusag, error: errorSavanyusag, data: dataSavanyusag } = useQuery(GET_SAVANYUSAG);
-  const { loading: loadingDesszertek, error: errorDesszertek, data: dataDesszertek } = useQuery(GET_DESSZERTEK);
-  const { loading: loadingKetszemelyes, error: errorKetszemelyes, data: dataKetszemelyes } = useQuery(GET_KETSZEMELYES);
-  const { loading: loadingNegyszemelyes, error: errorNegyszemelyes, data: dataNegyszemelyes } = useQuery(GET_NEGYSZEMELYES);
-  const { loading: loadingPizzak, error: errorPizzak, data: dataPizzak } = useQuery(GET_PIZZAK);
-  
-
-  if (loadingCategories || loadingEloetelek || loadingLevesek || loadingTesztak || loadingSertes || loadingSzarnyas || loadingKoretek || loadingSavanyusag || loadingDesszertek || loadingKetszemelyes || loadingNegyszemelyes || loadingPizzak) {
-    return <p>Loading...</p>;
-  }
-
-  if (errorCategories || errorEloetelek || errorLevesek || errorTesztak || errorSertes || errorSzarnyas || errorKoretek || errorSavanyusag || errorDesszertek || errorKetszemelyes || errorNegyszemelyes || errorPizzak) {
-    return <p>Error: {errorCategories ? errorCategories.message : errorEloetelek?.message}</p>;
-  }
+  const { data: dataCategories }:any = useSuspenseQuery(GET_CATEGORIES);
+  const { data: dataEloetelek }:any = useSuspenseQuery(GET_ELOETELEK);
+  const { data: dataLevesek }:any = useSuspenseQuery(GET_LEVESEK);
+  const { data: dataTesztak }:any = useSuspenseQuery(GET_TESZTAK);
+  const { data: dataSertes }:any = useSuspenseQuery(GET_SERTES);
+  const { data: dataSzarnyas }:any = useSuspenseQuery(GET_SZARNYAS);
+  const { data: dataKoretek }:any = useSuspenseQuery(GET_KORETEK);
+  const { data: dataSavanyusag }:any = useSuspenseQuery(GET_SAVANYUSAG);
+  const { data: dataDesszertek }:any = useSuspenseQuery(GET_DESSZERTEK);
+  const { data: dataKetszemelyes }:any = useSuspenseQuery(GET_KETSZEMELYES);
+  const { data: dataNegyszemelyes }:any = useSuspenseQuery(GET_NEGYSZEMELYES);
+  const { data: dataPizzak }:any = useSuspenseQuery(GET_PIZZAK);
 
   const etlapCategories = dataCategories.categories.nodes;
   const eloetelekData = dataEloetelek.tlap.edges;
