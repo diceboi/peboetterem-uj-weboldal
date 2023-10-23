@@ -8,6 +8,7 @@ import Smartprice from "./UI/Smartprice"
 import { gql } from "@apollo/client"
 import { useState } from 'react'
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import Link from "next/link";
 
 const GET_CATEGORIES = gql`
 query getCategories {
@@ -394,30 +395,30 @@ export default function Menu() {
   }
 
   return (
-    <section id="dailymenu" className="flex flex-col w-full min-h-[100vh] bg-[--navy] py-40">
+    <section id="etlap" className="flex flex-col w-full min-h-[100vh] bg-[--navy] py-40">
       <div className="container m-auto flex flex-nowrap justify-center items-center py-8 gap-8">
         <h1>Étlap</h1>
       </div>
       <div className="container flex flex-nowrap m-auto">
-        <ul className="flex flex-col justify-start h-full w-[100px] lg:w-[300px]">
+        <ul className="sticky lg:relative top-0 flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
 
         {etlapCategories.map((category:any, index:any) => (
           <li
             key={index}
-            className={`flex flex-col lg:flex-row lg:flex-nowrap items-center p-1 lg:p-6 gap-4 hover:bg-[--grey] transition-all duration-200 cursor-pointer ${
-              activeCategory === category.slug ? ' bg-[--grey]' : ' bg-[#dadadacc]'
+            className={`relative flex flex-col lg:flex-row lg:flex-nowrap items-center p-1 lg:p-6 gap-2 lg:gap-4 hover:bg-[--grey] transition-all duration-200 cursor-pointer ${
+              activeCategory === category.slug ? ' bg-[--grey] z-20 shadow-xl after:content-[""] after:absolute after:h-full after:bg-[--grey] after:w-5 after:-right-5' : ' bg-[#dadadacc]'
             }`}
             onClick={() => setActiveCategory(category.slug)}
           >
-            <Image src={category.description} width={50} height={50} alt={"Étel ikon"} className="max-h-[50px] max-w-[50px]"/>
-            <h2 className="lg:categorynames text-xs lg:text-lg lg:text-left text-center">{category.name}</h2>
+            <Image src={category.description} width={50} height={50} alt={"Étel ikon"} className="max-h-[30px] lg:max-h-[50px] max-w-[30px] lg:max-w-[50px]"/>
+            <h2 className="lg:categorynames tracking-normal lg:tracking-widest text-xs lg:text-lg lg:text-left text-center">{category.name}</h2>
           </li>
         ))}         
 
         </ul>
 
-        <div id="eloetelek" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'eloetelek' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="eloetelek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'eloetelek' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[0].name}</h2>
             <Image src={dataCategories.categories.nodes[0].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -445,8 +446,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="levesek" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'levesek' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="levesek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'levesek' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[1].name}</h2>
             <Image src={dataCategories.categories.nodes[1].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -474,8 +475,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="tesztak" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'tesztak' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="tesztak" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'tesztak' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[2].name}</h2>
             <Image src={dataCategories.categories.nodes[2].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -503,8 +504,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="sertes" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'sertes' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="sertes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'sertes' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[3].name}</h2>
             <Image src={dataCategories.categories.nodes[3].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -532,8 +533,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="szarnyas" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'szarnyas' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="szarnyas" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'szarnyas' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[4].name}</h2>
             <Image src={dataCategories.categories.nodes[4].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -561,8 +562,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="koretek" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'koretek' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="koretek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'koretek' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[5].name}</h2>
             <Image src={dataCategories.categories.nodes[5].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -590,8 +591,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="savanyusag" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'savanyusag' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="savanyusag" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'savanyusag' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[6].name}</h2>
             <Image src={dataCategories.categories.nodes[6].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -619,8 +620,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="desszertek" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'desszertek' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="desszertek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'desszertek' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[7].name}</h2>
             <Image src={dataCategories.categories.nodes[7].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -648,8 +649,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="ketszemelyes" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === '2-szemelyes-talak' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="ketszemelyes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === '2-szemelyes-talak' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[8].name}</h2>
             <Image src={dataCategories.categories.nodes[8].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -677,8 +678,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="negyszemelyes" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === '4-szemelyes-talak' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="negyszemelyes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === '4-szemelyes-talak' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[9].name}</h2>
             <Image src={dataCategories.categories.nodes[9].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -706,8 +707,8 @@ export default function Menu() {
 
         </div>
 
-        <div id="pizzak" className={`flex-col w-full min-h-max bg-[--grey] overflow-hidden ${activeCategory === 'pizzak' ? ' flex' : ' hidden'}`}>
-          <div className="flex items-center justify-between gap-1 lg:gap-4 shadow-lg px-2 lg:px-16 h-[50px] lg:h-[100px] my-8 overflow-hidden">
+        <div id="pizzak" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'pizzak' ? ' flex' : ' hidden'}`}>
+          <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[10].name}</h2>
             <Image src={dataCategories.categories.nodes[10].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
           </div>
@@ -735,6 +736,11 @@ export default function Menu() {
 
         </div>
 
+      </div>
+      <div className="container flex flex-col lg:flex-row justify-center px-4 py-1 my-4 w-fit bg-[--okker] text-center lg:gap-8 gap-2 m-auto">
+        <p className="font-bold text-[--navy]">Rendelj bárhonnan, mi kivisszük! </p>
+        <Link href="tel:+3682310663" ><p className="font-black text-[--navy]">+36 82 310 663</p></Link>
+        <Link href="tel:+36304940959" ><p className="font-black text-[--navy]">+36 30 494 0959</p></Link>
       </div>
     </section>
   )

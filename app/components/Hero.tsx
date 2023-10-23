@@ -39,8 +39,8 @@ export default function Hero() {
     <section id="mainhero" className="relative flex flex-col justify-center gap-10 w-full h-[90vh] bg-[--navy]">
       <div style={{backgroundImage: `url("${pages.fooldal.heroBackground.sourceUrl}")`}} className="absolute w-full h-full opacity-50 mix-blend-overlay bg-cover bg-no-repeat bg-center"></div>
       <div className="container m-auto flex flex-col gap-10 justify-center items-center z-10">
-        <Image src={pages.fooldal.heroLogo.sourceUrl} alt={pages.fooldal.heroLogo.altText} width={300} height={300} className=""/>
-        <p className="w-11/12 lg:w-1/2 text-center">{pages.fooldal.heroText}</p>
+        <Image src={pages.fooldal.heroLogo.sourceUrl} alt={pages.fooldal.heroLogo.altText} width={300} height={300} className="max-w-[200px] lg:max-w-[300px] max-h-[200px] lg:max-h-[300px]"/>
+        <p className="w-11/12 lg:w-1/2 text-center text-[--grey]">{pages.fooldal.heroText}</p>
 
       </div>
 

@@ -31,10 +31,10 @@ function makeClient() {
     defaultOptions: {
       // Set default fetch policy to "no-cache" to disable cache for all queries
       watchQuery: {
-        fetchPolicy: "no-cache",
+        fetchPolicy: "cache-first",
       },
       query: {
-        fetchPolicy: "no-cache",
+        fetchPolicy: "cache-first",
       },
     },
   });

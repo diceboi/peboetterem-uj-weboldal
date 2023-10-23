@@ -87,7 +87,7 @@ export default async function DailyMenu() {
     
     if (filteredAllergens.length > 0) {
       return (
-        <p className="text-[--grey] opacity-30">{`${filteredAllergens.join(", ")}`}</p>
+        <p className="flex flex-row flex-nowrap text-[--grey] opacity-30">{`${filteredAllergens.join(", ")}`}</p>
       );
     }
     
@@ -98,7 +98,7 @@ export default async function DailyMenu() {
   return (
     <>
     <div className="absolute w-full h-[15vh] bg-gradient-to-t from-[--navy] to-transparent -mt-[15vh]"></div>
-    <section id="dailymenu" className="flex flex-col w-full min-h-[40vh] bg-[--navy] ">
+    <section id="napimenu" className="flex flex-col w-full min-h-[40vh] bg-[--navy] px-4 gap-8">
       <div className="container m-auto flex flex-nowrap justify-center items-center gap-8">
         <h1>Napi menü</h1>
         <h2 className="price">{`1850 Ft/nap`}</h2>
@@ -106,30 +106,42 @@ export default async function DailyMenu() {
       <div className="container m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
         
       {data.allNapiMen.edges.map((edge: any, index: any) => (
-        <div key={index} className="flex flex-nowrap bg-[--lightnavy]">
-          <div className="flex flex-col justify-start items-center border-r border-[--navy] m-4 pr-4 gap-2">
+        <div key={index} className="flex flex-col lg:flex-row bg-[--lightnavy]">
+          <div className="flex flex-col justify-start items-start lg:items-center border-b lg:border-r border-[--navy] m-4 pr-4 gap-2">
             <h1 className='-mt-4'>{edge.node.title}</h1>
             <p className="day -mt-4">Csütörtök</p>
           </div>
-          <div className="flex flex-col w-full pr-4">
+          <div className="flex flex-col w-full px-4 lg:r-4">
             <div className="flex flex-col gap-1 border-b border-[--navy] mt-4 pb-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <div className='flex gap-2'><p>{edge.node.napiMenu.elsoEloetel}</p>{generateAllergenText(edge.node.napiMenu.allergenekElsoEloetel)}</div>
+                <div className='flex flex-col lg:flex-row gap-2 text-[--grey]'>
+                  <p>{edge.node.napiMenu.elsoEloetel}</p>
+                  {generateAllergenText(edge.node.napiMenu.allergenekElsoEloetel)}
+                </div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <div className='flex gap-2'><p>{edge.node.napiMenu.elsoFoetel}</p>{generateAllergenText(edge.node.napiMenu.allergenekElsoFoetel)}</div>
+                <div className='flex flex-col lg:flex-row gap-2 text-[--grey]'>
+                  <p>{edge.node.napiMenu.elsoFoetel}</p>
+                  {generateAllergenText(edge.node.napiMenu.allergenekElsoFoetel)}
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-1 py-4">
               <div className="flex flex-nowrap gap-2">
                 <TbSoup className="w-6 h-6 text-[--okker]" />
-                <div className='flex gap-2'><p>{edge.node.napiMenu.masodikEloetel}</p>{generateAllergenText(edge.node.napiMenu.allergenekMasodikEloetel)}</div>
+                <div className='flex flex-col lg:flex-row gap-2 text-[--grey]'>
+                  <p>{edge.node.napiMenu.masodikEloetel}</p>
+                  {generateAllergenText(edge.node.napiMenu.allergenekMasodikEloetel)}
+                </div>
               </div>
               <div className="flex flex-nowrap gap-2">
                 <GiHotMeal className="w-6 h-6 text-[--okker]" />
-                <div className='flex gap-2'><p>{edge.node.napiMenu.masodikFoetel}</p>{generateAllergenText(edge.node.napiMenu.allergenekMasodikFoetel)}</div>
+                <div className='flex flex-col lg:flex-row gap-2 text-[--grey]'>
+                  <p>{edge.node.napiMenu.masodikFoetel}</p>
+                  {generateAllergenText(edge.node.napiMenu.allergenekMasodikFoetel)}
+                </div>
               </div>
             </div>
           </div>
@@ -137,7 +149,7 @@ export default async function DailyMenu() {
         ))}
 
       </div>
-      <p className='container m-auto text-center'>A napi ajánlatot aznap 8:00 - ig lehet megrendelni!</p>
+      <p className='container m-auto text-center text-[--grey]'>A napi ajánlatot aznap 8:00 - ig lehet megrendelni!</p>
     </section>
     </>
   )
