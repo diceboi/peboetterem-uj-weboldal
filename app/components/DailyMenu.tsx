@@ -107,7 +107,7 @@ export default async function DailyMenu() {
         
       {data.allNapiMen.edges.map((edge: any, index: any) => (
         <div key={index} className="flex flex-col lg:flex-row bg-[--lightnavy]">
-          <div className="flex flex-col justify-start items-start lg:items-center border-b lg:border-r border-[--navy] m-4 lg:pb-0 pb-4 pr-4 gap-2">
+          <div className="flex flex-col justify-start items-start lg:items-center border-b lg:border-r lg:border-b-0 border-[--navy] m-4 lg:pb-0 pb-4 pr-4 gap-2">
             <h1 className='-mt-4'>{edge.node.title}</h1>
             <p className="day -mt-4">Csütörtök</p>
           </div>

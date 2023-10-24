@@ -403,7 +403,7 @@ export default function Menu() {
         <h1>Étlap</h1>
       </div>
       <div className="container flex flex-nowrap m-auto">
-        <ul className="sticky lg:relative top-[64px] flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
+        <ul className="sticky lg:relative lg:top-0 top-[64px] flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
 
         {etlapCategories.map((category:any, index:any) => (
           <li
