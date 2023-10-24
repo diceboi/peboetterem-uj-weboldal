@@ -1,10 +1,31 @@
 "use client"
 
-import { TbHome2, TbMenu2 } from 'react-icons/tb'
+import { TbHome2, TbMenu2, TbPhone } from 'react-icons/tb'
 import { MdClose } from 'react-icons/md'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
+
+
+function isOpenNow() {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+  
+    if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+      // Monday to Friday: 09:00 - 21:00
+      const isOpenWeekday = (hour > 8 || (hour === 8 && minute >= 0)) && (hour < 21 || (hour === 21 && minute <= 0));
+      return isOpenWeekday;
+    } else if (dayOfWeek === 6) {
+      // Saturday: 10:00 - 21:00
+      const isOpenSaturday = (hour > 9 || (hour === 9 && minute >= 0)) && (hour < 21 || (hour === 21 && minute <= 0));
+      return isOpenSaturday;
+    }
+  
+    // Sunday: Closed
+    return false;
+  }
 
 
 export default function MainNav() {
@@ -45,23 +66,30 @@ export default function MainNav() {
     useEffect(() => {
         function handleScroll() {
             const menu = document.getElementById("desktop-menu");
-            const menuInner = document.getElementById("menu");
+            const innerMenu = document.getElementById("menu");
+            const menucontainer = document.getElementById("menucontainer");
             const logo = document.getElementById("acceptrec-logo");
             const scrollY = window.scrollY;
     
             if (menu) {
-                if (scrollY > 0) {
+                if (scrollY > 75) {
                     menu.style.height = "55px";
-                    menu.style.boxShadow = "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)";
-                    menu.style.backgroundColor = "var(--navyblur)";
-                    if (logo) logo.style.width = "100px";
-                    if (menuInner) menuInner.style.height = "55px";
-                } else {
-                    menu.style.height = "96px";
-                    menu.style.boxShadow = "0 0 0 0";
+                    menu.style.paddingTop = "0px";
                     menu.style.backgroundColor = "var(--navy)";
-                    if (logo) logo.style.width = "200px";
-                    if (menuInner) menuInner.style.height = "96px";
+                    if (innerMenu) innerMenu.style.justifyContent = "space-evenly";
+                    if (innerMenu) innerMenu.style.marginLeft = "100px";
+                    if (menucontainer) menucontainer.style.borderBottom = "0px solid var(--lightnavy)";
+                    if (logo) logo.style.width = "75px";
+                    if (logo) logo.style.opacity = "100";
+                } else {
+                    menu.style.height = "55x";
+                    menu.style.paddingTop = "75px";
+                    menu.style.backgroundColor = "transparent";
+                    if (innerMenu) innerMenu.style.justifyContent = "space-between";
+                    if (innerMenu) innerMenu.style.marginLeft = "0px";
+                    if (menucontainer) menucontainer.style.borderBottom = "1px solid var(--lightnavy)";   
+                    if (logo) logo.style.width = "0px";
+                    if (logo) logo.style.opacity = "0"; 
                 }
             }
         }
@@ -71,62 +99,99 @@ export default function MainNav() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    //Nyitva - Zárva
+    const [isOpen, setIsOpen] = useState(isOpenNow());
+
+    useEffect(() => {
+        // Update the isOpen state every minute
+        const timer = setInterval(() => {
+        setIsOpen(isOpenNow());
+        }, 60000);
+
+        return () => clearInterval(timer);
+    }, []);
  
     return (
         <>
-        <nav id='desktop-menu' style={{ height: "75px", backgroundColor: "transparent" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 backdrop-blur-sm ease-in-out duration-200">
-            <div className='flex justify-between items-center gap-8 w-full'>
-                <div id="logo" className="flex shrink-0 items-center">
+        <nav id='desktop-menu' style={{ height: "55px", backgroundColor: "transparent", marginBottom: "-75px", paddingTop: "75px" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200">
+            <div id='menucontainer' style={{ borderBottom: "1px solid var(--lightnavy)", }} className='relative container flex items-center justify-between gap-8 w-full'>
+                <div id="logo" className="absolute flex shrink-0 items-center">
                     <Link href="/">
-                        <Image src="/Accept-Stacked-Logo-with-Strapline-RGB300.webp" id='acceptrec-logo' alt="logo" width={200} height={150} priority className="w-[200px] h-auto ease-in-out duration-200" />
+                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={0} height={0} priority className="ease-in-out duration-200" />
                     </Link>
                 </div>
                 
                 
-                <ul id="menu" className='flex items-center gap-2 text-md font-bold h-24'>
+                <ul id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
 
-                        <li id='mainlink' className='flex items-center border border-transparent hover:border-neutral-300 rounded-full hover:bg-[#0001] px-2 '><Link href="#napimenu" className="flex items-center gap-2"><span className='flex flex-nowrap items-center gap-1'>Napi menü</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
 
-                        <li id='mainlink' className='flex items-center border border-transparent hover:border-neutral-300 rounded-full hover:bg-[#0001] px-2 '><Link href="#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
                                         
-                        <li id='mainlink' className='flex items-center border border-transparent hover:border-neutral-300 rounded-full hover:bg-[#0001] px-2'><Link href="#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
-                    
-                    
-                        <li id='mainlink' className='flex items-center border border-transparent hover:border-neutral-300 rounded-full hover:bg-[#0001] px-2 transition-all'><Link href="#galeria" className="flex items-center gap-2"><span>Galéria</span></Link></li>
-
-                        <li id='mainlink' className='flex items-center border border-transparent hover:border-neutral-300 rounded-full hover:bg-[#0001] px-2 transition-all'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
+                                       
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
                         </li>
                 </ul>
+                <div className='flex flex-nowrap gap-16'>
+                    <div className='flex flex-nowrap items-center gap-2 w-max'>
+                        <div className='flex'>
+                            <TbPhone className="text-[--okker] w-7 h-7"/>
+                        </div>
+                        <div className='flex flex-col gap-1'>
+                            <Link href="tel:+3682310663"><p className="footerparagraph">+36 82 310 663</p></Link>
+                            <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
+                        </div>
+                    </div>
+                    <div className='flex flex-col'>
+                        <p className="footerparagraph">Jelenleg:</p>
+                        <p className={isOpen ? "open text-2xl" : "close text-2xl"}>
+                        {isOpen ? "Nyitva" : "Zárva"}
+                        </p>
+                    </div>
+                </div>
+                
             </div>    
         </nav> 
 
         <nav className='xl:hidden sticky top-0 z-50 min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
-            <div className='flex justify-between items-center h-16 px-4 shadow-lg bg-white'>
-                <div id="logo" className="flex shrink-0 items-center w-40 h-14">
+            <div className='flex justify-between items-center h-16 px-4 shadow-lg bg-[--navy]'>
+                <div id="logo" className="flex shrink-0 items-center">
                     <Link href="/">
-                        <Image src="/Accept-Stacked-Logo-with-Strapline-RGB300.webp" alt="logo" className="w-40" width={150} height={40} />
+                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" className="" width={75} height={35} />
                     </Link>
                 </div>
-                <menu className=' flex justify-center items-center gap-4'>
-                    <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
-                    <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-white shadow-special${mobileMenuOpen ? ' active' : ''}`}>
-                        <li className='flex justify-between border-t border-neutral-300'>
-                            <Link href="#napimenu" className='w-full p-2 font-black text-xl'>Napi menü</Link>
-                        </li>
-                        <li className='flex justify-between border-t border-neutral-300'>
-                            <Link href="#etlap" className='w-full p-2 font-black text-xl'>Étlap</Link>
-                        </li>
-                        <li className='flex justify-between border-t border-neutral-300'>
-                            <Link href="#rolunk" className='w-full p-2 font-black text-xl'>Rólunk</Link>
-                        </li>
-                        <li className='flex justify-between border-t border-neutral-300'>
-                            <Link href="#galeria" className='w-full p-2 font-black text-xl'>Galéria</Link>
-                        </li>
-                        <li className='flex justify-between border-t border-neutral-300'>
-                            <Link href="#kapcsolat" className='w-full p-2 font-black text-xl'>Kapcsolat</Link>
-                        </li>
-                    </ul>
-                </menu>
+                <div className='flex flex-nowrap gap-4'>
+                    <div className='flex flex-nowrap gap-2 items-center'>
+                        <p className="footerparagraph">Jelenleg:</p>
+                        <p className={isOpen ? "open" : "close"}>
+                        {isOpen ? "Nyitva" : "Zárva"}
+                        </p>
+                    </div>  
+                    <menu className=' flex justify-center items-center gap-4'>
+                        <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
+                        <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-[--navy] shadow-special${mobileMenuOpen ? ' active' : ''}`}>
+                            <li className='flex justify-between border-t border-[--lightnavy]'>
+                                <Link href="#napimenu" className='w-full p-2 text-xl text-[--grey]'>Napi menü</Link>
+                            </li>
+                            <li className='flex justify-between border-t border-[--lightnavy]'>
+                                <Link href="#etlap" className='w-full p-2 text-xl text-[--grey]'>Étlap</Link>
+                            </li>
+                            <li className='flex justify-between border-t border-[--lightnavy]'>
+                                <Link href="#rolunk" className='w-full p-2 text-xl text-[--grey]'>Rólunk</Link>
+                            </li>
+                            <li className='flex justify-between border-t border-[--lightnavy]'>
+                                <Link href="#kapcsolat" className='w-full p-2 text-xl text-[--grey]'>Kapcsolat</Link>
+                            </li>
+                            <div className='flex flex-nowrap items-center justify-between gap-2 w-full p-4'>
+                                <TbPhone className="text-[--okker] w-7 h-7"/>
+                                <Link href="tel:+3682310663"><p className="footerparagraph">+36 82 310 663</p></Link>
+                                <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
+                        </div>
+                        </ul>
+                    </menu>
+                </div>
             </div>
         </nav>  
         </>    

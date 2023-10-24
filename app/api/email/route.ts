@@ -21,7 +21,7 @@ export async function POST(request:any) {
             from: `${email}`,
             to: "info@peboetterem.hu",
             replyTo: `${email}`,
-            bcc: "szasz.szabolcs1995@gmail.com",
+            bcc: ["szasz.szabolcs1995@gmail.com", "nzsofi444@gmail.com"],
             subject: `Kapcsolatfelvétel érkezett ${name} részéről`,
             html: `
                 <h1>Szia! A kapcsolatfelvételi űrlapon írtak neked az alábbi adatokkal:</h1>

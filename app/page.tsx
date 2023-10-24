@@ -12,7 +12,6 @@ export default function HomaPage() {
       <DailyMenu />
       <Menu />
       <AboutUs />
-      <Gallery />
       <ContactUs />
     </>
   )

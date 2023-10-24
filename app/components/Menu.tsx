@@ -9,6 +9,7 @@ import { gql } from "@apollo/client"
 import { useState } from 'react'
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const GET_CATEGORIES = gql`
 query getCategories {
@@ -334,6 +335,8 @@ query getPizzak {
 
 export default function Menu() {
 
+  const router = useRouter();
+
   const [activeCategory, setActiveCategory] = useState('eloetelek');
 
   const { data: dataCategories }:any = useSuspenseQuery(GET_CATEGORIES);
@@ -400,7 +403,7 @@ export default function Menu() {
         <h1>Étlap</h1>
       </div>
       <div className="container flex flex-nowrap m-auto">
-        <ul className="sticky lg:relative top-0 flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
+        <ul className="sticky lg:relative top-[64px] flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
 
         {etlapCategories.map((category:any, index:any) => (
           <li
@@ -408,7 +411,7 @@ export default function Menu() {
             className={`relative flex flex-col lg:flex-row lg:flex-nowrap items-center p-1 lg:p-6 gap-2 lg:gap-4 hover:bg-[--grey] transition-all duration-200 cursor-pointer ${
               activeCategory === category.slug ? ' bg-[--grey] z-20 shadow-xl after:content-[""] after:absolute after:h-full after:bg-[--grey] after:w-5 after:-right-5' : ' bg-[#dadadacc]'
             }`}
-            onClick={() => setActiveCategory(category.slug)}
+            onClick={() => { router.push('#etlap'); setActiveCategory(category.slug); }}
           >
             <Image src={category.description} width={50} height={50} alt={"Étel ikon"} className="max-h-[30px] lg:max-h-[50px] max-w-[30px] lg:max-w-[50px]"/>
             <h2 className="lg:categorynames tracking-normal lg:tracking-widest text-xs lg:text-lg lg:text-left text-center">{category.name}</h2>
@@ -719,7 +722,7 @@ export default function Menu() {
                 <p className="text-[--navy] font-bold text-sm lg:text-lg">{pizzak.node.title}</p>
                 {generateAllergenText(pizzak.node.etlap.allergenek)}
               </div>
-              <div className="flex flex-col lg:flex-row gap-4 justify-start lg:justify-end items-center w-max lg:min-w-[450px]">
+              <div className="lex flex-col lg:flex-row gap-4 justify-start lg:justify-end items-start lg:items-center w-max lg:min-w-[200px]">
                 {pizzak.node.etlap.ar && (
                   <Smartprice price={`${displayMennyiseg(pizzak.node.etlap.mennyiseg)} ${pizzak.node.etlap.ar} Ft `} />
                 )}
