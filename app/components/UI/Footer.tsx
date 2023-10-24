@@ -35,7 +35,7 @@ export default function Footer() {
     const heroLogo = data.pages.edges[0].node.fooldal.heroLogo;
 
   return (
-    <section className="w-full bg-[--navy] py-20">
+    <section className="w-full bg-[--navy] lg:py-20 py-4">
         <div className="flex flex-col container m-auto p-4 lg:p-0">
             <div className="flex flex-col lg:flex-row justify-between border-b border-[--lightnavy] py-8 gap-8">
                 <div className="flex flex-col justify-start gap-4">
