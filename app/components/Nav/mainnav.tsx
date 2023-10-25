@@ -153,7 +153,7 @@ export default function MainNav() {
             </div>    
         </nav> 
 
-        <nav className='xl:hidden sticky top-0 z-50 min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
+        <nav className='xl:hidden sticky top-0 z-[999] min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
             <div className='flex justify-between items-center h-16 px-4 shadow-lg bg-[--navy]'>
                 <div id="logo" className="flex shrink-0 items-center">
                     <Link href="/">
@@ -165,7 +165,7 @@ export default function MainNav() {
                         <p className="footerparagraph">Hamarosan</p>
                         <p className="footerparagraph">nyitunk</p>
                     </div>  
-                    <menu className=' flex justify-center items-center gap-4'>
+                    <menu className='flex justify-center items-center gap-4 z-[999]'>
                         <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
                         <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-[--navy] shadow-special${mobileMenuOpen ? ' active' : ''}`}>
                             <li className='flex justify-between border-t border-[--lightnavy]'>
