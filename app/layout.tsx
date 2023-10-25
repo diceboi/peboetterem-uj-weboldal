@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, Inter, Playball } from 'next/font/google'
 import './globals.css'
-import Mainnav from './components/Nav/mainnav'
+import Mainnav from './components/Nav/mainnav4'
 import { ApolloWrapper } from "./lib/apollo-wrapper";
 import Footer from './components/UI/Footer';
 

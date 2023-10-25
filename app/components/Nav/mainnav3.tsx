@@ -28,7 +28,7 @@ function isOpenNow() {
   }
 
 
-export default function MainNav() {
+export default function MainNav3() {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
@@ -144,18 +144,16 @@ export default function MainNav() {
                             <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                     </div>
-                    <div className='flex flex-col'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
-                    </div>
+                    <div className='flex flex-col gap-0 items-center'>
+                        <p className="footerparagraph">Hamarosan</p>
+                        <p className="footerparagraph">nyitunk</p>
+                    </div> 
                 </div>
                 
             </div>    
         </nav> 
 
-        <nav className='xl:hidden sticky top-0 z-50 min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
+        <nav className='xl:hidden sticky top-0 z-[999] min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
             <div className='flex justify-between items-center h-16 px-4 shadow-lg bg-[--navy]'>
                 <div id="logo" className="flex shrink-0 items-center">
                     <Link href="/">
@@ -163,13 +161,11 @@ export default function MainNav() {
                     </Link>
                 </div>
                 <div className='flex flex-nowrap gap-4'>
-                    <div className='flex flex-nowrap gap-2 items-center'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open" : "close"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
+                    <div className='flex flex-col gap-0 items-center'>
+                        <p className="footerparagraph">Hamarosan</p>
+                        <p className="footerparagraph">nyitunk</p>
                     </div>  
-                    <menu className=' flex justify-center items-center gap-4'>
+                    <div className='flex justify-center items-center gap-4 z-[999]'>
                         <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
                         <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-[--navy] shadow-special${mobileMenuOpen ? ' active' : ''}`}>
                             <li className='flex justify-between border-t border-[--lightnavy]'>
@@ -190,7 +186,7 @@ export default function MainNav() {
                                 <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                         </ul>
-                    </menu>
+                    </div>
                 </div>
             </div>
         </nav>  

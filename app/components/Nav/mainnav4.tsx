@@ -28,7 +28,7 @@ function isOpenNow() {
   }
 
 
-export default function MainNav2() {
+export default function MainNav() {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
@@ -100,22 +100,20 @@ export default function MainNav2() {
         };
     }, []);
 
-    //Nyitva - Zárva
-    const [isOpen, setIsOpen] = useState(isOpenNow());
 
-    useEffect(() => {
-        // Update the isOpen state every minute
-        const timer = setInterval(() => {
-        setIsOpen(isOpenNow());
-        }, 60000);
-
-        return () => clearInterval(timer);
-    }, []);
+    const [isOpen, setIsOpen] = useState(false);
+  
+    const toggleMenu = () => {
+      setIsOpen(!isOpen);
+    };
+  
+    const handleLinkClick = () => {
+      setIsOpen(false);
+    };
  
     return (
         <>
-        <nav>
-        <div id='desktop-menu' style={{ height: "55px", backgroundColor: "transparent", marginBottom: "-75px", paddingTop: "75px" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200">
+        <nav id='desktop-menu' style={{ height: "55px", backgroundColor: "transparent", marginBottom: "-75px", paddingTop: "75px" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200">
             <div id='menucontainer' style={{ borderBottom: "1px solid var(--lightnavy)", }} className='relative container flex items-center justify-between gap-8 w-full'>
                 <div id="logo" className="absolute flex shrink-0 items-center">
                     <Link href="/">
@@ -145,59 +143,43 @@ export default function MainNav2() {
                             <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                     </div>
-                    <div className='flex flex-col'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
-                    </div>
+                    <div className='flex flex-col gap-0 items-center'>
+                        <p className="footerparagraph">Hamarosan</p>
+                        <p className="footerparagraph">nyitunk</p>
+                    </div> 
                 </div>
                 
             </div>    
-        </div> 
+        </nav> 
 
-        <div className='xl:hidden sticky top-0 z-50 min-h-16 w-full overflow-x-clip' ref={mobileMenuRef}>
-            <div className='flex justify-between items-center h-16 px-4 shadow-lg bg-[--navy]'>
-                <div id="logo" className="flex shrink-0 items-center">
-                    <Link href="/">
-                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" className="" width={75} height={35} />
-                    </Link>
+        <div id="mobile-menu" className={`lg:hidden flex justify-between items-center w-full h-full p-4 bg-[--navy] ${isOpen ? 'open' : ''}`}>
+              <Link href="/"><Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" width={75} height={40} /></Link>
+              <div className="flex gap-2">
+                <button className="p-2" onClick={toggleMenu} aria-label="Menu"><TbMenu2 className="h-6 w-6 text-[--grey]" /></button>
+                <div id="toggle-menu" className={`absolute top-0 right-0 bg-[--navy] h-auto w-[90%] p-4 transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
+                  <ul className="relative flex flex-col items-end gap-4">
+                    <button className="absolute top-4 left-4 z-10" onClick={toggleMenu}><MdClose color="#fff" className="w-4 h-4" /></button>
+                    <li className="relative group">
+                      <Link href="#napimenu" onClick={handleLinkClick}>Napi menü</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
+                    <li className="relative group">
+                      <Link href="#etlap" onClick={handleLinkClick}>Étlap</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
+                    <li className="relative group">
+                      <Link href="#rolunk" onClick={handleLinkClick}>Rólunk</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
+                    <li className="relative group">
+                      <Link href="#kapcsolat" onClick={handleLinkClick}>Kapcsolat</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
+                  </ul>
                 </div>
-                <div className='flex flex-nowrap gap-4'>
-                    <div className='flex flex-nowrap gap-2 items-center'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open" : "close"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
-                    </div>  
-                    <menu className=' flex justify-center items-center gap-4'>
-                        <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
-                        <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-[--navy] shadow-special${mobileMenuOpen ? ' active' : ''}`}>
-                            <li className='flex justify-between border-t border-[--lightnavy]'>
-                                <Link href="#napimenu" className='w-full p-2 text-xl text-[--grey]'>Napi menü</Link>
-                            </li>
-                            <li className='flex justify-between border-t border-[--lightnavy]'>
-                                <Link href="#etlap" className='w-full p-2 text-xl text-[--grey]'>Étlap</Link>
-                            </li>
-                            <li className='flex justify-between border-t border-[--lightnavy]'>
-                                <Link href="#rolunk" className='w-full p-2 text-xl text-[--grey]'>Rólunk</Link>
-                            </li>
-                            <li className='flex justify-between border-t border-[--lightnavy]'>
-                                <Link href="#kapcsolat" className='w-full p-2 text-xl text-[--grey]'>Kapcsolat</Link>
-                            </li>
-                            <div className='flex flex-nowrap items-center justify-between gap-2 w-full p-4'>
-                                <TbPhone className="text-[--okker] w-7 h-7"/>
-                                <Link href="tel:+3682310663"><p className="footerparagraph">+36 82 310 663</p></Link>
-                                <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
-                        </div>
-                        </ul>
-                    </menu>
-                </div>
+              </div>
             </div>
-        </div>  
-        </nav>
         </>    
     );
         
 }
-
