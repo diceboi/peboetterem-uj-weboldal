@@ -56,11 +56,7 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col justify-start gap-4">
                     <h3 className="footertitle">Linkek</h3>
-                    <Link href="/adatkezelesi-nyilatkozat"><p className="footerparagraph hover:underline">Adatkezelési nyilatkozat</p></Link>
-                    <Link href="/elallasi-nyilatkozat"><p className="footerparagraph hover:underline">Elállási nyilatkozat</p></Link>
-                    <Link href="/fizetes-szallitas"><p className="footerparagraph hover:underline">Fizetés szállítás</p></Link>
-                    <Link href="/gdpr"><p className="footerparagraph hover:underline">GDPR</p></Link>
-                    <Link href="/gyik"><p className="footerparagraph hover:underline">GYIK</p></Link>
+                    <Link href="/adatkezelesi-tajekoztato"><p className="footerparagraph hover:underline">Adatkezelési tajekoztato</p></Link>
                 </div>
             </div>
             <div className="flex justify-center py-4">

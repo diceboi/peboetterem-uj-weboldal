@@ -15,6 +15,19 @@ export async function POST(request:any) {
         }
     });
 
+    await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transporter.verify(function (error, success) {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
+        });
+    });
+
     try {
 
         const mail = await transporter.sendMail({
@@ -33,7 +46,18 @@ export async function POST(request:any) {
             `,
         });
 
-        await transporter.sendMail(mail)
+        await new Promise((resolve, reject) => {
+            // send mail
+            transporter.sendMail(mail, (err, info) => {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                } else {
+                    console.log(info);
+                    resolve(info);
+                }
+            });
+        });
 
         return NextResponse.json({message:"Az email sikeresen elküldve."}, { status: 200 })
 
