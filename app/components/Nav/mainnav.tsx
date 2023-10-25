@@ -28,7 +28,7 @@ function isOpenNow() {
   }
 
 
-export default function MainNav2() {
+export default function MainNav() {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
