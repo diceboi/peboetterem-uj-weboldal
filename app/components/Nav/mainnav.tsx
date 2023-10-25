@@ -144,12 +144,10 @@ export default function MainNav() {
                             <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                     </div>
-                    <div className='flex flex-col'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
-                    </div>
+                    <div className='flex flex-col gap-0 items-center'>
+                        <p className="footerparagraph">Hamarosan</p>
+                        <p className="footerparagraph">nyitunk</p>
+                    </div> 
                 </div>
                 
             </div>    
@@ -163,11 +161,9 @@ export default function MainNav() {
                     </Link>
                 </div>
                 <div className='flex flex-nowrap gap-4'>
-                    <div className='flex flex-nowrap gap-2 items-center'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isOpen ? "open" : "close"}>
-                        {isOpen ? "Nyitva" : "Zárva"}
-                        </p>
+                    <div className='flex flex-col gap-0 items-center'>
+                        <p className="footerparagraph">Hamarosan</p>
+                        <p className="footerparagraph">nyitunk</p>
                     </div>  
                     <menu className=' flex justify-center items-center gap-4'>
                         <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>

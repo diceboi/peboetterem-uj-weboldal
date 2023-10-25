@@ -78,7 +78,8 @@ menu.li {
 
 @media only screen and (max-width: 600px) {
     .categorytitle {
-        font-size: 2em;
+        font-size: 1.3em;
+        line-height: 1em;
         font-family: var(--font-bebas);
         letter-spacing: .1rem;
         opacity: 50%;
@@ -129,6 +130,51 @@ p {
     font-family: var(--font-inter);
     letter-spacing: .125rem;
     color: var(--grey)
+}
+
+
+.transparent-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 6px 3px 6px;
+    border: 1px solid var(--navy);
+    font-size: 16px;
+    letter-spacing: .125rem;
+    transition: 0.2s ease-in-out;
+    font-family: var(--font-bebas);
+}
+
+.transparent-btn:hover {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 6px 3px 6px;
+    border: 1px solid var(--navy);
+    font-size: 16px;
+    letter-spacing: .125rem;
+    transition: 0.2s ease-in-out;
+    font-family: var(--font-bebas);
+    color: var(--grey);
+    background-color: var(--navy);
+    transition: .2 ease-in-out;
+}
+
+
+@media only screen and (max-width: 600px){
+    .transparent-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 5px 1px 5%;
+        border: 1px solid var(--navy);
+        font-size: 14px;
+        letter-spacing: .125rem;
+        transition: 0.2s ease-in-out;
+    }
 }
 
 

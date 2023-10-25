@@ -10,6 +10,8 @@ import { useState } from 'react'
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { TbEye } from "react-icons/tb";
+import Modal from "./UI/AllergenekModal";
 
 const GET_CATEGORIES = gql`
 query getCategories {
@@ -337,7 +339,16 @@ export default function Menu() {
 
   const router = useRouter();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('eloetelek');
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const { data: dataCategories }:any = useSuspenseQuery(GET_CATEGORIES);
   const { data: dataEloetelek }:any = useSuspenseQuery(GET_ELOETELEK);
@@ -399,10 +410,12 @@ export default function Menu() {
 
   return (
     <section id="etlap" className="flex flex-col w-full min-h-[100vh] bg-[--navy] py-40">
+    <Modal isOpen={isModalOpen} closeModal={closeModal} />
       <div className="container m-auto flex flex-nowrap justify-center items-center py-8 gap-8">
         <h1>Étlap</h1>
       </div>
       <div className="container flex flex-nowrap m-auto">
+      
         <ul className="sticky lg:relative lg:top-0 top-[64px] flex flex-col justify-start h-full w-[75px] lg:w-[300px]">
 
         {etlapCategories.map((category:any, index:any) => (
@@ -423,7 +436,7 @@ export default function Menu() {
         <div id="eloetelek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'eloetelek' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[0].name}</h2>
-            <Image src={dataCategories.categories.nodes[0].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {eloetelekData.map((eloetel:any, index:any) => (
@@ -452,7 +465,7 @@ export default function Menu() {
         <div id="levesek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'levesek' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[1].name}</h2>
-            <Image src={dataCategories.categories.nodes[1].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {levesekData.map((leves:any, index:any) => (
@@ -481,7 +494,7 @@ export default function Menu() {
         <div id="tesztak" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'tesztak' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[2].name}</h2>
-            <Image src={dataCategories.categories.nodes[2].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {tesztakData.map((teszta:any, index:any) => (
@@ -510,7 +523,7 @@ export default function Menu() {
         <div id="sertes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'sertes' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[3].name}</h2>
-            <Image src={dataCategories.categories.nodes[3].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {sertesData.map((sertes:any, index:any) => (
@@ -539,7 +552,7 @@ export default function Menu() {
         <div id="szarnyas" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'szarnyas' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[4].name}</h2>
-            <Image src={dataCategories.categories.nodes[4].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {szarnyasData.map((szarnyas:any, index:any) => (
@@ -568,7 +581,7 @@ export default function Menu() {
         <div id="koretek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'koretek' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[5].name}</h2>
-            <Image src={dataCategories.categories.nodes[5].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {koretekData.map((koretek:any, index:any) => (
@@ -597,7 +610,7 @@ export default function Menu() {
         <div id="savanyusag" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'savanyusag' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[6].name}</h2>
-            <Image src={dataCategories.categories.nodes[6].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {savanyusagData.map((savanyusag:any, index:any) => (
@@ -626,7 +639,7 @@ export default function Menu() {
         <div id="desszertek" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'desszertek' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[7].name}</h2>
-            <Image src={dataCategories.categories.nodes[7].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {desszertekData.map((desszertek:any, index:any) => (
@@ -655,7 +668,7 @@ export default function Menu() {
         <div id="ketszemelyes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === '2-szemelyes-talak' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[8].name}</h2>
-            <Image src={dataCategories.categories.nodes[8].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {ketszemelyesData.map((ketszemelyes:any, index:any) => (
@@ -684,7 +697,7 @@ export default function Menu() {
         <div id="negyszemelyes" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === '4-szemelyes-talak' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[9].name}</h2>
-            <Image src={dataCategories.categories.nodes[9].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {negyszemelyesData.map((negyszemelyes:any, index:any) => (
@@ -713,7 +726,7 @@ export default function Menu() {
         <div id="pizzak" className={`flex-col w-full min-h-max bg-[--grey] shadow-2xl z-10 ${activeCategory === 'pizzak' ? ' flex' : ' hidden'}`}>
           <div className="flex items-center justify-between gap-1 lg:gap-4 mx-4 lg:mx-16 h-[50px] lg:h-[100px] overflow-hidden">
             <h2 className="categorytitle">{dataCategories.categories.nodes[10].name}</h2>
-            <Image src={dataCategories.categories.nodes[10].description} width={150} height={150} alt={"Étel ikon"} className="hidden lg:block max-h-[200px] max-w-[200px] opacity-25 -mb-8"/>
+            <button className="transparent-btn" onClick={openModal}>Allergének<TbEye /></button>
           </div>
           
           {pizzakData.map((pizzak:any, index:any) => (
@@ -741,7 +754,7 @@ export default function Menu() {
 
       </div>
       <div className="container flex flex-col lg:flex-row justify-center px-4 py-1 my-4 w-fit bg-[--okker] text-center lg:gap-8 gap-2 m-auto">
-        <p className="font-bold text-[--navy]">Rendelj bárhonnan, mi kivisszük! </p>
+        <p className="font-bold text-[--navy]">Rendelj telefonon, és mi Kaposvár 15km-es körzetében bárhova kivisszük!</p>
         <Link href="tel:+3682310663" ><p className="font-black text-[--navy]">+36 82 310 663</p></Link>
         <Link href="tel:+36304940959" ><p className="font-black text-[--navy]">+36 30 494 0959</p></Link>
       </div>

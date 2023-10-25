@@ -12,7 +12,7 @@ export default function AdatkezelesiTajekoztato() {
 1.3. A PEBo Gasztro Kft. a személyes adatokat bizalmasan kezeli, és megtesz minden olyan biztonsági, technikai és szervezési intézkedést, mely az adatok biztonságát garantálja. A PEBo Gasztro Kft. a jelen tájékoztatóban ismerteti adatkezelési gyakorlatát.
 2. Az adatkezelő adatai:
 Adatkezeléssel kapcsolatban a PEBo Gasztro Kft-vel az alábbi elérhetőségen léphetnek kapcsolatba a felhasználók:
-Név:Gasztro Ászok Kft.
+Név:PEBo Gasztro Kft.
 Székhely.: 7400 Kaposvár,Táncsics M. u.23
 Cégjegyzékszám:
 A bejegyző bíróság megnevezése: Kaposvári Törvényszék Cégbírósága
