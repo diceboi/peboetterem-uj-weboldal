@@ -165,7 +165,7 @@ export default function MainNav() {
                         <p className="footerparagraph">Hamarosan</p>
                         <p className="footerparagraph">nyitunk</p>
                     </div>  
-                    <menu className='flex justify-center items-center gap-4 z-[999]'>
+                    <div className='flex justify-center items-center gap-4 z-[999]'>
                         <button onClick={toggleMobileMenu}><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${mobileMenuOpen ? '' : ' hidden'}`}/></button>
                         <ul className={`menu-mobile absolute top-[64px] right-0 grid grid-cols-1 justify-start items-center w-screen sm:w-96 bg-[--navy] shadow-special${mobileMenuOpen ? ' active' : ''}`}>
                             <li className='flex justify-between border-t border-[--lightnavy]'>
@@ -186,7 +186,7 @@ export default function MainNav() {
                                 <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                         </ul>
-                    </menu>
+                    </div>
                 </div>
             </div>
         </nav>  
