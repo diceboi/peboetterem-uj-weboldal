@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   try {
 
   const adminMail = await resend.emails.send({
-    from: 'hello@peboetterem.hu',
+    from: 'hello@admin.peboetterem.hu',
     to: 'info@peboetterem.hu',
     reply_to: `${email}`,
     subject: 'Új kapcsolatfelvétel a weboldalról',
