@@ -9,7 +9,7 @@ import { hu } from 'date-fns/locale';
 
 const query = gql`
 query getNapimenu {
-  allNapiMen(last: 7, where: {orderby: {field: DATE, order: ASC}}) {
+  allNapiMen(last: 7, where: {orderby: {field: TITLE, order: ASC}}) {
     edges {
       node {
         napiMenu {
@@ -55,6 +55,7 @@ query getNapimenu {
             allergen7
             fieldGroupName
           }
+          informacio
         }
         title
       }
@@ -129,7 +130,7 @@ export default async function DailyMenu() {
         return (
         
         <div key={index} className="flex flex-col lg:flex-row bg-[--lightnavy]">
-          <div className="flex flex-col justify-start items-start lg:items-center border-b lg:border-r lg:border-b-0 border-[--navy] m-4 lg:pb-0 pb-4 pr-4 gap-2">
+          <div className="flex flex-col justify-start items-start lg:w-1/4 lg:items-center border-b lg:border-r lg:border-b-0 border-[--navy] m-4 lg:pb-0 pb-4 pr-4 gap-2">
             <h1 className='-mt-4'>{edge.node.title}</h1>
             <p className="day -mt-4">{capitalizedDayName}</p>
           </div>
@@ -196,13 +197,20 @@ export default async function DailyMenu() {
 
             </div>
             )}
+
+            {edge.node.napiMenu.informacio === null ? null : (
+            <div className='bg-[--alert] text-[--grey] p-4 my-4'>
+              <p>{edge.node.napiMenu.informacio}</p>
+            </div>
+            )}
+            
           </div>
         </div>
         );
         })}
 
       </div>
-      <p className='container m-auto text-center text-[--okker] font-bold'>A napi ajánlatot aznap 8:00 - ig lehet megrendelni!</p>
+      <p className='container m-auto text-center text-[--okker] font-bold'>A napi ajánlatot aznap 10:30 - tól lehet megrendelni 14:00-ig vagy a készlet erejéig.</p>
       <p className='container m-auto text-center text-[--grey] text-sm'>A szállítás városon belül ingyenes! Szállítási díjak városon kívül:</p>
       <div className='flex flex-col gap-2'>
         <p className='container m-auto text-center text-[--grey] text-sm'>Kaposfüred: 500 Ft</p>
