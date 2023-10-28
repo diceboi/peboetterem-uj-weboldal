@@ -11,9 +11,8 @@ export async function POST(request: Request) {
   try {
 
   const adminMail = await resend.emails.send({
-    from: 'hello@admin.peboetterem.hu',
-    to: 'info@peboetterem.hu',
-    reply_to: `${email}`,
+    from: 'PEBo Weboldal <hello@admin.peboetterem.hu>',
+    to: ['info@peboetterem.hu'],
     subject: 'Új kapcsolatfelvétel a weboldalról',
     react: ContactUsAdmin({
       name,
@@ -23,11 +22,7 @@ export async function POST(request: Request) {
     })
   });
 
-  return NextResponse.json({
-    status: 'Ok'
-  }, {
-    status: 200
-  })
+  return NextResponse.json(adminMail)
   } catch(e: unknown) {
     if (e instanceof Error) {
       console.log(`Failed to send email: ${e.message}`);

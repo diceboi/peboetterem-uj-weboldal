@@ -64,6 +64,15 @@ menu.li {
     background: var(--okker);
 }
 
+.smallprice {
+    font-size: 1em;
+    font-family: var(--font-inter);
+    font-weight: 700;
+    color: var(--navy);
+    padding: .25em .5em .25em .5em;
+    background: var(--okker);
+}
+
 .day {
     font-family: var(--font-playball);
     font-size: 1.5em;
