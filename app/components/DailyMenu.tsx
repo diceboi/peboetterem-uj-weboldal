@@ -111,7 +111,7 @@ export default async function DailyMenu() {
         </div>
         <div className='flex flex-col lg:flex-row gap-2 lg:gap-4'>
         <h2 className="smallprice lg:w-fit w-full">A menü csak főétel: <b>1100 Ft</b></h2>
-        <h2 className="smallprice lg:w-fit w-full">B menü csak főétel: <b>1400 Ft</b></h2>
+        <h2 className="smallprice lg:w-fit w-full">B menü csak főétel: <b>1200 Ft</b></h2>
         </div>
         <h3 className='text-[--okker]'>A csomagolás díja: 100Ft</h3>
       </div>
