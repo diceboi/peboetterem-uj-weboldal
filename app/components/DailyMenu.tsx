@@ -140,8 +140,10 @@ export default async function DailyMenu() {
             <h2 className='text-[--okker] font-black'>A menü:</h2>
 
               {edge.node.napiMenu.elsoEloetel === null ? null : (
-                <div className="flex flex-nowrap gap-2">
-                  <TbSoup className="w-6 h-6 text-[--okker]" />
+                <div className="flex flex-nowrap items-center gap-2">
+                  <div className='w-7 h-7'>
+                  <TbSoup className="w-7 h-7 text-[--okker]" />
+                  </div>
                   <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
                     <p className='lg:text-md text-sm'>{edge.node.napiMenu.elsoEloetel}</p>
                     {generateAllergenText(edge.node.napiMenu.allergenekElsoEloetel)}
@@ -150,8 +152,10 @@ export default async function DailyMenu() {
               )}
 
               {edge.node.napiMenu.elsoFoetel === null ? null : (
-              <div className="flex flex-nowrap gap-2">
-                <GiHotMeal className="w-6 h-6 text-[--okker]" />
+              <div className="flex flex-nowrap items-center gap-2">
+                <div className='w-7 h-7'>
+                <GiHotMeal className="w-7 h-7 text-[--okker]" />
+                </div>
                 <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
                   <p className='lg:text-md text-sm'>{edge.node.napiMenu.elsoFoetel}</p>
                   {generateAllergenText(edge.node.napiMenu.allergenekElsoFoetel)}
@@ -167,8 +171,10 @@ export default async function DailyMenu() {
             <h2 className='text-[--okker] font-black'>B menü:</h2>
 
               {edge.node.napiMenu.masodikEloetel === null ? null : (
-              <div className="flex flex-nowrap gap-2">
-                <TbSoup className="w-6 h-6 text-[--okker]" />
+              <div className="flex flex-nowrap items-center gap-2">
+                <div className='w-7 h-7'>
+                <TbSoup className="w-7 h-7 text-[--okker]" />
+                </div>
                 <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
                   <p className='lg:text-md text-sm'>{edge.node.napiMenu.masodikEloetel}</p>
                   {generateAllergenText(edge.node.napiMenu.allergenekMasodikEloetel)}
@@ -177,8 +183,10 @@ export default async function DailyMenu() {
               )}
 
               {edge.node.napiMenu.masodikFoetel === null ? null : (
-              <div className="flex flex-nowrap gap-2">
-                <GiHotMeal className="w-6 h-6 text-[--okker]" />
+              <div className="flex flex-nowrap items-center gap-2">
+                <div className='w-7 h-7'>
+                <GiHotMeal className="w-7 h-7 text-[--okker]" />
+                </div>
                 <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
                   <p className='lg:text-md text-sm'>{edge.node.napiMenu.masodikFoetel}</p>
                   {generateAllergenText(edge.node.napiMenu.allergenekMasodikFoetel)}
