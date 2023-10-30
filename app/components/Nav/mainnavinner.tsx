@@ -97,23 +97,21 @@ export default function MainNavInner() {
                 
                 
                 
-                <ul id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
+                <div id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
 
                     <div id="logo" className="flex shrink-0 items-center">
                         <Link href="/">
                             <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={75} height={45} priority className="ease-in-out duration-200" />
                         </Link>
                     </div>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="https://peboetterem.hu/#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
 
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="/#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
-
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="/#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="https://peboetterem.hu/#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
                                         
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="/#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="https://peboetterem.hu/#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
                                        
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="/#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
-                        </li>
-                </ul>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="https://peboetterem.hu/#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link></li> 
+                </div>
                 <div className='flex flex-nowrap gap-16'>
                     <div className='flex flex-nowrap items-center gap-2 w-max'>
                         <div className='flex'>
@@ -137,32 +135,32 @@ export default function MainNavInner() {
 
         <div id="mobile-menu" className={`fixed top-0 lg:hidden flex justify-between items-center w-full h-[64px] p-4 bg-[--navy] z-50 ${isOpen ? '' : ''}`}>
               
-                <div className='flex flex-nowrap justify-between gap-4 w-full'>
+                <div className='flex flex-nowrap justify-between items-center gap-4 w-full'>
                 <Link href="/"><Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" width={75} height={40} /></Link>
-                <div className='flex flex-nowrap gap-2 items-center'>
-                        <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isRestaurantOpen ? "Nyitva" : "Zárva"}
-                        </p>
-                    </div> 
+                  <div className='flex flex-nowrap gap-2 items-center'>
+                      <p className="footerparagraph">Jelenleg:</p>
+                      <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
+                      {isRestaurantOpen ? "Nyitva" : "Zárva"}
+                      </p>
+                  </div> 
               <div className="flex gap-2">
                 <button className="p-2" onClick={toggleMenu} aria-label="Menu"><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? '' : ' hidden'}`}/></button>
                 <div id="toggle-menu" className={`absolute top-[64px] right-0 bg-[--navy] h-auto w-full p-4 text-[--grey] transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
                   <ul className="relative flex flex-col items-end gap-4">
                     <li className="relative group">
-                      <Link href="/#napimenu" onClick={handleLinkClick}>Napi menü</Link>
+                      <Link href="https://peboetterem.hu/#napimenu" onClick={handleLinkClick}>Napi menü</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
                     </li>
                     <li className="relative group">
-                      <Link href="/#etlap" onClick={handleLinkClick}>Étlap</Link>
+                      <Link href="https://peboetterem.hu/#etlap" onClick={handleLinkClick}>Étlap</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
                     </li>
                     <li className="relative group">
-                      <Link href="/#rolunk" onClick={handleLinkClick}>Rólunk</Link>
+                      <Link href="https://peboetterem.hu/#rolunk" onClick={handleLinkClick}>Rólunk</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
                     </li>
                     <li className="relative group">
-                      <Link href="/#kapcsolat" onClick={handleLinkClick}>Kapcsolat</Link>
+                      <Link href="https://peboetterem.hu/#kapcsolat" onClick={handleLinkClick}>Kapcsolat</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
                     </li>
                     <div className='flex flex-nowrap items-center justify-between gap-2 w-full p-4'>
