@@ -8,24 +8,28 @@ import { useEffect, useState, useRef } from 'react';
 
 
 function isOpenNow() {
-    const now = new Date();
-    const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-    const hour = now.getHours();
-    const minute = now.getMinutes();
-  
-    if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-      // Monday to Friday: 09:00 - 21:00
-      const isOpenWeekday = (hour > 8 || (hour === 8 && minute >= 0)) && (hour < 21 || (hour === 21 && minute <= 0));
-      return isOpenWeekday;
-    } else if (dayOfWeek === 6) {
-      // Saturday: 10:00 - 21:00
-      const isOpenSaturday = (hour > 9 || (hour === 9 && minute >= 0)) && (hour < 21 || (hour === 21 && minute <= 0));
-      return isOpenSaturday;
-    }
-  
-    // Sunday: Closed
-    return false;
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+
+  if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+    // Monday to Friday: 09:00 - 21:00
+    const isOpenWeekday =
+      (hour > 8 || (hour === 8 && minute >= 0)) &&
+      (hour < 21 || (hour === 21 && minute <= 0));
+    return isOpenWeekday;
+  } else if (dayOfWeek === 6) {
+    // Saturday: 10:00 - 21:00
+    const isOpenSaturday =
+      (hour > 9 || (hour === 9 && minute >= 0)) &&
+      (hour < 21 || (hour === 21 && minute <= 0));
+    return isOpenSaturday;
   }
+
+  // Sunday: Closed
+  return false;
+}
 
 
 export default function MainNav() {
@@ -110,6 +114,19 @@ export default function MainNav() {
     const handleLinkClick = () => {
       setIsOpen(false);
     };
+
+    const [isRestaurantOpen, setIsRestaurantOpen] = useState(isOpenNow());
+
+  useEffect(() => {
+    // Update the isOpen state every minute
+    const timer = setInterval(() => {
+      setIsRestaurantOpen(isOpenNow());
+    }, 60000); // 60000 milliseconds = 1 minute
+
+    return () => {
+      clearInterval(timer); // Clean up the interval on unmount
+    };
+  }, []);
  
     return (
         <>
@@ -143,9 +160,11 @@ export default function MainNav() {
                             <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-0 items-center'>
-                        <p className="footerparagraph">Hamarosan</p>
-                        <p className="footerparagraph">nyitunk</p>
+                    <div className='flex flex-col'>
+                        <p className="footerparagraph">Jelenleg:</p>
+                        <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
+                        {isRestaurantOpen ? "Nyitva" : "Zárva"}
+                        </p>
                     </div> 
                 </div>
                 
