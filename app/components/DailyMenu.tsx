@@ -210,7 +210,7 @@ export default async function DailyMenu() {
         })}
 
       </div>
-      <p className='container m-auto text-center text-[--okker] font-bold'>A napi ajánlatot aznap 10:30 - tól lehet megrendelni 14:00-ig vagy a készlet erejéig.</p>
+      <p className='container m-auto text-center text-[--okker] font-bold'>A napi menüt aznap 9:00-tól 14:00-ig lehet megrendelni, kiszállítás pedig 10:30-tól történik.</p>
       <p className='container m-auto text-center text-[--grey] text-sm'>A szállítás városon belül ingyenes! Szállítási díjak városon kívül:</p>
       <div className='flex flex-col gap-2'>
         <p className='container m-auto text-center text-[--grey] text-sm'>Kaposfüred: 500 Ft</p>
