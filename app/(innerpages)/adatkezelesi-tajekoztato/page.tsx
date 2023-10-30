@@ -1,97 +1,42 @@
+import { gql } from "@apollo/client"
+import { getClient } from "@/app/lib/client";
 
-export default function AdatkezelesiTajekoztato() {
-  return (
-    <section className='w-full py-40 bg-[--grey]'>
-        <div className='container flex flex-col lg:flex-row gap-20 m-auto w-11/12 lg:w-8/12'>
-            <h1 className='lg:w-1/3'>Adatkezelési tájékoztató</h1>
-            <p className='lg:w-2/3 text-sm lg:text-md'>1. A jelen adatkezelési tájékoztató célja:
-1.1 https://peboetterem.hu/ URL alatt elérhető honlapot (a továbbiakban: „Honlap”) PEBo Gasztro Kft. Kft: 7400 Kaposvár, József Attila u. 14., a továbbiakban: PEBo Gasztro Kft., szolgáltató, vagy adatkezelő) mint adatkezelő, magára nézve kötelezőnek ismeri el a jelen tájékoztató tartalmát, és kötelezettséget vállal arra, hogy a tevékenységével kapcsolatos adatkezelés mindenkor megfeleljen a jelen tájékoztatóban és a hatályos nemzeti jogszabályokban, valamint az Európai Unió jogi aktusaiban meghatározott elvárásoknak.
-1.2. A PEBo Gasztro Kft. adatkezelésével kapcsolatos adatvédelmi irányelvek folyamatosan elérhetőek a https://peboetterem.hu/adatkezelesi-tajekoztato címen. A PEBo Gasztro Kft fenntartja magának a jogot a jelen tájékoztató tartalmának megváltoztatására, amelyről megfelelő időben értesíti a felhasználóit.
-1.3. A PEBo Gasztro Kft. a személyes adatokat bizalmasan kezeli, és megtesz minden olyan biztonsági, technikai és szervezési intézkedést, mely az adatok biztonságát garantálja. A PEBo Gasztro Kft. a jelen tájékoztatóban ismerteti adatkezelési gyakorlatát.
-2. Az adatkezelő adatai:
-Adatkezeléssel kapcsolatban a PEBo Gasztro Kft-vel az alábbi elérhetőségen léphetnek kapcsolatba a felhasználók:
-Név:PEBo Gasztro Kft.
-Székhely.: 7400 Kaposvár,Táncsics M. u.23
-Cégjegyzékszám:
-A bejegyző bíróság megnevezése: Kaposvári Törvényszék Cégbírósága
-Adószám: 32372861-2-14
-E-mail: info@peboetterem.hu
-3. A kezelt személyes adatok köre:
-3.1. A PEBo Gasztro Kft. tevékenysége során az érintetteknek a szolgáltatások igénybevételéhez szükséges személyes adatait kezeli, amelyről szóló tájékoztatást a szolgáltatás igénybevételének megkezdésekor ad meg teljes körűen.
-3.2. Technikai adatok: A PEBo Gasztro Kft. a személyes adatok kezeléséhez a szolgáltatás nyújtása során alkalmazott informatikai eszközöket úgy választja meg és üzemelteti, hogy az adatkezelés alábbi elvei megvalósuljanak:
-A személyes adatok
-a) kezelését jogszerűen és tisztességesen, valamint az érintett számára átlátható módon kell végezni („jogszerűség, tisztességes eljárás és átláthatóság”);
-b) gyűjtése csak meghatározott, egyértelmű és jogszerű célból történjen, és azokat ne kezeljék ezekkel a célokkal össze nem egyeztethető módon („célhoz kötöttség”);
-c) az adatkezelés céljai szempontjából megfelelőek és relevánsak kell, hogy legyenek, és a szükségesre kell korlátozódniuk („adattakarékosság”);
-d) pontosnak és szükség esetén naprakésznek kell lenniük; minden ésszerű intézkedést meg kell tenni annak érdekében, hogy az adatkezelés céljai szempontjából pontatlan személyes adatokat haladéktalanul töröljék vagy helyesbítsék („pontosság”);
-e) tárolásának olyan formában kell történnie, amely az érintettek azonosítását csak a személyes adatok kezelése céljainak eléréséhez szükséges ideig teszi lehetővé („korlátozott tárolhatóság”);
-f) kezelését oly módon kell végezni, hogy megfelelő technikai vagy szervezési intézkedések alkalmazásával biztosítva legyen a személyes adatok megfelelő biztonsága, az adatok jogosulatlan vagy jogellenes kezelésével, véletlen elvesztésével, megsemmisítésével vagy károsodásával szembeni védelmet is ideértve („integritás és bizalmas jelleg”).
-3.3. A PEBo Gasztro Kft. az adatokat megfelelő intézkedésekkel védi a jogosulatlan hozzáférés, megváltoztatás, továbbítás, nyilvánosságra hozatal, törlés vagy megsemmisítés, valamint a véletlen megsemmisülés ellen. A PEBo Gasztro Kft. olyan műszaki, szervezési és szervezeti intézkedésekkel gondoskodik az adatkezelés biztonságának védelméről, amely az adatkezeléssel kapcsolatban jelentkező kockázatoknak megfelelő védelmi szintet nyújt. A PEBo Gasztro Kft. az adatkezelés során megőrzi a titkosságot: megvédi az információt, hogy csak az erre jogosult férhessen hozzá; megőrzi az adatok sértetlenséget: megvédi az információnak és a feldolgozás módszerének a pontosságát és teljességét; biztosítja a rendelkezésre állást: gondoskodik arról, hogy amikor a jogosult használónak szüksége van rá, valóban hozzá tudjon férni a kívánt információhoz, és rendelkezésre álljanak az ezzel kapcsolatos eszközök.
-3.4. Cookie-k (Sütik):
-3.4.1. A sütik információkat gyűjtenek a felhasználókról és eszközeikről; megjegyzik a felhasználók egyéni beállításait, amelyek felhasználásra kerül(het)nek pl. online tranzakciók igénybevételekor, így nem kell újra begépelni őket; megkönnyítik a szolgáltatás használatát; minőségi felhasználói élményt biztosítanak. A testre szabott kiszolgálás érdekében a felhasználó számítógépén kis adatcsomagot, ún. sütit (cookie) helyez el és a későbbi látogatás során olvas vissza. Ha a böngésző visszaküld egy korábban elmentett sütit, a sütit kezelő szolgáltatónak lehetősége van összekapcsolni a felhasználó aktuális látogatását a korábbiakkal, de kizárólag a saját tartalma tekintetében.
-3.4.2. Feltétlenül szükséges, munkamenet (session) cookie-k: Ezen sütik célja, hogy a felhasználók maradéktalanul és zökkenőmentesen használhassák a szolgáltatás, annak minden funkcióját, és az elérhető szolgáltatásokat. Az ilyen típusú sütik érvényességi ideje a munkamenet befejezéséig tart, a böngésző bezárásával a sütik e fajtája automatikusan törlődik a számítógépről, illetve a böngészésre használt más eszközről.
-3.4.3. Harmadik fél által elhelyezett cookie-k (analitika): A PEBo Gasztro Kft. alkalmazza a Google Analytics, mint harmadik fél sütijeit is. Ez a szolgáltató statisztikai célú szolgáltatás használatával információkat gyűjt azzal kapcsolatban, hogy a felhasználók hogyan használják a szolgáltatást. A PEBo Gasztro Kft. ezeket az adatokat a szolgáltatás fejlesztésének és a felhasználói élmény javításának céljával használja fel. Ezen sütik szintén lejáratukig maradnak a látogató számítógépén vagy böngészésre használt más eszközén, illetve amíg a felhasználó nem törli őket.
-4. Az adatkezelési tevékenységek nyilvántartása:
-A PEBo Gasztro Kft. a felelősségébe tartozóan végzett adatkezelési tevékenységekről nyilvántartást vezet. E nyilvántartás a következő információkat tartalmazza:
-a) az adatkezelő neve és elérhetősége;
-b) az adatkezelés céljai;
-c) az érintettek kategóriáinak, valamint a személyes adatok kategóriáinak ismertetése;
-d) olyan címzettek kategóriái, akikkel a személyes adatokat közlik vagy közölni fogják, ideértve a
-harmadik országbeli címzetteket vagy nemzetközi szervezeteket;
-e) adott esetben a személyes adatok harmadik országba vagy nemzetközi szervezet részére történő továbbítására vonatkozó információk, beleértve a harmadik ország vagy a nemzetközi szervezet azonosítását, és szükség esetén a megfelelő garanciák leírása;
-f) ha lehetséges, a különböző adatkategóriák törlésére előirányzott határidők;
-g) ha lehetséges, az adatkezelés biztonsága kapcsán említett technikai és szervezési intézkedések általános leírása.
-5. Az adatkezelés célja, módja és jogalapja, általános adatkezelési irányelvek:
-A PEBo Gasztro Kft. tevékenységéhez kapcsolódó adatkezelés célja a felhasználói részére történő szolgáltatás nyújtása; az adatkezelés a felhasználók önkéntes hozzájárulásán, illetve törvényi felhatalmazáson alapul. Az önkéntes hozzájáruláson alapuló adatkezelések esetében az érintettek e hozzájárulásukat az adatkezelés bármely szakaszában visszavonhatják. Bizonyos esetekben a megadott adatok egy körének kezelését, tárolását, továbbítását jogszabályok teszik kötelezővé, melyről szükség esetén külön értesítjük felhasználóinkat. Felhívjuk a PEBo Gasztro Kft. részére adatközlők figyelmét, hogy amennyiben nem saját személyes adataikat adják meg, az adatközlő kötelessége az érintett hozzájárulásának beszerzése.A PEBo Gasztro Kft. adatkezelési alapelvei összhangban állnak az adatvédelemmel kapcsolatos hatályos jogszabályokkal, így különösen az alábbiakkal:
-• 2011. évi CXII. törvény - az információs önrendelkezési jogról és az információszabadságról (Infotv.);
-• Az Európai Parlament és a Tanács (EU) 2016/679 rendelete (2016. április 27.) – a természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről (általános adatvédelmi rendelet, GDPR).
-6. Az adatok fizikai tárolási helyei:
-A felhasználók személyes adatai (vagyis azok az adatok, amelyek a felhasználók személyével kapcsolatba hozhatók) a PEBo Gasztro Kft. által nyújtott szolgáltatás igénybevételével kerülhetnek a PEBo Gasztro Kft. kezelésébe, ennek során egyrészt bizonyos technikai adatok automatikusan generálódnak a számítógépes rendszerben, másrészt a felhasználó is megadhatja nevét, elérhetőségét vagy más adatait, ha az a szolgáltatás igénybevétele során szükséges. Az adatok fizikai tárolása egyrészt a PEBo Gasztro Kft. saját eszközein, másrészt a Kft. PEBo Gasztro
-7. Adattovábbítás, adatfeldolgozás, az adatokat megismerők köre:
-7.1. A PEBo Gasztro Kft. az alábbi adatfeldolgozók szolgáltatását veheti igénybe: Magyar Telekom Nyrt. (székhely: 1013 Budapest, Krisztina körút 55.) amely adatfeldolgozók a saját adatkezelési tájékoztatójukban, illetve adatfeldolgozásról szóló tájékoztatójukban meghatározottak szerint végzik az adatok feldolgozását.
-7.2. Bankkártyás fizetés
-7.3. A felhasználó személyes adatait a szolgáltatás igénybevételéhez szükséges mértékben megismerhetik a PEBo Gasztro Kft. alvállalkozói és teljesítési segédei, ennek során a PEBo Gasztro Kft. minden esetben biztosítja, hogy a felhasználók személyes adatait az alvállalkozói és teljesítési segédei is a jelen adatvédelmi tájékoztatóban foglaltaknak megfelelően kezeljék.
-7.4. A Honlap kódjába az alábbi külső bővítmények vannak beépítve:
-Google Analytics, YouTube, Facebook, Google play alkalmazás áruház, App Store alkalmazás áruház; ezen bővítmények köre időről-időre változhat.
-A fent felsorolt szolgáltatók a saját adatvédelmi nyilatkozatukban meghatározottak szerint végzik az adatok kezelését, illetve feldolgozását.
-8. Adatkezeléssel érintettek jogai és jogérvényesítési lehetőségei:
-8.1. Az érintett tájékoztatást kérhet személyes adatai kezeléséről, valamint kérheti személyes adatainak helyesbítését, illetve – a kötelező adatkezelések kivételével – törlését, visszavonását, élhet adathordozási-, és tiltakozási jogával az adat felvételénél jelzett módon, illetve az adatkezelő fenti elérhetőségein.
-8.2. Tájékoztatáshoz való jog: A PEBo Gasztro Kft. megfelelő intézkedéseket hoz annak érdekében, hogy az érintettek részére a személyes adatok kezelésére vonatkozó, a GDPR 13. és a 14. cikkben említett valamennyi információt és a 15–22. és 34. cikk szerinti minden egyes tájékoztatást tömör, átlátható, érthető és könnyen hozzáférhető formában, világosan és közérthetően megfogalmazva nyújtsa a felhasználók részére.
-8.3. Az érintett hozzáféréshez való joga: Az érintett jogosult arra, hogy az adatkezelőtől visszajelzést kapjon arra vonatkozóan, hogy a személyes adatainak kezelése folyamatban van-e, és ha ilyen adatkezelés folyamatban van, jogosult arra, hogy a személyes adataihoz és a következő információkhoz hozzáférést kapjon: az adatkezelés céljai; az érintett személyes adatok kategóriái; azon címzettek vagy címzettek kategóriái, akikkel, illetve amelyekkel a személyes adatokat közölték vagy közölni fogják, ideértve különösen a harmadik országbeli címzetteket, illetve a nemzetközi szervezeteket; a személyes adatok tárolásának tervezett időtartama; a helyesbítés, törlés vagy adatkezelés korlátozásának és a tiltakozás joga; a felügyeleti hatósághoz címzett panasz benyújtásának joga; az adatforrásokra vonatkozó információ; az automatizált döntéshozatal ténye, ideértve a profilalkotást is, valamint az alkalmazott logikára és arra vonatkozó érthető információk, hogy az ilyen adatkezelés milyen jelentőséggel bír, és az érintettre nézve milyen várható következményekkel jár. Az adatkezelő a kérelem benyújtásától számított legfeljebb egy hónapon belül adja meg a tájékoztatást.
-8.4. Helyesbítés joga: Az érintett kérheti a PEBo Gasztro Kft. által kezelt, rá vonatkozó pontatlan személyes adatok helyesbítését és a hiányos adatok kiegészítését.
-8.5. Törléshez való jog: Az érintett az alábbi indokok valamelyikének fennállása esetén jogosult arra, hogy kérésére a PEBo Gasztro Kft. indokolatlan késedelem nélkül törölje a rá vonatkozó személyes adatokat: a személyes adatokra már nincs szükség abból a célból, amelyből azokat gyűjtötték vagy más módon kezelték; az érintett visszavonja az adatkezelés alapját képező hozzájárulását, és az adatkezelésnek nincs más jogalapja; az érintett tiltakozik az adatkezelés ellen, és nincs elsőbbséget élvező jogszerű ok az adatkezelésre; a személyes adatokat jogellenesen kezelték; a személyes adatokat az adatkezelőre alkalmazandó uniós vagy tagállami jogban előírt jogi kötelezettség teljesítéséhez törölni kell; a személyes adatok gyűjtésére információs társadalommal összefüggő szolgáltatások kínálásával kapcsolatosan került sor. Az adatok törlése nem kezdeményezhető, ha az adatkezelés szükséges: a véleménynyilvánítás szabadságához és a tájékozódáshoz való jog gyakorlása céljából; a személyes adatok kezelését előíró, az adatkezelőre alkalmazandó uniós vagy tagállami jog szerinti kötelezettség teljesítése, illetve közérdekből vagy az adatkezelőre ruházott közhatalmi jogosítvány gyakorlása keretében végzett feladat végrehajtása céljából; a népegészség-ügy területét érintő, vagy archiválási, tudományos és történelmi kutatási célból vagy statisztikai célból, közérdek alapján; vagy jogi igények előterjesztéséhez, érvényesítéséhez, illetve védelméhez.
-8.6. Az adatkezelés korlátozásához való jog: Az érintett kérésére a PEBo Gasztro Kft. korlátozza az adatkezelést, ha az alábbi feltételek valamelyike teljesül: az érintett vitatja a személyes adatok pontosságát, ez esetben a korlátozás arra az időtartamra vonatkozik, amely lehetővé teszi, a személyes adatok pontosságának ellenőrzését; az adatkezelés jogellenes, és az érintett ellenzi az adatok törlését, és ehelyett kéri azok felhasználásának korlátozását; az adatkezelőnek már nincs szüksége a személyes adatokra adatkezelés céljából, de az érintett igényli azokat jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez; vagy az érintett tiltakozott az adatkezelés ellen; ez esetben a korlátozás arra az időtartamra vonatkozik, amíg megállapításra nem kerül, hogy az adatkezelő jogos indokai elsőbbséget élveznek-e az érintett jogos indokaival szemben. Ha az adatkezelés korlátozás alá esik, a személyes adatokat a tárolás kivételével csak az érintett hozzájárulásával, vagy jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez, vagy más természetes vagy jogi személy jogainak védelme érdekében, vagy az Unió, illetve valamely tagállam fontos közérdekéből lehet kezelni.
-8.7. Adathordozáshoz való jog: Az érintett jogosult arra, hogy a rá vonatkozó, általa az adatkezelő rendelkezésére bocsátott személyes adatokat tagolt, széles körben használt, géppel olvasható formátumban megkapja, és ezeket az adatokat egy másik adatkezelőnek továbbítsa.
-8.8. Tiltakozás joga: Az érintett jogosult arra, hogy a saját helyzetével kapcsolatos okokból bármikor tiltakozzon személyes adatainak közérdekű vagy az adatkezelőre ruházott közhatalmi jogosítvány gyakorlásának keretében végzett feladat végrehajtásához szükséges adatkezelés, vagy az adatkezelő vagy egy harmadik fél jogos érdekeinek érvényesítéséhez szükséges kezelése ellen, ideértve az említett rendelkezéseken alapuló profilalkotást is. Tiltakozás esetén az adatkezelő a személyes adatokat nem kezelheti tovább, kivéve, ha azt olyan kényszerítő erejű jogos okok indokolják, amelyek elsőbbséget élveznek az érintett érdekeivel, jogaival és szabadságaival szemben, vagy amelyek jogi igények előterjesztéséhez, érvényesítéséhez vagy védelméhez kapcsolódnak.
-8.9. Automatizált döntéshozatal egyedi ügyekben, beleértve a profilalkotást: Az érintett jogosult arra, hogy ne terjedjen ki rá az olyan, kizárólag automatizált adatkezelésen – ideértve a profilalkotást is – alapuló döntés hatálya, amely rá nézve joghatással járna vagy őt hasonlóképpen jelentős mértékben érintené.
-8.10. Visszavonás joga: Az érintett jogosult arra, hogy hozzájárulását bármikor visszavonja.
-8.11. Bírósághoz fordulás joga: Az érintett a jogainak megsértése esetén az adatkezelő ellen bírósághoz fordulhat. A bíróság az ügyben soron kívül jár el.
-8.12. Adatvédelmi hatósági eljárás: Panasszal a Nemzeti Adatvédelmi és Információszabadság Hatóságnál lehet élni: Név: Nemzeti Adatvédelmi és Információszabadság Hatóság Székhely: 1125 Budapest, Szilágyi Erzsébet fasor 22/C., Levelezési cím: 1530 Budapest, Pf.: 5., Telefon: 0613911400, Fax: 0613911410, E-mail: ugyfelszolgalat@naih.hu, honlap: http://www.naih.hu
-8.13. 16. életévét nem betöltött kiskorú kizárólag a törvényes képviselőjének beleegyezése alapján adhat meg magáról személyes adatot. A 16. életévét betöltött kiskorú érintett hozzájárulását tartalmazó jognyilatkozatának érvényességéhez törvényes képviselőjének beleegyezése vagy utólagos jóváhagyása nem szükséges.
-9. Egyéb rendelkezések:
-Az ebben a tájékoztatóban fel nem sorolt adatkezelésekről az adat felvételekor adunk tájékoztatást. Tájékoztatjuk felhasználóinkat, hogy a bíróság, az ügyész, a nyomozó hatóság, a szabálysértési hatóság, a közigazgatási hatóság, a Nemzeti Adatvédelmi és Információszabadság Hatóság, a Magyar Nemzeti Bank, illetőleg jogszabály felhatalmazása alapján más szervek tájékoztatás adása, adatok közlése, átadása, illetőleg iratok rendelkezésre bocsátása végett megkereshetik az adatkezelőt. A PEBo Gasztro Kft. a hatóságok részére – amennyiben a hatóság a pontos célt és az adatok körét megjelölte – személyes adatot csak annyit és olyan mértékben ad ki, amely a megkeresés céljának megvalósításához elengedhetetlenül szükséges.
-10. Regisztráció, hírlevél:
-10.1. Szolgáltatásunk igénybevétele, hírlevelünk, illetve a szolgáltatásainkkal kapcsolatos információk kézbesítése érdekében felhasználóinknak lehetősége van arra, hogy regisztráljanak a honlapunkon, telefonos rendelés esetén a telefonos ügyfélszolgálatunkon, illetve feliratkozzanak hírlevelünkre, amely során a felhasználóinkat az alábbi személyes, illetve egyéb adatok közlésére kérhetjük, illetve a regisztrált felhasználóink vonatkozásában az alábbi személyes és egyéb adatokat kezelhetjük:
-• név
-• felhasználónév és a hozzá tartozó jelszó
-• telefonszám
-• szállítási cím
-• e-mail cím
-• megrendelt termékek
-• megrendelés helye, dátuma, időpontja, eszköze, szoftvere és IP-címe
-• felhasználó korábbi megrendelései
-• megrendelés során rögzített hangfelvétel
-• üzlethelységben történő vásárlás esetén kamerafelvétel
-10.2. A regisztráció, a telefonos megrendelés, illetve a hírlevélre való feliratkozás az érintettek személyes és egyéb adataik kezeléséhez történő önkéntes és kifejezett hozzájárulásának minősül.
-10.3. A regisztráció, a telefonos megrendelés, illetve hírlevélre való feliratkozás során megadott személyes és egyéb adatokat a jelen adatkezelési tájékoztatóban foglaltak szerint kezeljük.
-10.4. A felhasználó a regisztrációval, a telefonos megrendeléssel, illetve a hírlevélre való feliratkozással hozzájárulását adja a személyes és egyéb adatainak a jelen adatkezelési tájékoztatóban foglaltak szerint történő ingyenes kezeléséhez.
-10.5. Az általunk küldött valamennyi (hír)levél tájékoztatja a címzettet a (hír)levélről való leiratkozás lehetőségéről és módjáról.
-11. Linkek:
-11.1. Honlapunkon található más szolgáltatók által fenntartott oldalakra mutató link. Felhívjuk látogatóink és felhasználóink figyelmét, hogy ilyen ugrópontok használatával más szolgáltatók oldalaira kerülnek át.
-11.2. Jelezzük, hogy nincs ráhatásunk arra, hogy más szolgáltatók betartják-e a személyes adatok védelmére vonatkozó jogszabályi rendelkezéseket. Amennyiben szükségét érzi, kérjük, hogy figyelmesen olvassa el az adott oldalak szolgáltatóinak adatkezelési tájékoztatóját.
-11.3. A jelen adatvédelmi tájékoztatóban rögzített adatvédelmi politikánk kizárólag A PEBo Gasztro Kft. által üzemeltetett oldalakra érvényes.
-Hatályos 2023. október 25. napjától</p>
-        </div>
-    </section>
-  )
-}
+const query = gql`
+query getNyeremenyjatekPost {
+  page(id: "3", idType: DATABASE_ID) {
+    blocks {
+      saveContent
+    }
+    title
+  }
+}`
+
+export default async function AdatkezelesiTajekoztato() {
+
+  const { data } = await getClient().query({ 
+    query, 
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
+  });
+
+    return (
+      <section className='w-full py-40 bg-[--grey]'>
+          <div className='container flex flex-col lg:flex-row gap-20 m-auto w-11/12 lg:w-8/12'>
+              <h1 className='lg:w-1/3'>{data.page.title}</h1>
+              <div className="flex flex-col gap-4 lg:w-2/3">
+              {data.page.blocks.map((page:any, index:any) => (
+                <p 
+                  className='text-sm lg:text-md'
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: page.saveContent }}
+                />
+              ))}
+              </div>
+          </div>
+      </section>
+    )
+  }
+  

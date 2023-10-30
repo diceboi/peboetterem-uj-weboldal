@@ -100,7 +100,7 @@ export default function MainNavInner() {
                 <div id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
 
                     <div id="logo" className="flex shrink-0 items-center">
-                        <Link href="/">
+                        <Link href="https://peboetterem.hu">
                             <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={75} height={45} priority className="ease-in-out duration-200" />
                         </Link>
                     </div>
@@ -136,7 +136,7 @@ export default function MainNavInner() {
         <div id="mobile-menu" className={`fixed top-0 lg:hidden flex justify-between items-center w-full h-[64px] p-4 bg-[--navy] z-50 ${isOpen ? '' : ''}`}>
               
                 <div className='flex flex-nowrap justify-between items-center gap-4 w-full'>
-                <Link href="/"><Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" width={75} height={40} /></Link>
+                <Link href="https://peboetterem.hu"><Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" width={75} height={40} /></Link>
                   <div className='flex flex-nowrap gap-2 items-center'>
                       <p className="footerparagraph">Jelenleg:</p>
                       <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
