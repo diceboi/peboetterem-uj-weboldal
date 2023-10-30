@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, Inter, Playball } from 'next/font/google'
-import './globals.css'
-import Mainnav from './components/Nav/mainnav'
-import { ApolloWrapper } from "./lib/apollo-wrapper";
-import Footer from './components/UI/Footer';
+import '../globals.css'
+import Mainnav from '../components/Nav/mainnav'
+import { ApolloWrapper } from "../lib/apollo-wrapper";
+import Footer from '../components/UI/Footer';
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -36,7 +36,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
         <ApolloWrapper>
+        <Mainnav />
         {children}
+        <Footer />
         </ApolloWrapper>
       </body>
     </html>

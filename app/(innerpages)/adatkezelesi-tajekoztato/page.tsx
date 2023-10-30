@@ -1,12 +1,10 @@
 
-import React from 'react'
-
 export default function AdatkezelesiTajekoztato() {
   return (
     <section className='w-full py-40 bg-[--grey]'>
-        <div className='container flex flex-col lg:flex-row gap-20 m-auto'>
-            <h1 className='w-1/3'>Adatkezelési tájékoztató</h1>
-            <p className='w-2/3'>1. A jelen adatkezelési tájékoztató célja:
+        <div className='container flex flex-col lg:flex-row gap-20 m-auto w-11/12 lg:w-8/12'>
+            <h1 className='lg:w-1/3'>Adatkezelési tájékoztató</h1>
+            <p className='lg:w-2/3 text-sm lg:text-md'>1. A jelen adatkezelési tájékoztató célja:
 1.1 https://peboetterem.hu/ URL alatt elérhető honlapot (a továbbiakban: „Honlap”) PEBo Gasztro Kft. Kft: 7400 Kaposvár, József Attila u. 14., a továbbiakban: PEBo Gasztro Kft., szolgáltató, vagy adatkezelő) mint adatkezelő, magára nézve kötelezőnek ismeri el a jelen tájékoztató tartalmát, és kötelezettséget vállal arra, hogy a tevékenységével kapcsolatos adatkezelés mindenkor megfeleljen a jelen tájékoztatóban és a hatályos nemzeti jogszabályokban, valamint az Európai Unió jogi aktusaiban meghatározott elvárásoknak.
 1.2. A PEBo Gasztro Kft. adatkezelésével kapcsolatos adatvédelmi irányelvek folyamatosan elérhetőek a https://peboetterem.hu/adatkezelesi-tajekoztato címen. A PEBo Gasztro Kft fenntartja magának a jogot a jelen tájékoztató tartalmának megváltoztatására, amelyről megfelelő időben értesíti a felhasználóit.
 1.3. A PEBo Gasztro Kft. a személyes adatokat bizalmasan kezeli, és megtesz minden olyan biztonsági, technikai és szervezési intézkedést, mely az adatok biztonságát garantálja. A PEBo Gasztro Kft. a jelen tájékoztatóban ismerteti adatkezelési gyakorlatát.
