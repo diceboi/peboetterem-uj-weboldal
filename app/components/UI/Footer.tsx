@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import { FaFacebook } from 'react-icons/fa'
 
 import { gql } from "@apollo/client";
 import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
@@ -42,6 +43,9 @@ export default function Footer() {
                     <Image src={heroLogo.sourceUrl} width={100} height={100} alt={heroLogo.altText}/>
                     <h3 className="footertitle">PEBo Gasztro Kft.</h3>
                     <p className="footerparagraph">7400 Kaposvár, József Attila u. 14.</p>
+                    <div className="flex flex-nowrap">
+                      <Link href="https://www.facebook.com/peboetterem" target="_blank" className="w-7 h-7"><FaFacebook className="w-full h-full text-[--grey]"/></Link>
+                    </div>
                 </div>
                 <div className="flex flex-col justify-start gap-4">
                     <h3 className="footertitle">Nyitvatartás</h3>
