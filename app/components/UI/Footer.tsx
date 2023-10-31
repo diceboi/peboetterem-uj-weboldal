@@ -48,6 +48,7 @@ export default function Footer() {
                     <p className="footerparagraph">H - P: 09.00 - 21.00</p>
                     <p className="footerparagraph">Szo: 10.00 - 21.00</p>
                     <p className="footerparagraph">V: Zárva</p>
+                    <p className="footerparagraph"><b>Rendelésfelvétel: 20:15-ig</b></p>
                 </div>
                 <div className="flex flex-col justify-start gap-4">
                     <h3 className="footertitle">Elérhetőség</h3>
