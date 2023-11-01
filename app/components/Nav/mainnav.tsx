@@ -162,9 +162,9 @@ export default function MainNav() {
                     </div>
                     <div className='flex flex-col'>
                         <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isRestaurantOpen ? "Nyitva" : "Zárva"}
-                        </p>
+                        <p className="close">Zárva</p>
+                      
+                        
                     </div> 
                 </div>
                 
@@ -176,8 +176,7 @@ export default function MainNav() {
                 <div className='flex flex-nowrap gap-4'>
                 <div className='flex flex-nowrap gap-2 items-center'>
                         <p className="footerparagraph">Jelenleg:</p>
-                        <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
-                        {isRestaurantOpen ? "Nyitva" : "Zárva"}
+                        <p className="close">Zárva
                         </p>
                     </div> 
               <div className="flex gap-2">
