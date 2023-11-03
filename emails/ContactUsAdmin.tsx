@@ -16,9 +16,10 @@ interface ContactUsAdminProps {
   email: string;
   phone: string;
   message: string;
+  policy: string;
 }
 
-export const ContactUsAdmin = ({name, email, phone, message}:ContactUsAdminProps) => (
+export const ContactUsAdmin = ({name, email, phone, message, policy}:ContactUsAdminProps) => (
   <Html>
     <Head />
     <Preview>{name} a válaszodra vár.</Preview>
@@ -36,6 +37,7 @@ export const ContactUsAdmin = ({name, email, phone, message}:ContactUsAdminProps
           <b>E-mail cím:</b> {email}<br></br>
           <b>Telefonszám:</b> {phone}<br></br>
           <b>Üzenet:</b> {message}<br></br>
+          <b>Adatkezelési tájékoztatót elfogadta?</b> {policy}<br></br>
         </Text>
       </Container>
     </Body>
@@ -58,7 +60,7 @@ const h1 = {
   color: '#312252',
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-  fontSize: '48px',
+  fontSize: '36px',
   fontWeight: 'bold',
   margin: '40px 0',
   padding: '0',

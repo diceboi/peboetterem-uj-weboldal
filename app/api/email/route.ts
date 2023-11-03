@@ -6,12 +6,12 @@ import { NextResponse } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: Request) {
-  const { name, email, phone, message } = await request.json();
+  const { name, email, phone, message, policy } = await request.json();
 
   try {
 
   const adminMail = await resend.emails.send({
-    from: 'PEBo Weboldal <hello@peboetterem.hu>',
+    from: 'PEBo Weboldal <hello@admin.peboetterem.hu>',
     to: 'info@peboetterem.hu',
     subject: 'Új kapcsolatfelvétel a weboldalról',
     react: ContactUsAdmin({
@@ -19,6 +19,7 @@ export async function POST(request: Request) {
       email,
       phone,
       message,
+      policy
     })
   });
 
