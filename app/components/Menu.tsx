@@ -755,7 +755,7 @@ export default function Menu() {
       </div>
       <div className="container flex flex-col lg:flex-row justify-center px-4 py-1 my-4 w-fit bg-[--okker] text-center lg:gap-8 gap-2 m-auto">
         <p className="font-bold text-[--navy]">Rendelj telefonon, és mi Kaposvár 15km-es körzetében bárhova kivisszük!</p>
-        <Link href="tel:0682310663" ><p className="font-black text-[--navy]">06 82 310 663</p></Link>
+        <Link href="tel:0682310633" ><p className="font-black text-[--navy]">06 82 310 633</p></Link>
         <Link href="tel:06304940959" ><p className="font-black text-[--navy]">06 30 494 0959</p></Link>
       </div>
     </section>

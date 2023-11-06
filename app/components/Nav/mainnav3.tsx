@@ -140,7 +140,7 @@ export default function MainNav3() {
                             <TbPhone className="text-[--okker] w-7 h-7"/>
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <Link href="tel:+3682310663"><p className="footerparagraph">+36 82 310 663</p></Link>
+                            <Link href="tel:+3682310633"><p className="footerparagraph">+36 82 310 633</p></Link>
                             <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                     </div>
@@ -182,7 +182,7 @@ export default function MainNav3() {
                             </li>
                             <div className='flex flex-nowrap items-center justify-between gap-2 w-full p-4'>
                                 <TbPhone className="text-[--okker] w-7 h-7"/>
-                                <Link href="tel:+3682310663"><p className="footerparagraph">+36 82 310 663</p></Link>
+                                <Link href="tel:+3682310633"><p className="footerparagraph">+36 82 310 633</p></Link>
                                 <Link href="tel:+36304940959"><p className="footerparagraph">+36 30 494 0959</p></Link>
                         </div>
                         </ul>
