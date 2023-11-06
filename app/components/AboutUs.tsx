@@ -40,8 +40,8 @@ export default async function AboutUs() {
           <div className="flex flex-col px-4 py-1 my-8 w-fit bg-[--okker] lg:gap-8 gap-2">
           <p className="font-bold text-[--navy]">Rendelj telefonon, és mi Kaposvár 15km-es körzetében bárhova kivisszük!</p>
           <div className='flex flex-col lg:flex-row gap-8'>
-            <Link href="tel:+3682310663" ><p className="font-black text-[--navy]">+36 82 310 663</p></Link>
-            <Link href="tel:+36304940959" ><p className="font-black text-[--navy]">+36 30 494 0959</p></Link>
+            <Link href="tel:0682310663" ><p className="font-black text-[--navy]">06 82 310 663</p></Link>
+            <Link href="tel:06304940959" ><p className="font-black text-[--navy]">06 30 494 0959</p></Link>
           </div>
           </div>
         </div>
