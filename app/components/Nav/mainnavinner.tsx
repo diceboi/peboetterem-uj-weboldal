@@ -99,7 +99,7 @@ export default function MainNavInner() {
                 
                 <div id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
 
-                    <div id="logo" className="flex shrink-0 ">
+                    <div id="logo" className="flex shrink-0 items-center">
                         <Link href="https://peboetterem.hu">
                             <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={75} height={45} priority className="ease-in-out duration-200" />
                         </Link>
