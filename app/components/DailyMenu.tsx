@@ -102,7 +102,7 @@ export default async function DailyMenu() {
   return (
     <>
     <div className="absolute w-full h-[15vh] bg-gradient-to-t from-[--navy] to-transparent -mt-[15vh]"></div>
-    <section id="napimenu" className="flex flex-col w-full min-h-[40vh] bg-[--navy] px-4 gap-8">
+    <section id="napimenu" className="flex flex-col w-full min-h-[40vh] bg-[--navy] px-4 gap-8 py-16">
       <div className="container m-auto flex flex-col justify-center items-center gap-4">
         <h1 className='leading-[.75em] py-4'>Napi menü</h1>
         <div className='flex flex-col lg:flex-row gap-2 lg:gap-4'>

@@ -10,6 +10,19 @@
     --grey: #dadada;
     --alert: #c4281a;
     --lightnavy: #3a3f47;
+    --lightnavyborder: #525c6b;
+}
+
+.font-bebas {
+    font-family: var(--font-bebas)!important;
+}
+
+.font-inter {
+    font-family: var(--font-inter)!important;
+}
+
+.font-playball {
+    font-family: var(--font-playball)!important;
 }
 
 body {
@@ -18,6 +31,12 @@ body {
 
 h1 {
     font-size: 3em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
+
+h2 {
+    font-size: 2.5em;
     font-family: var(--font-playball);
     color: var(--okker);
 }

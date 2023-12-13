@@ -67,42 +67,7 @@ export default function MainNav() {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
-    useEffect(() => {
-        function handleScroll() {
-            const menu = document.getElementById("desktop-menu");
-            const innerMenu = document.getElementById("menu");
-            const menucontainer = document.getElementById("menucontainer");
-            const logo = document.getElementById("acceptrec-logo");
-            const scrollY = window.scrollY;
     
-            if (menu) {
-                if (scrollY > 75) {
-                    menu.style.height = "55px";
-                    menu.style.paddingTop = "0px";
-                    menu.style.backgroundColor = "var(--navy)";
-                    if (innerMenu) innerMenu.style.justifyContent = "space-evenly";
-                    if (innerMenu) innerMenu.style.marginLeft = "100px";
-                    if (menucontainer) menucontainer.style.borderBottom = "0px solid var(--lightnavy)";
-                    if (logo) logo.style.width = "75px";
-                    if (logo) logo.style.opacity = "100";
-                } else {
-                    menu.style.height = "55x";
-                    menu.style.paddingTop = "75px";
-                    menu.style.backgroundColor = "transparent";
-                    if (innerMenu) innerMenu.style.justifyContent = "space-between";
-                    if (innerMenu) innerMenu.style.marginLeft = "0px";
-                    if (menucontainer) menucontainer.style.borderBottom = "1px solid var(--lightnavy)";   
-                    if (logo) logo.style.width = "0px";
-                    if (logo) logo.style.opacity = "0"; 
-                }
-            }
-        }
-    
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -130,16 +95,18 @@ export default function MainNav() {
  
     return (
         <>
-        <nav id='desktop-menu' style={{ height: "55px", backgroundColor: "transparent", marginBottom: "-75px", paddingTop: "75px" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200">
+        <nav id='desktop-menu' className="hidden lg:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200 bg-[--navy]">
             <div id='menucontainer' style={{ borderBottom: "1px solid var(--lightnavy)", }} className='relative container flex items-center justify-between gap-8 w-full'>
-                <div id="logo" className="absolute flex shrink-0 items-center">
+                <div id="logo" className="flex items-center">
                     <Link href="/">
-                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={0} height={0} priority className="ease-in-out duration-200" />
+                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={75} height={50} priority className="ease-in-out duration-200" />
                     </Link>
                 </div>
                 
                 
                 <ul id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
+
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="#aktualis" className="flex items-center gap-2"><span>Aktuális</span></Link></li>
 
                         <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
 
@@ -147,8 +114,7 @@ export default function MainNav() {
                                         
                         <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
                                        
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
-                        </li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link></li>
                 </ul>
                 <div className='flex flex-nowrap gap-16'>
                     <div className='flex flex-nowrap items-center gap-2 w-max'>
@@ -186,6 +152,10 @@ export default function MainNav() {
                 <button className="p-2" onClick={toggleMenu} aria-label="Menu"><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? '' : ' hidden'}`}/></button>
                 <div id="toggle-menu" className={`absolute top-[64px] right-0 bg-[--navy] h-auto w-full p-4 text-[--grey] transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
                   <ul className="relative flex flex-col items-end gap-4">
+                    <li className="relative group">
+                      <Link href="#aktualis" onClick={handleLinkClick}>Aktuális</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
                     <li className="relative group">
                       <Link href="#napimenu" onClick={handleLinkClick}>Napi menü</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
