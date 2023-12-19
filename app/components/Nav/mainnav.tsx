@@ -34,12 +34,18 @@ function isOpenNow() {
 
 export default function MainNav() {
 
+    const [showAlert, setShowAlert] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
+
+    const handleCloseClick = () => {
+      setShowAlert(false);
+    };
 
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };
+    
 
     useEffect(() => {
         // Event listener to close mobile menu on outside click
@@ -181,6 +187,23 @@ export default function MainNav() {
                 </div>
               </div>
               </div>
+            </div>
+
+            <div>
+              {showAlert && (
+                <div
+                  id='alert'
+                  className='fixed top-[64px] flex flex-nowrap justify-start lg:justify-center items-center -translate-x-1/2 left-1/2 w-full lg:w-6/12 bg-[--alert] py-4 px-4 z-50 text-white text-sm'
+                >
+                  <p className='w-[80%]'>
+                    Karácsonyi nyitvatartás változás!{' '}
+                    <Link href={'#footer'} className='underline'>
+                      Kattints ide.
+                    </Link>
+                  </p>
+                  <MdClose className="absolute right-2 top-2 cursor-pointer" onClick={handleCloseClick} />
+                </div>
+              )}
             </div>
         </>    
     );
