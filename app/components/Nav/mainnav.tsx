@@ -201,7 +201,7 @@ export default function MainNav() {
                       Kattints ide.
                     </Link>
                   </p>
-                  <MdClose className="absolute right-2 top-2 cursor-pointer" onClick={handleCloseClick} />
+                  <MdClose className="absolute right-2 top-2 lg:-translate-y-1/2 lg:top-1/2 cursor-pointer w-6 h-6" onClick={handleCloseClick} />
                 </div>
               )}
             </div>
