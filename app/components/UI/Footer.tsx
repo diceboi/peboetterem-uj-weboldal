@@ -51,6 +51,7 @@ export default function Footer() {
                     <h3 className="footertitle">Nyitvatartás</h3>
                     <div className="flex flex-col bg-[--alert] p-2 text-white">
                       <p>Karácsonyi nyitvatartás:</p>
+                      <p className="footerparagraph">12.23.: 09:00 - 18:00 Korábbi zárás a karácsonyi előkészületek miatt</p> 
                       <p className="footerparagraph">12.24.: Az ünnepi tálak átadása és kiszállítása</p>
                       <p className="footerparagraph">12.25.: Zárva</p>
                       <p className="footerparagraph">12.26.: Zárva</p>
