@@ -36,6 +36,7 @@ function isOpenNow() {
 
 export default function MainNav() {
 
+    const [showAlert, setShowAlert] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
     const [isCartClosed, setIsCartClosed] = useState(true);
@@ -220,6 +221,10 @@ export default function MainNav() {
                 <div id="toggle-menu" className={`absolute top-[64px] right-0 bg-[--navy] h-auto w-full p-4 text-[--grey] transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>
                   <ul className="relative flex flex-col items-end gap-4">
                     <li className="relative group">
+                      <Link href="#aktualis" onClick={handleLinkClick}>Aktuális</Link>
+                      <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
+                    </li>
+                    <li className="relative group">
                       <Link href="#napimenu" onClick={handleLinkClick}>Napi menü</Link>
                       <span className="absolute inset-x-0 bottom-0 h-[1px] bg-black transition-all duration-200 transform origin-left scale-x-0 group-hover:scale-x-100 group-focus:scale-x-100"></span>
                     </li>
@@ -244,6 +249,23 @@ export default function MainNav() {
                 </div>
               </div>
               </div>
+            </div>
+
+            <div>
+              {showAlert && (
+                <div
+                  id='alert'
+                  className='fixed top-[64px] flex flex-nowrap justify-start lg:justify-center items-center -translate-x-1/2 left-1/2 w-full lg:w-6/12 bg-[--alert] py-4 px-4 z-50 text-white text-sm'
+                >
+                  <p className='w-[80%]'>
+                    Karácsonyi nyitvatartás változás!{' '}
+                    <Link href={'#footer'} className='underline'>
+                      Kattints ide.
+                    </Link>
+                  </p>
+                  <MdClose className="absolute right-2 top-2 lg:-translate-y-1/2 lg:top-1/2 cursor-pointer w-6 h-6" onClick={handleCloseClick} />
+                </div>
+              )}
             </div>
         </>    
     );

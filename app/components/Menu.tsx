@@ -427,7 +427,7 @@ export default function Menu() {
             onClick={() => { router.push('#etlap'); setActiveCategory(category.slug); }}
           >
             <Image src={category.description} width={50} height={50} alt={"Étel ikon"} className="max-h-[30px] lg:max-h-[50px] max-w-[30px] lg:max-w-[50px]"/>
-            <h2 className="lg:categorynames tracking-normal lg:tracking-widest text-xs lg:text-lg lg:text-left text-center">{category.name}</h2>
+            <h2 className="lg:categorynames tracking-normal lg:tracking-widest text-xs lg:text-lg lg:text-left text-center font-bebas text-[--navy]">{category.name}</h2>
           </li>
         ))}         
 
