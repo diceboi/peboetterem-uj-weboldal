@@ -41,9 +41,14 @@ export default function MainNav() {
     const mobileMenuRef = useRef(null);
     const [isCartClosed, setIsCartClosed] = useState(true);
 
+    const handleCloseClick = () => {
+      setShowAlert(false);
+    };
+
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };
+    
 
     const toggleCartOpen = () => {
       setIsCartClosed((prevState) => !prevState);
