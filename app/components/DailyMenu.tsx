@@ -1,223 +1,202 @@
-import { TbSoup } from 'react-icons/tb'
-import { GiHotMeal } from 'react-icons/gi'
+"use client"
 
-import { getClient } from '../lib/client'
-import { gql } from '@apollo/client'
+import { useEffect, useState } from 'react';
+import NapiMenuTile from './UI/NapiMenuTile';
 
-import { format } from 'date-fns';
-import { hu } from 'date-fns/locale';
+const getNapimenu = async () => {
+  try {
+      const res = await fetch('/api/napimenu', { next: { revalidate: 5 } });
 
-const query = gql`
-query getNapimenu {
-  allNapiMen(last: 7, where: {orderby: {field: TITLE, order: ASC}}) {
-    edges {
-      node {
-        napiMenu {
-          elsoEloetel
-          allergenekElsoEloetel {
-            allergen1
-            allergen2
-            allergen3
-            allergen4
-            allergen5
-            allergen6
-            allergen7
-          }
-          elsoFoetel
-          allergenekElsoFoetel {
-            allergen1
-            allergen2
-            allergen3
-            allergen4
-            allergen5
-            allergen6
-            allergen7
-          }
-          masodikEloetel
-          allergenekMasodikEloetel {
-            allergen1
-            allergen2
-            allergen3
-            allergen4
-            allergen5
-            allergen6
-            allergen7
-            fieldGroupName
-          }
-          masodikFoetel
-          allergenekMasodikFoetel {
-            allergen1
-            allergen2
-            allergen3
-            allergen4
-            allergen5
-            allergen6
-            allergen7
-            fieldGroupName
-          }
-          informacio
-        }
-        title
+      if (!res.ok) {
+          throw new Error("Az adatok letöltése nem sikerült");
       }
-    }
+
+      return res.json();
+  } catch (error) {
+      console.log("Az adatok betöltése sikertlen", error);
+      return null;
   }
-}`
+};
 
-export default async function DailyMenu() {
+const getNapimenuadatok = async () => {
+  try {
+      const res = await fetch('/api/napimenuadatok', { next: { revalidate: 5 } });
 
-  const { data } = await getClient().query({ 
-    query, 
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
-  });
+      if (!res.ok) {
+          throw new Error("Az adatok letöltése nem sikerült");
+      }
 
-  //allergének listázása
-
-  function generateAllergenText(allergen:any) {
-    const allergenValues = [
-      allergen.allergen1,
-      allergen.allergen2,
-      allergen.allergen3,
-      allergen.allergen4,
-      allergen.allergen5,
-      allergen.allergen6,
-      allergen.allergen7,
-    ];
-  
-    const filteredAllergens = allergenValues.filter((value) => value !== null && value !== "");
-    
-    if (filteredAllergens.length > 0) {
-      return (
-        <p className="flex flex-row flex-nowrap text-[--grey] lg:text-sm text-xs opacity-30">{`${filteredAllergens.join(", ")}`}</p>
-      );
-    }
-    
-    return null;
+      return res.json();
+  } catch (error) {
+      console.log("Az adatok betöltése sikertlen", error);
+      return null;
   }
-  
+};
+
+const getAlapadatok = async () => {
+  try {
+      const res = await fetch('/api/alapadatok', { next: { revalidate: 5 } });
+
+      if (!res.ok) {
+          throw new Error("Az adatok letöltése nem sikerült");
+      }
+
+      return res.json();
+  } catch (error) {
+      console.log("Az adatok betöltése sikertlen", error);
+      return null;
+  }
+};
+
+const getSpecialisarak = async () => {
+  try {
+      const res = await fetch('/api/specialisarak', { next: { revalidate: 5 } });
+
+      if (!res.ok) {
+          throw new Error("Az adatok letöltése nem sikerült");
+      }
+
+      return res.json();
+  } catch (error) {
+      console.log("Az adatok betöltése sikertlen", error);
+      return null;
+  }
+};
+
+export default function DailyMenu() {
+
+  const days = ['Hétfő' , 'Kedd' , 'Szerda' , 'Csütörtök' , 'Péntek']
+  const currentDayIndex = new Date().getDay() - 1;
+
+  const [napimenu, setNapimenu] = useState<any[]>([]);
+  const [napimenuadatok, setNapimenuadatok] = useState<any[]>([]);
+  const [alapadatok, setAlapadatok] = useState<any[]>([]);
+  const [specialisarak, setSpecialisarak] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const data = await getNapimenu();
+            if (data && data.data && Array.isArray(data.data.Napimenu)) {
+              setNapimenu(data.data.Napimenu);
+            } else {
+                throw new Error("Invalid data format received");
+            }
+        } catch (error) {
+            console.error("Error fetching or handling data:", error);
+        }
+    };
+    fetchData();
+}, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          const data = await getAlapadatok();
+          if (data && data.data && Array.isArray(data.data.Alapadatok)) {
+            setAlapadatok(data.data.Alapadatok);
+          } else {
+              throw new Error("Invalid data format received");
+          }
+      } catch (error) {
+          console.error("Error fetching or handling data:", error);
+      }
+  };
+  fetchData();
+}, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          const data = await getNapimenuadatok();
+          if (data && data.data && Array.isArray(data.data.Napimenuadatok)) {
+            setNapimenuadatok(data.data.Napimenuadatok);
+          } else {
+              throw new Error("Invalid data format received");
+          }
+      } catch (error) {
+          console.error("Error fetching or handling data:", error);
+      }
+  };
+  fetchData();
+}, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          const data = await getSpecialisarak();
+          if (data && data.data && Array.isArray(data.data.Specialisarak)) {
+            setSpecialisarak(data.data.Specialisarak);
+          } else {
+              throw new Error("Invalid data format received");
+          }
+      } catch (error) {
+          console.error("Error fetching or handling data:", error);
+      }
+  };
+  fetchData();
+}, []);
+
+const napimenuadatData = napimenuadatok.length > 0 ? napimenuadatok[0] : null;
+const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
 
   return (
     <>
-    <div className="absolute w-full h-[15vh] bg-gradient-to-t from-[--navy] to-transparent -mt-[15vh]"></div>
-    <section id="napimenu" className="flex flex-col w-full min-h-[40vh] bg-[--navy] px-4 gap-8">
-      <div className="container m-auto flex flex-col justify-center items-center gap-4">
-        <h1 className='leading-[.75em] py-4'>Napi menü</h1>
-        <div className='flex flex-col lg:flex-row gap-2 lg:gap-4'>
-        <h2 className="price lg:w-fit w-full">A menü: <b>1500 Ft</b></h2>
-        <h2 className="price lg:w-fit w-full">B menü: <b>1700 Ft</b></h2>
-        </div>
-        <div className='flex flex-col lg:flex-row gap-2 lg:gap-4'>
-        <h2 className="smallprice lg:w-fit w-full">A menü csak főétel: <b>1200 Ft</b></h2>
-        <h2 className="smallprice lg:w-fit w-full">B menü csak főétel: <b>1400 Ft</b></h2>
-        </div>
-        <h3 className='text-[--okker]'>A csomagolás díja: 100Ft</h3>
-      </div>
-      <div className="container m-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
-        
-      {data.allNapiMen.edges.map((edge: any, index: any) => {
-
-        const dateParts = edge.node.title.split('.');
-        const year = new Date().getFullYear(); // You can set the year as needed
-        const month = parseInt(dateParts[0]) - 1; // Months are zero-based
-        const day = parseInt(dateParts[1]);
-        const parsedDate = new Date(year, month, day);
-        const dayName = format(parsedDate, 'EEEE', { locale: hu });
-        const capitalizedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
-
-        return (
-        
-        <div key={index} className="flex flex-col lg:flex-row bg-[--lightnavy]">
-          <div className="flex flex-col justify-start items-start lg:w-1/4 lg:items-center border-b lg:border-r lg:border-b-0 border-[--navy] m-4 lg:pb-0 pb-4 pr-4 gap-2">
-            <h1 className='-mt-4'>{edge.node.title}</h1>
-            <p className="day -mt-4">{capitalizedDayName}</p>
-          </div>
-          <div className="flex flex-col w-full px-4">
+    <section id="napimenu" className="w-full min-h-[40vh] bg-[--navy] py-20 m-auto">
+      <div className='container flex flex-col gap-8 m-auto'>
+          
+          {napimenuadatData && (
             
-          {(edge.node.napiMenu.elsoEloetel || edge.node.napiMenu.elsoFoetel) && (
-            <div className="flex flex-col gap-4 lg:gap-1 border-b border-[--navy] lg:mt-4 lg:pb-4 pb-2">
-            <h2 className='text-[--okker] font-black'>A menü:</h2>
-
-              {edge.node.napiMenu.elsoEloetel === null ? null : (
-                <div className="flex flex-nowrap items-center gap-2">
-                  <div className='w-7 h-7'>
-                  <TbSoup className="w-7 h-7 text-[--okker]" />
-                  </div>
-                  <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
-                    <p className='lg:text-md text-sm'>{edge.node.napiMenu.elsoEloetel}</p>
-                    {generateAllergenText(edge.node.napiMenu.allergenekElsoEloetel)}
-                  </div>
+            <div className="flex flex-col justify-center gap-4">
+              <h1 className='leading-[.75em] py-8'>Napi menü</h1>
+                <div className='flex flex-wrap sm:flex-nowrap items-end gap-2 lg:gap-4'>
+                  <h2 className="price sm:w-1/4 w-full text-center rounded-md">A menü: <b>{napimenuadatData.amenuar} Ft</b></h2>
+                  <h2 className="price sm:w-1/4 w-full text-center rounded-md">B menü: <b>{napimenuadatData.bmenuar} Ft</b></h2>
+                  <h2 className="smallprice sm:w-1/4 text-center w-full rounded-md">A menü csak főétel: <b>{napimenuadatData.amenucsakfoetel} Ft</b></h2>
+                  <h2 className="smallprice sm:w-1/4 text-center w-full rounded-md">B menü csak főétel: <b>{napimenuadatData.bmenucsakfoetel} Ft</b></h2>
                 </div>
+              {specialisarakData && (
+              <h3 className='text-[--okker]'>A csomagolás díja: {specialisarakData.csomagolas}Ft</h3>
               )}
-
-              {edge.node.napiMenu.elsoFoetel === null ? null : (
-              <div className="flex flex-nowrap items-center gap-2">
-                <div className='w-7 h-7'>
-                <GiHotMeal className="w-7 h-7 text-[--okker]" />
-                </div>
-                <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
-                  <p className='lg:text-md text-sm'>{edge.node.napiMenu.elsoFoetel}</p>
-                  {generateAllergenText(edge.node.napiMenu.allergenekElsoFoetel)}
-                </div>
-              </div>
-              )}
-
             </div>
-            )}
 
-            {(edge.node.napiMenu.masodikEloetel || edge.node.napiMenu.masodikFoetel) && (
-            <div className="flex flex-col gap-4 lg:gap-1 mt-4 lg:pb-4 pb-2">
-            <h2 className='text-[--okker] font-black'>B menü:</h2>
+          )}
 
-              {edge.node.napiMenu.masodikEloetel === null ? null : (
-              <div className="flex flex-nowrap items-center gap-2">
-                <div className='w-7 h-7'>
-                <TbSoup className="w-7 h-7 text-[--okker]" />
-                </div>
-                <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
-                  <p className='lg:text-md text-sm'>{edge.node.napiMenu.masodikEloetel}</p>
-                  {generateAllergenText(edge.node.napiMenu.allergenekMasodikEloetel)}
-                </div>
-              </div>
-              )}
+          
+        <div className="relative w-full m-auto flex flex-col lg:flex-row lg:gap-4 gap-8">
 
-              {edge.node.napiMenu.masodikFoetel === null ? null : (
-              <div className="flex flex-nowrap items-center gap-2">
-                <div className='w-7 h-7'>
-                <GiHotMeal className="w-7 h-7 text-[--okker]" />
-                </div>
-                <div className='flex flex-col lg:flex-row gap-0 lg:gap-2 text-[--grey]'>
-                  <p className='lg:text-md text-sm'>{edge.node.napiMenu.masodikFoetel}</p>
-                  {generateAllergenText(edge.node.napiMenu.allergenekMasodikFoetel)}
-                </div>
-              </div>
-              )}
-
-            </div>
-            )}
-
-            {edge.node.napiMenu.informacio === null ? null : (
-            <div className='bg-[--alert] text-[--grey] p-4 my-4'>
-              <p>{edge.node.napiMenu.informacio}</p>
-            </div>
-            )}
-            
-          </div>
+        {napimenu.map((napimenuitem, index) => (
+          <NapiMenuTile 
+            key={napimenuitem._id} 
+            id={napimenuitem._id} 
+            day={days[index]} 
+            date={napimenuitem.date} 
+            aMenuLeves={napimenuitem.aMenuLeves} 
+            aMenuFoetel={napimenuitem.aMenuFoetel} 
+            bMenuLeves={napimenuitem.bMenuLeves} 
+            bMenuFoetel={napimenuitem.bMenuFoetel}
+            isCurrentDay={currentDayIndex === index}
+          />
+        ))}
+          
         </div>
-        );
-        })}
 
-      </div>
-      <p className='container m-auto text-center text-[--okker] font-bold'>A napi menüt aznap 9:00-tól 14:00-ig lehet megrendelni, kiszállítás pedig 10:30-tól történik.</p>
-      <p className='container m-auto text-center text-[--grey] text-sm'>A szállítás városon belül ingyenes! Szállítási díjak városon kívül:</p>
-      <div className='flex flex-col gap-2'>
-        <p className='container m-auto text-center text-[--grey] text-sm'>Kaposfüred: 500 Ft</p>
-        <p className='container m-auto text-center text-[--grey] text-sm'>Toponár: 500 Ft</p>
-        <p className='container m-auto text-center text-[--grey] text-sm'>Juta: 700 Ft</p>
-        <p className='container m-auto text-center text-[--grey] text-sm'>Kaposújlak: 700 Ft</p>
-        <p className='container m-auto text-center text-[--grey] text-sm'>Taszár: 1000 Ft</p>
+          {napimenuadatData && (
+          <p className='container m-auto text-center text-[--okker] font-bold'>A napi menüt aznap {napimenuadatData.menurendeles}-ig lehet megrendelni, kiszállítás pedig {napimenuadatData.menukiszallitas}-tól történik.</p>
+          )}
+
+        {specialisarakData && (
+          <>
+          <p className='container m-auto text-center text-[--grey] text-sm'>A szállítás városon belül ingyenes! Szállítási díjak városon kívül:</p>
+          <div className='flex flex-col gap-2'>
+            <p className='container m-auto text-center text-[--grey] text-sm'>Kaposfüred: {specialisarakData.kaposfured} Ft</p>
+            <p className='container m-auto text-center text-[--grey] text-sm'>Toponár: {specialisarakData.toponar} Ft</p>
+            <p className='container m-auto text-center text-[--grey] text-sm'>Juta: {specialisarakData.juta} Ft</p>
+            <p className='container m-auto text-center text-[--grey] text-sm'>Kaposújlak: {specialisarakData.kaposujlak} Ft</p>
+            <p className='container m-auto text-center text-[--grey] text-sm'>Taszár: {specialisarakData.taszar} Ft</p>
+          </div>
+          </>
+        )}
       </div>
     </section>
     </>

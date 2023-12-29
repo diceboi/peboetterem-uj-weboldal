@@ -10,16 +10,71 @@
     --grey: #dadada;
     --alert: #c4281a;
     --lightnavy: #3a3f47;
+    --lightestnavy: #454b55;
+}
+
+.font-bebas {
+    font-family: var(--font-bebas);
+}
+
+.font-inter {
+    font-family: var(--font-inter);
+}
+
+.font-playball {
+    font-family: var(--font-playball);
 }
 
 body {
     font-family: var(--font-inter);
 }
 
+@media only screen and (min-width: 1280px) {
+h1 {
+    font-size: 4em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
+}
+
+@media only screen and (max-width: 1280px) {
 h1 {
     font-size: 3em;
     font-family: var(--font-playball);
     color: var(--okker);
+}
+}
+
+@media only screen and (max-width: 600px) {
+h1 {
+    font-size: 2.5em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
+}
+
+@media only screen and (min-width: 1280px) {
+h2 {
+    font-size: 3em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
+}
+
+@media only screen and (max-width: 1280px) {
+h2 {
+    font-size: 2em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
+}
+
+@media only screen and (max-width: 600px) {
+h2 {
+    font-size: 1.5em;
+    font-family: var(--font-playball);
+    color: var(--okker);
+}
 }
 
 li {
@@ -115,12 +170,13 @@ menu.li {
     font-size: 1.125em;
     color: var(--navy);
     letter-spacing: .125rem;
+    border-radius: 6px;
 }
 
 p {
     font-family: var(--font-inter);
     font-size: 1.125em;
-    letter-spacing: .125rem;
+
 }
 
 .widecontainer {
@@ -196,3 +252,30 @@ p {
   .menu-mobile.active {
     transform: translateX(0);
   }
+
+  .cart::after {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
+    top: 10px;
+    background: var(--alert);
+    color: var(--grey);
+    content: '3';
+    width: 15px;
+    height: 15px;
+    border-radius: 7.5px;
+    font-size: 10px;
+  }
+
+
+/*TOASTER*/
+
+.warningtoaster {
+    background: var(--okker);
+    border: 1px solid black;
+    color: var(--navy);
+    letter-spacing: normal;
+    font-family: var(--font-inter);
+}

@@ -4,6 +4,7 @@ import '../globals.css'
 import Mainnav from '../components/Nav/mainnav'
 import { ApolloWrapper } from "../lib/apollo-wrapper";
 import Footer from '../components/UI/Footer';
+import { Toaster } from 'sonner'
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -40,6 +41,7 @@ export default function RootLayout({
         {children}
         <Footer />
         </ApolloWrapper>
+        
       </body>
     </html>
   )

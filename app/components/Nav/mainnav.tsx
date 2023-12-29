@@ -1,10 +1,12 @@
 "use client"
 
-import { TbHome2, TbMenu2, TbPhone } from 'react-icons/tb'
+import { TbHome2, TbMenu2, TbPhone, TbShoppingCart, TbShoppingCartCheck } from 'react-icons/tb'
 import { MdClose } from 'react-icons/md'
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, createContext, useContext, } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import Button from '../UI/Button';
 
 
 function isOpenNow() {
@@ -36,10 +38,27 @@ export default function MainNav() {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const mobileMenuRef = useRef(null);
+    const [isCartClosed, setIsCartClosed] = useState(true);
 
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };
+
+    const toggleCartOpen = () => {
+      setIsCartClosed((prevState) => !prevState);
+    };
+
+    const setCartOpen = () => {
+      setIsCartClosed(false);
+    };
+    
+    const setCartClose = () => {
+      setIsCartClosed(true);
+    };
+
+    const cartClassName = isCartClosed
+        ? '-right-[10vw] opacity-0' // Add a CSS class for the closed state
+        : 'right-0';
 
     useEffect(() => {
         // Event listener to close mobile menu on outside click
@@ -67,44 +86,6 @@ export default function MainNav() {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
-    useEffect(() => {
-        function handleScroll() {
-            const menu = document.getElementById("desktop-menu");
-            const innerMenu = document.getElementById("menu");
-            const menucontainer = document.getElementById("menucontainer");
-            const logo = document.getElementById("acceptrec-logo");
-            const scrollY = window.scrollY;
-    
-            if (menu) {
-                if (scrollY > 75) {
-                    menu.style.height = "55px";
-                    menu.style.paddingTop = "0px";
-                    menu.style.backgroundColor = "var(--navy)";
-                    if (innerMenu) innerMenu.style.justifyContent = "space-evenly";
-                    if (innerMenu) innerMenu.style.marginLeft = "100px";
-                    if (menucontainer) menucontainer.style.borderBottom = "0px solid var(--lightnavy)";
-                    if (logo) logo.style.width = "75px";
-                    if (logo) logo.style.opacity = "100";
-                } else {
-                    menu.style.height = "55x";
-                    menu.style.paddingTop = "75px";
-                    menu.style.backgroundColor = "transparent";
-                    if (innerMenu) innerMenu.style.justifyContent = "space-between";
-                    if (innerMenu) innerMenu.style.marginLeft = "0px";
-                    if (menucontainer) menucontainer.style.borderBottom = "1px solid var(--lightnavy)";   
-                    if (logo) logo.style.width = "0px";
-                    if (logo) logo.style.opacity = "0"; 
-                }
-            }
-        }
-    
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
-
-
     const [isOpen, setIsOpen] = useState(false);
   
     const toggleMenu = () => {
@@ -130,44 +111,96 @@ export default function MainNav() {
  
     return (
         <>
-        <nav id='desktop-menu' style={{ height: "55px", backgroundColor: "transparent", marginBottom: "-75px", paddingTop: "75px" }} className="hidden xl:flex flex-wrap justify-center px-4 w-full mx-auto z-50 sticky top-0 ease-in-out duration-200">
-            <div id='menucontainer' style={{ borderBottom: "1px solid var(--lightnavy)", }} className='relative container flex items-center justify-between gap-8 w-full'>
-                <div id="logo" className="absolute flex shrink-0 items-center">
+        <nav id='desktop-menu' className="flex justify-center w-full m-auto z-50 fixed top-0">
+            <div id='menucontainer' className='relative hidden lg:flex flex-wrap items-center justify-between gap-8 mt-4 bg-[--navyblur] border border-[--lightnavy] rounded-md backdrop-blur-sm shadow-lg'>
+                <div id="logo" className="absolute flex shrink-0 items-center border-r border-[--lightnavy] px-4">
                     <Link href="/">
-                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={0} height={0} priority className="ease-in-out duration-200" />
+                        <Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" id='acceptrec-logo' alt="logo" width={75} height={50} priority className="ease-in-out duration-200" />
                     </Link>
                 </div>
                 
                 
-                <ul id="menu" className='flex justify-between items-center text-md w-1/2 text-[--grey]'>
+                <ul id="menu" className='flex justify-between gap-8 items-center pl-4 text-md w-auto ml-[100px] text-[--grey]'>
 
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2 '><Link href="#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:text-[--okker] active:text-[--okker] focus:text-[--okker] px-2 py-2 transition-all'><Link href="#napimenu" className="flex items-center gap-2"><span>Napi menü</span></Link></li>
 
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:text-[--okker] active:text-[--okker] focus:text-[--okker] px-2 py-2 transition-all'><Link href="#etlap" className="flex items-center gap-2"><span>Étlap</span></Link></li>
                                         
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:text-[--okker] active:text-[--okker] focus:text-[--okker] px-2 py-2 transition-all'><Link href="#rolunk" className="flex items-center gap-2"><span>Rólunk</span></Link></li>
                                        
-                        <li id='mainlink' className='flex items-center border border-transparent hover:bg-[--okker] hover:text-[--navy] active:bg-[--okker] active:text-[--navy] focus:bg-[--okker] focus:text-[--navy] px-2 py-2'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
+                        <li id='mainlink' className='flex items-center border border-transparent hover:text-[--okker] active:text-[--okker] focus:text-[--okker] px-2 py-2 transition-all'><Link href="#kapcsolat" className="flex items-center gap-2"><span>Kapcsolat</span></Link>
                         </li>
                 </ul>
                 <div className='flex flex-nowrap gap-16'>
                     <div className='flex flex-nowrap items-center gap-2 w-max'>
-                        <div className='flex'>
-                            <TbPhone className="text-[--okker] w-7 h-7"/>
+                        <div className='flex items-center justify-center h-full w-[55px]'>
+                            <TbPhone className="text-[--okker] p-3 w-full h-full"/>
                         </div>
-                        <div className='flex flex-col gap-1'>
+                        <div className='flex flex-col gap-0'>
                             <Link href="tel:0682310633"><p className="footerparagraph">06 82 310 633</p></Link>
                             <Link href="tel:06304940959"><p className="footerparagraph">06 30 494 0959</p></Link>
                         </div>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col items-center justify-center'>
                         <p className="footerparagraph">Jelenleg:</p>
                         <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
                         {isRestaurantOpen ? "Nyitva" : "Zárva"}
                         </p>
-                      
-                        
-                    </div> 
+                    </div>
+                    <div className='relative cart flex items-center justify-center h-full w-[55px]'>
+                      <TbShoppingCart className={`p-3 w-full h-full cursor-pointer rounded-e-md ${isCartClosed ? " text-[--okker]" : " text-[--navy] bg-[--okker]"}`} onClick={toggleCartOpen}/>
+
+
+                      <div id='cart' className={`absolute flex flex-col top-[65px] ${cartClassName} w-96 h-auto bg-[--navy] shadow-2xl border border-[--lightnavy] rounded-md transition-all ease-out z-0`}>
+                        <div className='flex justify-between items-center p-4 border-b border-[--lightnavy]'>
+                            <h2 className='text-[--okker] font-bebas text-2xl'>Kosár</h2>
+                            <AiOutlineClose className='w-7 h-7 text-[--grey] p-1 lg:hover:bg-[--okker] lg:hover:text-[--navy] cursor-pointer' onClick={setCartClose}/>
+                        </div>
+                        <div className='flex flex-col gap-4 p-4'>
+                            <div className='flex flex-col bg-[--lightnavy] p-2 gap-2 shadow-xl rounded-md'>
+                            <div className='flex items-start gap-4 justify-between'>
+                                <h3 className='text-[--grey] text-sm text-bold tracking-[.125em]'>Valami étel aminek nagyon hosszú neve van</h3>
+                                <AiOutlineClose className='w-6 h-6 text-[--grey] p-1 lg:hover:bg-[--okker] lg:hover:text-[--navy] cursor-pointer' />
+                            </div>
+                            <div className='flex items-end gap-4 justify-between'>
+                                <div className="py-1 px-2 bg-[--okker] font-[--navy] h-min text-sm rounded-sm">
+                                    <p className="smartprice">1850 Ft</p>
+                                </div>
+                                <div className='flex items-center justify-start gap-1'>
+                                <p className=' text-xs text-[--grey]'>Mennyiség:</p>
+                                <input type="number" id='mennyiseg' defaultValue='1' className='p-1 align-middle w-10 h-6 bg-[--navy] text-[--grey]' />
+                                </div>
+                            </div>
+                            </div>
+                            <div className='flex flex-col bg-[--lightnavy] p-2 gap-2 shadow-xl rounded-md'>
+                            <div className='flex items-start gap-4 justify-between'>
+                                <h3 className='text-[--grey] text-sm text-bold tracking-[.125em]'>Valami étel aminek nagyon hosszú neve van</h3>
+                                <AiOutlineClose className='w-6 h-6 text-[--grey] p-1 lg:hover:bg-[--okker] lg:hover:text-[--navy] cursor-pointer' />
+                            </div>
+                            <div className='flex items-end gap-4 justify-between'>
+                                <div className="py-1 px-2 bg-[--okker] font-[--navy] h-min text-sm rounded-sm">
+                                    <p className="smartprice">1850 Ft</p>
+                                </div>
+                                <div className='flex items-center justify-start gap-1'>
+                                <p className='text-xs text-[--grey]'>Mennyiség:</p>
+                                <input type="number" id='mennyiseg' defaultValue='1' className='p-1 align-middle w-10 h-6 bg-[--navy] text-[--grey]' />
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className='flex flex-col p-4 border-t border-[--lightnavy]'>
+                            <div className='flex items-center justify-between p-2'>
+                            <h3 className='text-[--okker] font-bebas text-2xl'>Összesen:</h3>
+                            <h3 className='text-[--grey] font-bebas text-2xl'>2564 Ft</h3>
+                            </div>
+                        </div>
+                        <div className='flex items-center justify-end p-4 border-t border-[--lightnavy]'>
+                            <Button title={"Pénztár"} icon={<TbShoppingCartCheck />}/>
+                        </div>
+                    </div>
+
+
+                    </div>
                 </div>
                 
             </div>    

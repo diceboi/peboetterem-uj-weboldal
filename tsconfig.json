@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/client.js", "app/lib/apollo-wrapper.js", "app/api/contact.tjs", "emails/ContactUsAdmin.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/client.js", "app/lib/apollo-wrapper.js", "app/api/contact.tjs", "emails/ContactUsAdmin.tsx", "app/modals/specialisarak.js"],
   "exclude": ["node_modules"]
 }
