@@ -38,10 +38,7 @@ export default function AddToCartProvider({ children }:any) {
         
 
   /*Manage cart items*/ 
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    const storedCart = localStorage.getItem('pebocart');
-    return storedCart ? JSON.parse(storedCart) : [];
-  });
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
     if (cartItems.length > 0){
