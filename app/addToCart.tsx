@@ -50,10 +50,6 @@ export default function AddToCartProvider({ children }:any) {
     setCartItems(savedCartItems);
   }, []);
 
-  useEffect(() => {
-    saveCartToLocalStorage(cartItems);
-  }, [cartItems]);
-
   function handleAddToCart(newItem: CartItem) {
     setCartItems((prevCartItems) => {
       const itemIndex = prevCartItems.findIndex((item) => item._id === newItem._id);
