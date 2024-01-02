@@ -12,6 +12,13 @@ export const AddToCartContext = createContext({});
 
 export default function AddToCartProvider({ children }:any) {
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem('pebocart');
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    }
+  }, []);
+
   /*Cart opening toggle*/ 
   const [isCartClosed, setIsCartClosed] = useState(true);
 
@@ -36,19 +43,11 @@ export default function AddToCartProvider({ children }:any) {
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
-  const saveCartToLocalStorage = (cartItems: any) => {
-    localStorage.setItem('pebocart', JSON.stringify(cartItems));
-  };
-
-  const getCartFromLocalStorage = () => {
-    const storedCart = localStorage.getItem('pebocart');
-    return storedCart ? JSON.parse(storedCart) : [];
-  };
-
   useEffect(() => {
-    const savedCartItems = getCartFromLocalStorage();
-    setCartItems(savedCartItems);
-  }, []);
+    if (cartItems.length > 0){
+      localStorage.setItem('pebocart', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
 
   function handleAddToCart(newItem: CartItem) {
     setCartItems((prevCartItems) => {
