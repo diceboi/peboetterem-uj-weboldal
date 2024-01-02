@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Image from 'next/image';
 import { getClient } from '../lib/client'
 import { gql } from '@apollo/client'
 
@@ -29,23 +29,35 @@ export default async function AboutUs() {
   const htmlContent = { __html: data.page.fooldalRolunk.rovidSzoveg };
 
   return (
-    <section id="rolunk" className="flex flex-col w-full bg-[--grey] lg:px-0" >
-      <div className="container flex flex-col lg:gap-20 gap-4 lg:flex-row">
-        <div className='relative flex justify-center lg:justify-end lg:items-start lg:w-2/5 bg-cover bg-center bg-no-repeat ' style={{backgroundImage: `url("${data.page.fooldalRolunk.hatter.sourceUrl}")`}}>
-        <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b lg:bg-gradient-to-r from-[#dadada7c] to-[--grey] lg:py-40'></div>
-          <h1 className='text-[--navy] z-20 mt-36'>{data.page.fooldalRolunk.cim}</h1>
-        </div>
-        <div className='flex flex-col lg:w-3/5 lg:py-40 px-4'>
-          <div className='text-[--navy] gap-4' dangerouslySetInnerHTML={htmlContent} />
-          <div className="flex flex-col px-4 py-1 my-8 w-fit bg-[--okker] lg:gap-8 gap-2">
-          <p className="font-bold text-[--navy]">Rendelj telefonon, és mi Kaposvár 15km-es körzetében bárhova kivisszük!</p>
-          <div className='flex flex-col lg:flex-row gap-8'>
-            <Link href="tel:0682310633" ><p className="font-black text-[--navy]">06 82 310 633</p></Link>
-            <Link href="tel:06304940959" ><p className="font-black text-[--navy]">06 30 494 0959</p></Link>
+    <section id="rolunk" className="relative flex flex-col w-full bg-[--grey] overflow-hidden" >
+      <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b bg-[#dadadad7] z-10'></div>
+      <Image 
+          src="/rolunk-bg.webp"
+          alt="rolunk"
+          width={1280}
+          height={853}
+          style={{ objectFit: "cover", objectPosition: "50% 50%" }}
+          className='absolute w-full h-full'
+        />
+      <div className="container m-auto flex flex-col justify-center lg:gap-20 gap-4 lg:flex-row py-40">
+        <h1 className='text-[--navy] z-20'>Rólunk</h1>
+        <div className='flex flex-col lg:w-3/5 z-20'>
+          <div className='text-[--navy] gap-4'>
+            <p>
+            Több éves vendéglátós tapasztalattal a hátunk mögött úgy döntöttünk 2023-ban megvalósítjuk álmainkat és nyitunk egy saját éttermet Kaposváron.
+
+            Nálunk az olaszos ízek mellett a klasszikus ételeket is megtalálod. À La Carte választékunk mellett napi menüvel is várunk minden nap, melyet rendelésre is kérhetsz.
+
+            Ha csak egy kávéra vágysz, akkor is jó helyen jársz - éttermünk egyben kávézó is! Tölts el hangulatos pillanatokat nálunk!
+
+            Otthonról szeretnél rendelni, vagy esetleg munkahelyedre? Nálunk ezt is megteheted, rendelésedet kiszállítjuk! Nekünk fontos a pontosság - ha tőlünk rendelsz, nem kell órákat várnod hogy kézhez kapd megrendelésedet!
+
+            Rendezvényeket is vállalunk!
+
+            Rendezvényeket 40 főig vállalunk. Legyen az szülinap, egy összejövetel, netán egy céges buli, ránk számíthatsz! Keress minket bátran üzenetben, vagy az alábbi telefonszámok egyikén: 06 82 310 633, 06 30 494 0959
+            </p>
           </div>
-          </div>
         </div>
-        
       </div>
     </section>
   )

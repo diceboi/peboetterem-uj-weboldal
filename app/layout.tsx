@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Bebas_Neue, Inter, Playball } from 'next/font/google'
 import './globals.css'
-import Mainnav from './components/Nav/mainnav'
+import MainNav from './components/Nav/mainnav';
 import { ApolloWrapper } from "./lib/apollo-wrapper";
 import Footer from './components/UI/Footer';
 import Script from 'next/script';
+import AddToCartProvider, { AddToCartContext } from './addToCart';
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -24,7 +25,7 @@ const playball = Playball({
 })
 
 export const metadata: Metadata = {
-  title: 'PEBo étterem és kávézó - Olaszos ízek Kaposvár szívében',
+  title: 'PEBo Étterem és Kávézó - Olaszos ízek Kaposvár szívében',
   description: 'Olaszos és klasszikus ízekkel várunk Kaposvár szívében, vagy egy igazán jó kávéval. Szerezz örömteli pillanatokat nálunk hangulatos környezetben.',
 }
 
@@ -72,7 +73,11 @@ export default function RootLayout({
       </head>
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
         <ApolloWrapper>
+        <AddToCartProvider>
+        <MainNav />
         {children}
+        <Footer />
+        </AddToCartProvider>
         </ApolloWrapper>
       </body>
     </html>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { GiHotMeal } from 'react-icons/gi'
 import { TbShoppingCartPlus, TbSoup } from 'react-icons/tb'
-import Button from './Button'
+import Button from './NapiMenuButton'
 
 export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bMenuLeves, bMenuFoetel, isCurrentDay, menurendeles }:any) {
 
@@ -32,7 +32,7 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
   return (
     <>
-          <div key={id} className={`relative flex flex-col ${currentDayColor} shadow-xl w-full lg:w-1/5 h-fit rounded-md`}>
+          <div key={id} className={`relative flex flex-col ${currentDayColor} shadow-xl w-full lg:w-1/5 p-2 h-fit rounded-md`}>
             {isCurrentDay && (
               <div className="absolute left-0 bg-[--lightestnavy] -top-7 rounded-t-md text-white text-xl font-playball px-2 py-1">Mai Menü</div>
             )}
@@ -73,8 +73,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                     {isCurrentDay && (
                       <>
-                      <Button title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled}/>
-                      <Button title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled}/>
+                      <Button title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}/>
+                      <Button title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}/>
                       </>
                     )}
                 </div>
@@ -113,8 +113,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                     <>
-                    <Button title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled}/>
-                    <Button title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled}/>
+                    <Button title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}/>
+                    <Button title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}/>
                     </>
                   )}
 

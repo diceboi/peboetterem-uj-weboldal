@@ -40,9 +40,9 @@ export default function ContactUs() {
   }
 
   return (
-    <section id="kapcsolat" className="w-full min-h-[50vh] bg-[--grey] py-40">
+    <section id="kapcsolat" className="w-full min-h-[50vh] bg-[--grey] py-20">
       <div className='container flex flex-col m-auto gap-20 lg:p-0 p-4'>
-        <h1 className='text-center text-[--navy]'>Írj nekünk</h1>
+        <h1 className='text-center text-[--navy] py-8'>Írj nekünk</h1>
         <ContactForm />
       </div>
     </section>
