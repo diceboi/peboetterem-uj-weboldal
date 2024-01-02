@@ -1,26 +1,57 @@
-"use client";
+'use client'
 
 import { createContext, useEffect, useState } from "react";
 
 interface CartItem {
   count: number;
   _id: string;
-  // Add other properties as needed
 }
 
-export const AddToCartContext = createContext({});
+interface AddToCartContextProps {
+  isCartOpen: boolean;
+  cartItems: CartItem[];
+  handleAddToCart: (item: CartItem) => void;
+  handleDecreaseCount: (item: CartItem) => void;
+  handleDeleteCartItem: (itemId: string) => void;
+  toggleCartOpen: () => void;
+  setCartOpen: () => void;
+  setCartClose: () => void;
+  getTotalItemCount: () => number; // Adjusted this return type from 0 to number
+}
 
-export default function AddToCartProvider({ children }:any) {
+export const AddToCartContext = createContext<AddToCartContextProps>({
+  // Provide default values for context properties
+  isCartOpen: false,
+  cartItems: [],
+  handleAddToCart: (item: CartItem) => {},
+  handleDecreaseCount: (item: CartItem) => {},
+  handleDeleteCartItem: (itemId: string) => {},
+  toggleCartOpen: () => {},
+  setCartOpen: () => {},
+  setCartClose: () => {},
+  getTotalItemCount: () => 0
+});
 
+export default function AddToCartProvider({ children }: any) {
+  const [isCartClosed, setIsCartClosed] = useState(true);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  // Access `localStorage` only within this `useEffect` to ensure it’s client-side
   useEffect(() => {
-    const storedCart = localStorage.getItem('pebocart');
+    const storedCart = typeof window !== 'undefined' ? localStorage.getItem('pebocart') : null;
     if (storedCart) {
       setCartItems(JSON.parse(storedCart));
     }
   }, []);
 
+  useEffect(() => {
+    // Only update local storage if we have items
+    if (cartItems.length > 0) {
+      localStorage.setItem('pebocart', JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
   /*Cart opening toggle*/ 
-  const [isCartClosed, setIsCartClosed] = useState(true);
 
   const toggleCartOpen = () => {
     setIsCartClosed((prevState) => !prevState);
@@ -38,13 +69,6 @@ export default function AddToCartProvider({ children }:any) {
         
 
   /*Manage cart items*/ 
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
-  useEffect(() => {
-    if (cartItems.length > 0){
-      localStorage.setItem('pebocart', JSON.stringify(cartItems));
-    }
-  }, [cartItems]);
 
   function handleAddToCart(newItem: CartItem) {
     setCartItems((prevCartItems) => {
