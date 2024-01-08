@@ -32,7 +32,7 @@ function isInputNamedElement(e: Element): e is HTMLInputElement & { name: string
           }
         });
   
-      await fetch('/api/email', {
+      await fetch('/api/email/irjnekunk', {
         method: 'POST',
         body: JSON.stringify({
           name: formData.name,

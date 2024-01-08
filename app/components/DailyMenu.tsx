@@ -183,6 +183,7 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
                 bMenuFoetel={napimenuitem.bMenuFoetel}
                 isCurrentDay={currentDayIndex === index}
                 menurendeles={menuData.menurendeles}
+                napimenuadatok={menuData}
               />
             )
           );

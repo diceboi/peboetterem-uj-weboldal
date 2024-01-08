@@ -2,7 +2,7 @@
 
 import { TbEye, TbShoppingCartPlus } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import Modal from "./UI/AllergenekModal";
+import AllergenekModal from "./UI/AllergenekModal";
 import MenuButton from "./UI/MenuButton";
 
 const getAlapadatok = async () => {
@@ -109,7 +109,7 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
 
   return (
     <>
-    <Modal isOpen={isModalOpen} closeModal={closeModal} />
+    <AllergenekModal isOpen={isModalOpen} closeModal={closeModal} />
     <div id={category} className='flex flex-col w-full min-h-max pb-4 lg:pb-8 bg-[--grey] shadow-2xl rounded-md'>
       <div className="flex items-center justify-between gap-1 lg:gap-4 px-4 lg:px-0 pt-4 lg:mx-16 h-[50px] lg:h-[100px]">
         <h2 className="categorytitle z-0">{category}</h2>
@@ -119,7 +119,7 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
       </div>
       
       {termekek.map((termek:any, index:any) => (
-        <div key={index} className="flex flex-row gap-2 justify-between items-end pt-4 pb-4 -mb-[1px] mx-4 lg:mx-16 border-b border-[--navy]">
+        <div key={index} className="flex flex-col lg:flex-row gap-2 justify-between items-start lg:items-end pt-4 pb-4 -mb-[1px] mx-4 lg:mx-16 border-b border-[--navy]">
             <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-2 w-full">
                     <p className="text-[--navy] font-bold text-base lg:text-lg">{termek.nev}</p>
@@ -140,10 +140,13 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
                     )}
                 </div>
             </div>
-            <div>
+            <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={''} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek}/>
-            )}
+                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={''} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek}/>
+              )}
+              {termek.masodlagosar && (
+                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={''} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek}/>
+              )}
             </div>
         </div>
       ))}

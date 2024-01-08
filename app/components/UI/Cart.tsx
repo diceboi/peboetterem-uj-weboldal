@@ -1,5 +1,5 @@
 import { TbShoppingCartCheck } from "react-icons/tb";
-import CheckoutButton from "./CheckouttButton";
+import PenztarButton from "./PenztarButton";
 import { AiOutlineClose } from "react-icons/ai";
 import CartItem from "./CartItem";
 import { useContext } from "react";
@@ -7,13 +7,7 @@ import { AddToCartContext } from "@/app/addToCart";
 
 export default function Cart({ cartClassName }:any) {
 
-    const { cartItems, setCartClose }:any = useContext(AddToCartContext)
-
-    const totalPrice = cartItems.reduce(
-        (accumulator: number, currentItem: any) =>
-          accumulator + currentItem.elsodlegesar * currentItem.count,
-        0
-      );
+    const { cartItems, setCartClose, getTotalPrice }:any = useContext(AddToCartContext) 
 
     const handleCartClose = () => {
         setCartClose(); // Call the setCartClose function to close the cart
@@ -38,8 +32,8 @@ export default function Cart({ cartClassName }:any) {
         <div className="flex flex-col py-1">
         {
             cartItems && cartItems.length > 0 ?
-            cartItems.map((item: {_id: any; nev: any; elsodlegesar: any; masodlagosar: any; count: any}) =>
-                <CartItem _id={item._id} key={item._id} nev={item.nev} elsodlegesar={item.elsodlegesar} masodlagosar={item.masodlagosar} count={item.count} />
+            cartItems.map((item: {_id: any; nev: any; menunev: any; elsodlegesar: any; menuar: any; masodlagosar: any; count: any}) =>
+                <CartItem _id={item._id} key={item._id} nev={item.nev} menunev={item.menunev} elsodlegesar={item.elsodlegesar} menuar={item.menuar} masodlagosar={item.masodlagosar} count={item.count} />
             ) : null
         }
         </div>
@@ -47,11 +41,11 @@ export default function Cart({ cartClassName }:any) {
         <div className="flex flex-col p-4 border-t border-[--lightnavy]">
           <div className="flex items-center justify-between p-2">
             <h3 className="text-[--okker] font-bebas text-2xl">Összesen:</h3>
-            <h3 className="text-[--grey] font-bebas text-2xl">{totalPrice} Ft</h3>
+            <h3 className="text-[--grey] font-bebas text-3xl ">{getTotalPrice()} Ft</h3>
           </div>
         </div>
         <div className="flex items-center justify-end p-4 border-t border-[--lightnavy]">
-          <CheckoutButton title={"Pénztár"} icon={<TbShoppingCartCheck />} />
+          <PenztarButton title={"Pénztár"} icon={<TbShoppingCartCheck />} />
         </div>
       </div>
     </>

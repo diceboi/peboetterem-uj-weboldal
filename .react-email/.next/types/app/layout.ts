@@ -1,4 +1,4 @@
-// File: D:\Munkák\PEBo Étterem\peboetterem.hu\.react-email\src\app\layout.tsx
+// File: D:\Munkák\PEBo Étterem\peboetterem-online-rendeles\.react-email\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

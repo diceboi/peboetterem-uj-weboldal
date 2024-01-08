@@ -17,6 +17,8 @@ interface AddToCartContextProps {
   setCartOpen: () => void;
   setCartClose: () => void;
   getTotalItemCount: () => number; // Adjusted this return type from 0 to number
+  getTotalPrice: () => number;
+  emptyCart: () => void
 }
 
 export const AddToCartContext = createContext<AddToCartContextProps>({
@@ -29,7 +31,9 @@ export const AddToCartContext = createContext<AddToCartContextProps>({
   toggleCartOpen: () => {},
   setCartOpen: () => {},
   setCartClose: () => {},
-  getTotalItemCount: () => 0
+  getTotalItemCount: () => 0,
+  getTotalPrice: () => 0,
+  emptyCart: () => {}
 });
 
 export default function AddToCartProvider({ children }: any) {
@@ -109,17 +113,29 @@ export default function AddToCartProvider({ children }: any) {
     return cartItems.reduce((total, item) => total + item.count, 0);
   }
 
+
+  function getTotalPrice() {
+    return cartItems.reduce((accumulator: number, currentItem: any) => accumulator + currentItem.elsodlegesar * currentItem.count, 0 );
+  }
+
+  function emptyCart() {
+    setCartItems([]);
+  }
+  
+
   return (
     <AddToCartContext.Provider value={{
       isCartOpen: !isCartClosed,
       cartItems, 
-      handleAddToCart, 
+      handleAddToCart,
       handleDecreaseCount, 
       handleDeleteCartItem,
       toggleCartOpen,
       setCartOpen,
       setCartClose,
-      getTotalItemCount
+      getTotalItemCount,
+      getTotalPrice,
+      emptyCart
     }}>
       {children}
     </AddToCartContext.Provider>

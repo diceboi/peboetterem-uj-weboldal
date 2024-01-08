@@ -25,7 +25,7 @@ export const ContactUsAdmin = ({name, email, phone, message, policy}:ContactUsAd
     <Preview>{name} a válaszodra vár.</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>{name} most töltötte ki a kapcsolatfelvételi űrlapot a weboldalon.</Heading>
+        <Heading style={{...h1, textAlign: 'center'}}>{name} most töltötte ki a kapcsolatfelvételi űrlapot a weboldalon.</Heading>
         <Text style={{ ...text, marginBottom: '24px'}}>
           Kérlek amint időd engedi válaszolj neki.
         </Text>
@@ -57,12 +57,13 @@ const container = {
 };
 
 const h1 = {
-  color: '#312252',
+  color: '#dcad4d',
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   fontSize: '36px',
   fontWeight: 'bold',
-  margin: '40px 0',
+  margin: 'auto',
+  marginTop: '20px',
   padding: '0',
 };
 

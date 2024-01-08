@@ -28,7 +28,8 @@ export default function MenuButton({title, icon, disabled, rendelesfelvetel, ter
 
       if (!disabled) {
         setCartOpen();
-      }      
+      }    
+      console.log(cartItems)  
     }
   };
 
