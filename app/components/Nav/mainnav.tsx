@@ -130,7 +130,7 @@ const getAlapadatok = async () => {
       toggleCartOpen()
     };
 
-    const cartClassName = isCartOpen ? 'right-0' : '-right-[10vw] opacity-0 hidden:delay-200';
+    const cartClassName = isCartOpen ? '-right-[15vw] lg:-right-0' : '-right-[0vw] lg:-right-[10vw] opacity-0 hidden:delay-200 pointer-events-none';
 
     const totalItemCount = getTotalItemCount();
 
@@ -227,12 +227,21 @@ const getAlapadatok = async () => {
         <div id="mobile-menu" className={`fixed top-0 lg:hidden flex justify-between items-center w-full h-[64px] p-4 bg-[--navy] z-50 ${isOpen ? '' : ''}`}>
               <Link href="/"><Image src="https://admin.peboetterem.hu/wp-content/uploads/2023/10/pebo-typo-logo-white.svg" alt="logo" width={75} height={40} /></Link>
                 <div className='flex flex-nowrap gap-4'>
-                <div className='flex flex-nowrap gap-2 items-center'>
+                <div className='flex flex-col items-center'>
                         <p className="footerparagraph">Jelenleg:</p>
                         <p className={isRestaurantOpen ? "open text-2xl" : "close text-2xl"}>
                         {isRestaurantOpen ? "Nyitva" : "Zárva"}
                         </p>
                     </div> 
+
+                    <div className='relative flex items-center justify-center h-full w-[55px]'>
+                      {cartCountSpan}
+                      <TbShoppingCart className={`p-3 w-full h-full cursor-pointer rounded-e-md ${isCartClosed ? " text-[--okker]" : " text-[--navy] bg-[--okker]"}`} onClick={handleCartToggle}/>
+
+                      <Cart cartClassName={cartClassName} />
+
+                    </div>
+
               <div className="flex gap-2">
                 <button className="p-2" onClick={toggleMenu} aria-label="Menu"><TbMenu2 className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? ' hidden' : ''}`}/><MdClose className={`h-8 w-auto cursor-pointe text-[--grey] ${isOpen ? '' : ' hidden'}`}/></button>
                 <div id="toggle-menu" className={`absolute top-[64px] right-0 bg-[--navy] h-auto w-full p-4 text-[--grey] transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 transition-transform duration-200 ease-in-out`}>

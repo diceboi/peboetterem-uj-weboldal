@@ -18,7 +18,7 @@ export default function Cart({ cartClassName }:any) {
       <div
         id="cart"
         className={
-          `absolute flex flex-col top-[65px] ${cartClassName} w-96 h-auto bg-[--navy] shadow-2xl border border-[--lightnavy] rounded-md transition-all ease-out z-0`
+          `absolute flex flex-col top-[65px] ${cartClassName} w-[90vw] lg:w-96 h-auto bg-[--navy] shadow-2xl border border-[--lightnavy] rounded-md transition-all ease-out z-0`
         }
       >
         <div className="flex justify-between items-center p-4 border-b border-[--lightnavy]">
