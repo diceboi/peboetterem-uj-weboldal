@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="flex flex-col container m-auto p-4 lg:p-0">
             <div className="flex flex-col lg:flex-row justify-between border-b border-[--lightnavy] py-8 gap-8">
                 <div className="flex flex-col justify-start gap-4">
-                    <Image src={heroLogo.sourceUrl} width={100} height={100} alt={heroLogo.altText}/>
+                    <Image src={heroLogo.sourceUrl} width={100} height={100} alt={heroLogo.altText}/>                   
                     <h3 className="footertitle">PEBo Gasztro Kft.</h3>
                     <p className="footerparagraph">7400 Kaposvár, József Attila u. 14.</p>
                     <div className="flex flex-nowrap">

@@ -12,10 +12,12 @@ import { TbSquareMinus, TbSquarePlus, TbTrash } from "react-icons/tb";
       menuar: number;
       elsodlegesar: number;
       masodlagosar: number;
+      elsoelotag: string;
+      masodikelotag: string;
       count: number;
     }
 
-  export default function CartItem({ _id, nev, menunev, elsodlegesar, menuar, masodlagosar, count: initialCount }:CartItem) {
+  export default function CartItem({ _id, nev, menunev, elsodlegesar, elsoelotag, masodikelotag, menuar, masodlagosar, count: initialCount }:CartItem) {
 
       const [count, setCount] = useState(initialCount);
       const { handleDecreaseCount, handleAddToCart, handleDeleteCartItem }: any = useContext(AddToCartContext);
@@ -50,10 +52,18 @@ import { TbSquareMinus, TbSquarePlus, TbTrash } from "react-icons/tb";
 
     return (
       <>
-        <div className="flex flex-col bg-[--lightnavy] p-2 gap-2 shadow-xl rounded-md my-1 mx-2">
+        <div id={_id} className="flex flex-col bg-[--lightnavy] p-2 gap-2 shadow-xl rounded-md my-1 mx-2">
           <div className="flex items-start gap-4 justify-between">
             <h3 className="text-[--grey] text-sm text-bold tracking-[.125em]">
-              {count + ' x ' + nev || menunev}
+
+            {
+              elsoelotag ? (
+                <>{count + ' x ' + nev + `(${elsoelotag})` || menunev}</>
+              ) : (
+                <>{count + ' x ' + nev || menunev}</>
+              )
+            }
+              
             </h3>
             <button onClick={handleDeleteItem}><TbTrash className="w-6 h-6 text-[--grey] p-1 lg:hover:bg-[--alert] cursor-pointer rounded-md"/></button>
           </div>

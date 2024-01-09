@@ -11,32 +11,105 @@ import Cart from '../UI/Cart';
 import { AddToCartContext } from '@/app/addToCart';
 
 
-function isOpenNow() {
-  const now = new Date();
-  const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-  const hour = now.getHours();
-  const minute = now.getMinutes();
+const getAlapadatok = async () => {
+  try {
+      const res = await fetch('/api/alapadatok', { next: { revalidate: 5 } });
 
-  if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-    // Monday to Friday: 09:00 - 21:00
-    const isOpenWeekday =
-      (hour > 8 || (hour === 8 && minute >= 0)) &&
-      (hour < 21 || (hour === 21 && minute <= 0));
-    return isOpenWeekday;
-  } else if (dayOfWeek === 6) {
-    // Saturday: 10:00 - 21:00
-    const isOpenSaturday =
-      (hour > 9 || (hour === 9 && minute >= 0)) &&
-      (hour < 21 || (hour === 21 && minute <= 0));
-    return isOpenSaturday;
+      if (!res.ok) {
+          throw new Error("Az adatok letöltése nem sikerült");
+      }
+
+      return res.json();
+  } catch (error) {
+      console.log("Az adatok betöltése sikertlen", error);
+      return null;
+  }
+};
+
+
+
+  function parseTimeToMinutes(timeStr:any) {
+    if (timeStr === 'Zárva') return -1;
+    const [hoursStr, minutesStr] = timeStr.split(':');
+    const hours = parseInt(hoursStr, 10);
+    const minutes = parseInt(minutesStr || '0', 10);
+    return hours * 60 + minutes; // Convert it to total minutes
+  }
+  
+  function isOpenNowWithAlapadatok(alapadatokData:any) {
+    const now = new Date();
+    const dayOfWeek = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  
+    if (!alapadatokData) {
+      console.error('alapadatokData is not defined');
+      return false;
+    }
+  
+    let openingTimeStr, closingTimeStr;
+    if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+      openingTimeStr = alapadatokData.nyitvatartashepe.split(' - ')[0];
+      closingTimeStr = alapadatokData.nyitvatartashepe.split(' - ')[1];
+    } else if (dayOfWeek === 6) {
+      openingTimeStr = alapadatokData.nyitvatartasszo.split(' - ')[0];
+      closingTimeStr = alapadatokData.nyitvatartasszo.split(' - ')[1];
+    } else {
+      // Sunday is always closed
+      return false;
+    }
+  
+    const openingMinutes = parseTimeToMinutes(openingTimeStr);
+    const closingMinutes = parseTimeToMinutes(closingTimeStr);
+  
+    // Ensure the opening and closing times are valid
+    if (openingMinutes === -1 || closingMinutes === -1) {
+      console.error('Invalid opening or closing time');
+      return false;
+    }
+  
+    return currentMinutes >= openingMinutes && currentMinutes < closingMinutes;
   }
 
-  // Sunday: Closed
-  return false;
-}
 
-
-export default function MainNav() {
+  export default function MainNav() {
+    const [alapadatok, setAlapadatok] = useState<any[]>([]);
+    const [isRestaurantOpen, setIsRestaurantOpen] = useState(false);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const data = await getAlapadatok();
+              if (data && data.data && Array.isArray(data.data.Alapadatok)) {
+                setAlapadatok(data.data.Alapadatok);
+              } else {
+                  throw new Error("Invalid data format received");
+              }
+          } catch (error) {
+              console.error("Error fetching or handling data:", error);
+          }
+      };
+      fetchData();
+    }, []);
+  
+    useEffect(() => {
+      const alapadatokData = alapadatok.length > 0 ? alapadatok[0] : null;
+  
+      // Function to check if the restaurant is open based on alapadatokData
+      const checkIfOpen = () => {
+        if (alapadatokData) {
+          setIsRestaurantOpen(isOpenNowWithAlapadatok(alapadatokData));
+        }
+      };
+  
+      // Initial check
+      checkIfOpen();
+  
+      // Interval to check every minute
+      const intervalId = setInterval(checkIfOpen, 60000); // 60 * 1000 ms
+  
+      // Cleanup interval on component unmount
+      return () => clearInterval(intervalId);
+    }, [alapadatok]);
 
   const { isCartOpen, toggleCartOpen, getTotalItemCount }:any = useContext(AddToCartContext);
 
@@ -100,19 +173,6 @@ export default function MainNav() {
     const handleLinkClick = () => {
       setIsOpen(false);
     };
-
-    const [isRestaurantOpen, setIsRestaurantOpen] = useState(isOpenNow());
-
-  useEffect(() => {
-    // Update the isOpen state every minute
-    const timer = setInterval(() => {
-      setIsRestaurantOpen(isOpenNow());
-    }, 60000); // 60000 milliseconds = 1 minute
-
-    return () => {
-      clearInterval(timer); // Clean up the interval on unmount
-    };
-  }, []);
  
     return (
         <>

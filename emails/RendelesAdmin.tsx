@@ -40,7 +40,17 @@ import {
                 cartItems.map((item:any, index:any) => (
 
                     <div key={index} style={{ ...grid }}>
-                    <Text style={{ ...text, marginBottom: '10px'}} >{item.count + ' x ' + item.nev}</Text>
+                    <Text style={{ ...text, marginBottom: '10px'}} >
+                      
+                      {
+                        item.elsoelotag ? (
+                          <>{item.count + ' x ' + item.nev + `(${item.elsoelotag})` || item.menunev}</>
+                        ) : (
+                          <>{item.count + ' x ' + item.nev || item.menunev}</>
+                        )
+                      }
+                      
+                      </Text>
                     <Text style={{ ...text, marginBottom: '10px'}} >{item.elsodlegesar * item.count} Ft</Text>
                     </div>
 

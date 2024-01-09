@@ -73,8 +73,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                     {isCurrentDay && (
                       <>
-                      <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={''} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar}/>
-                      <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={''} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel}/>
+                      <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar}/>
+                      <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel}/>
                       </>
                     )}
                 </div>
@@ -113,8 +113,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                     <>
-                    <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={''} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar}/>
-                    <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={''} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel}/>
+                    <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar}/>
+                    <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel}/>
                     </>
                   )}
 

@@ -41,8 +41,18 @@ export default function Penztar() {
   
             {cartItems.map((item:any, index:any) => (
 
-              <div className='flex flex-col lg:flex-row justify-between items-end border-b border-[--navy] py-2'>
-                <p key={index} className='text-[--grey] w-full lg:w-3/4'>{item.count + ' x ' + item.nev}</p>
+              <div key={index} className='flex flex-col lg:flex-row justify-between items-end border-b border-[--navy] py-2'>
+                <p className='text-[--grey] w-full lg:w-3/4'>
+                  
+                  {
+                    item.elsoelotag ? (
+                      <>{item.count + ' x ' + item.nev + `(${item.elsoelotag})` || item.menunev}</>
+                    ) : (
+                      <>{item.count + ' x ' + item.nev || item.menunev}</>
+                    )
+                  }
+            
+            </p>
                 <p className="smartprice text-[--okker]">{item.elsodlegesar * item.count} Ft</p>
               </div>
 

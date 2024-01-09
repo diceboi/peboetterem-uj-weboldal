@@ -24,7 +24,6 @@ import {
         <Container style={container}>
           <Img src='https://peboetterem-online-rendeles.vercel.app/_next/image?url=%2Fpebo-hero-logo.png&w=384&q=75' style={{ width: '150px', height: 'auto', margin: 'auto', paddingTop: '20px' }} />
           <Heading style={{...h1, textAlign: 'center'}}>Kedves {nev}, rendelésed elkészült, hamarosan átadjuk a futárnak.</Heading>
-          <Img src='elkeszult.gif' style={{ width: '250px', height: 'auto', margin: 'auto', paddingTop: '20px' }}/>
           <Text style={{ ...text, marginBottom: '24px'}}>
             Ez annyit jelent: Az étel elkészült, neked pedig már nem kell sokat várnod, hogy megérkezzen a rendelésed.
           </Text>

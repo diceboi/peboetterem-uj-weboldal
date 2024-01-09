@@ -25,6 +25,16 @@ interface MenuCategoryTileProps {
   termekek: any[]; // Replace 'any[]' with the actual type of your menu items
 }
 
+const parseTimeToMinutes = (timeStr: string) => {
+  if (timeStr === 'Zárva') return -1;
+  const parts = timeStr.split(':');
+  if (parts.length !== 2) {
+    console.error('Invalid time format:', timeStr);
+    return -1; // Handle invalid format
+  }
+  return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+};
+
 const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek }) => {
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -66,44 +76,26 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
           alapadatokData.rendelesfelvetel
         ) {
           const currentTime = new Date();
-          const currentHour = currentTime.getHours();
-          const currentMinutes = currentTime.getMinutes();
-          const currentDay = currentTime.getDay(); // Get the current day (0-6, where 0 is Sunday)
-      
-          const parseTime = (timeStr: string) => {
-            return timeStr === 'Zárva' ? -1 : (timeStr && timeStr.split(':')[0] ? parseInt(timeStr.split(':')[0], 10) : -1);
+          const currentMinutesSinceMidnight = currentTime.getHours() * 60 + currentTime.getMinutes();
+          const currentDayOfWeek = currentTime.getDay();
+          const ordersClosingMinutes = parseTimeToMinutes(alapadatokData.rendelesfelvetel);
+
+          const isOpenToday = (openTimeStr: string, closeTimeStr: string) => {
+            if (openTimeStr === 'Zárva') return false;
+            const openingMinutes = parseTimeToMinutes(openTimeStr);
+            const closingMinutes = parseTimeToMinutes(closeTimeStr);
+            return currentMinutesSinceMidnight >= openingMinutes && currentMinutesSinceMidnight < closingMinutes;
           };
       
-          const [openingHourHePeStr, closingHourHePeStr] = alapadatokData.nyitvatartashepe.split(' - ');
-          const [openingHourSzoStr, closingHourSzoStr] = alapadatokData.nyitvatartasszo.split(' - ');
-          const [openingHourVStr, closingHourVStr] = alapadatokData.nyitvatartasv.split(' - ');
-      
-          const openingHourHePe = parseTime(openingHourHePeStr);
-          const closingHourHePe = parseTime(closingHourHePeStr);
-          const openingHourSzo = parseTime(openingHourSzoStr);
-          const closingHourSzo = parseTime(closingHourSzoStr);
-          const openingHourV = parseTime(openingHourVStr);
-          const closingHourV = parseTime(closingHourVStr);
-      
-          const ordersClosingTime = alapadatokData.rendelesfelvetel; // Dynamic closing time from data
-      
-          const [closingHour, closingMinute] = ordersClosingTime.split(':').map(Number);
-          const ordersClosingMinutes = closingHour * 60 + closingMinute;
-      
-          let isButtonDisabled = false;
-      
-          if (
-            ((currentDay === 1 && (currentHour < openingHourHePe || currentHour >= closingHourHePe)) || // Monday
-            (currentDay === 6 && (currentHour < openingHourSzo || currentHour >= closingHourSzo)) || // Saturday
-            (currentDay === 0 && (currentHour < openingHourV || currentHour >= closingHourV)) || // Sunday
-            (currentDay >= 2 && currentDay <= 5)) // Tuesday to Friday
-            ||
-            (currentHour === closingHour && currentMinutes > closingMinute) // Orders close at specified time
-          ) {
-            isButtonDisabled = true;
-          }
-      
-          setIsButtonDisabled(isButtonDisabled);
+          // Determine if the restaurant is currently open based on the day of the week.
+          let isDisabled = currentDayOfWeek === 0 ? !isOpenToday('00:00', '00:00') : // Sunday is always closed
+          currentDayOfWeek === 6 ? !isOpenToday(alapadatokData.nyitvatartasszo.split(' - ')[0], alapadatokData.nyitvatartasszo.split(' - ')[1]) : // Saturday
+          !isOpenToday(alapadatokData.nyitvatartashepe.split(' - ')[0], alapadatokData.nyitvatartashepe.split(' - ')[1]); // Weekdays
+
+          // Check if it's past the order acceptance time.
+          isDisabled = isDisabled || currentMinutesSinceMidnight > ordersClosingMinutes;
+
+          setIsButtonDisabled(isDisabled);
         }
       }, [alapadatokData]);
 
@@ -142,10 +134,10 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
             </div>
             <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={''} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek}/>
+                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} price={termek.elsodlegesar}/>
               )}
               {termek.masodlagosar && (
-                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={''} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek}/>
+                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} price={termek.masodlagosar}/>
               )}
             </div>
         </div>

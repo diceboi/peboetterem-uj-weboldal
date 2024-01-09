@@ -32,8 +32,8 @@ export default function Cart({ cartClassName }:any) {
         <div className="flex flex-col py-1">
         {
             cartItems && cartItems.length > 0 ?
-            cartItems.map((item: {_id: any; nev: any; menunev: any; elsodlegesar: any; menuar: any; masodlagosar: any; count: any}) =>
-                <CartItem _id={item._id} key={item._id} nev={item.nev} menunev={item.menunev} elsodlegesar={item.elsodlegesar} menuar={item.menuar} masodlagosar={item.masodlagosar} count={item.count} />
+            cartItems.map((item: {_id: any; nev: any; menunev: any; elsodlegesar: any; elsoelotag: any; masodikelotag: any; menuar: any; masodlagosar: any; count: any}) =>
+                <CartItem _id={item._id} key={item._id} nev={item.nev} menunev={item.menunev} elsodlegesar={item.elsodlegesar} elsoelotag={item.elsoelotag} masodikelotag={item.masodikelotag} menuar={item.menuar} masodlagosar={item.masodlagosar} count={item.count} />
             ) : null
         }
         </div>
