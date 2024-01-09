@@ -5,12 +5,6 @@ import ElkeszultUgyfel from "@/emails/ElkeszultUgyfel";
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
-
 export async function POST(request: Request) {
   const { nev, email } = await request.json();
 
@@ -25,7 +19,7 @@ export async function POST(request: Request) {
     })
   });
 
-  return NextResponse.json({ ugyfelMail }, { headers: corsHeaders })
+  return NextResponse.json({ ugyfelMail })
   } catch(e: unknown) {
     if (e instanceof Error) {
       console.log(`Failed to send email: ${e.message}`);
