@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     })
   });
 
-  return NextResponse.json({ ugyfelMail })
+  return NextResponse.json({ ugyfelMail },{ status:200 })
   } catch(e: unknown) {
     if (e instanceof Error) {
       console.log(`Failed to send email: ${e.message}`);
