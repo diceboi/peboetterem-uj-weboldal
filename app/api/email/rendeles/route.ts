@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
   const adminMail = await resend.emails.send({
     from: 'PEBo Weboldal <hello@admin.peboetterem.hu>',
-    to: 'szasz.szabolcs1995@gmail.com',
+    to: ['info@peboetterem.hu','szasz.szabolcs1995@gmail.com'],
     subject: 'Új rendelés a weboldalról',
     react: RendelesAdmin({
       nev,
