@@ -34,7 +34,7 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
     <>
           <div key={id} className={`relative flex flex-col ${currentDayColor} shadow-xl w-full lg:w-1/5 p-2 h-fit rounded-md`}>
             {isCurrentDay && (
-              <div className="absolute left-0 bg-[--lightestnavy] -top-7 rounded-t-md text-white text-xl font-playball px-2 py-1">Mai Menü</div>
+              <div className="absolute right-1/2 translate-x-1/2 bg-[--alert] -top-4 lg:-top-7 rounded-md shadow-lg text-white text-xl font-playball px-2 py-1">Mai Menü</div>
             )}
             <div className="flex flex-row lg:flex-col lg:justify-start justify-between items-center border-b border-[--navy] mt-4 mx-2 mb-4 gap-2">
               <p className="day -mt-4">{day}</p>

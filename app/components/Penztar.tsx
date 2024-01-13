@@ -8,7 +8,9 @@ import { TbArrowNarrowRight } from 'react-icons/tb'
 
 export default function Penztar() {
 
-  const { cartItems, getTotalPrice }:any = useContext(AddToCartContext)
+  const { cartItems, getTotalPrice, itemNotes, updateItemNote }:any = useContext(AddToCartContext);
+
+  console.log("itemNotes:", itemNotes);
 
   const [formData, setFormData] = useState({
     nev: '',
@@ -18,17 +20,35 @@ export default function Penztar() {
     telepules: '',
     utca: '',
     emelet: '',
+    fizetesi: {
+      keszpenz: true,
+      bankkartya: false,
+      szepkartya: false,
+    },
     megjegyzes: '',
     adatkezelesi: false,
   });
 
-  const handleInputChange = (e:any) => {
-    const { name, value, type, checked } = e.target;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+  
+    if (name === 'fizetesi') {
+      const updatedPaymentMethods = {
+        keszpenz: value === 'Készpénz',
+        bankkartya: value === 'Bankkártya',
+        szepkartya: value === 'Szépkártya',
+      };
+  
+      setFormData((prevData) => ({
+        ...prevData,
+        fizetesi: updatedPaymentMethods,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+      }));
+    }
   };
 
   return (
@@ -36,36 +56,59 @@ export default function Penztar() {
       <div className='container m-auto'>
         <div className='flex flex-col justify-center w-full lg:w-8/12 gap-8 m-auto'>
           <h1 className='py-8 text-center border-b border-[--navy]'>Pénztár</h1>
-          <div className='flex flex-col w-full h-full bg-[--lightnavy] rounded-md p-4'>
+          <div className='flex flex-col w-full h-full border border-[--lightnavy] rounded-md p-4 shadow-xl'>
             <h2 className='pb-4'>Rendelésed:</h2>
   
-            {cartItems.map((item:any, index:any) => (
+            {cartItems.map((item:any, index:any) => {
 
-              <div key={index} className='flex flex-col lg:flex-row justify-between items-end border-b border-[--navy] py-2'>
-                <p className='text-[--grey] w-full lg:w-3/4'>
-                  
-                  {
-                    item.elsoelotag ? (
-                      <>{item.count + ' x ' + item.nev + `(${item.elsoelotag})` || item.menunev}</>
+
+          console.log("item._id:", item._id);
+          console.log("itemNotes[item._id]:", itemNotes[item._id]);
+          console.log(cartItems)
+
+          return(
+              <>
+                <div className='border-b border-[--lightnavy] py-2'>
+                  <div key={index} className='flex flex-row gap-4 justify-between items-end border-b border-[--lightnavy] py-2'>
+                    <p className='text-[--grey] w-full lg:w-3/4'>
+                      
+                    {item.elsoelotag && item.type === 0 ? (
+                      <>
+                        {item.count + ' x ' + item.nev + `(${item.elsoelotag})`}
+                      </>
+                    ) : item.type === 1 ? (
+                      <>
+                        {item.count + ' x ' + item.nev + `(${item.masodikelotag})`}
+                      </>
                     ) : (
-                      <>{item.count + ' x ' + item.nev || item.menunev}</>
-                    )
-                  }
-            
-            </p>
-                <p className="smartprice text-[--okker]">{item.elsodlegesar * item.count} Ft</p>
-              </div>
+                      <>
+                        {item.count + ' x ' + item.nev || item.menunev}
+                      </>
+                    )}
+                
+                  </p>
+                    <p className="smartprice text-[--okker] min-w-max">{item.type === 0 ? item.elsodlegesar * item.count : item.masodlagosar * item.count} Ft</p>
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder='Megjegyzés a termékhez'
+                      value={itemNotes[item._id.toString()] || ''}
+                      onChange={(e) => updateItemNote(item._id.toString(), e.target.value)}
+                    />
+                  </div>
+                </div>
+              </>)  
+            })}
 
-            ))}
-
-            <div className='flex flex-col lg:flex-row justify-between items-end pt-4'>
+            <div className='flex flex-row justify-between items-end pt-4'>
                 <p className='text-[--okker] font-bebas text-3xl'>Összesen:</p>
                 <p className="text-[--grey] font-bebas text-3xl ">{getTotalPrice()} Ft</p>
             </div>
 
           </div>
 
-          <div className='flex flex-col w-full h-full bg-[--lightnavy] rounded-md p-4'>
+          <div className='flex flex-col w-full h-full bg-[--lightnavy] rounded-md p-4 shadow-xl'>
             
             <h2 className=''>Szállítási adatok:</h2>
             <p className='text-sm text-[--grey] pb-8'>a csillaggal (*) jelölt mezők kitöltése kötelező</p>
@@ -108,9 +151,18 @@ export default function Penztar() {
               </div>
 
               <div className='flex flex-col w-full lg:flex-row gap-4'>
-                <label htmlFor="text" className='min-w-[200px] text-[--grey]'>Emelet, ajtó (ha van):</label>
+                <label htmlFor="text" className='min-w-[200px] text-[--grey]'>Emelet, ajtó, kapucsengő (ha van):</label>
                 <input type="text" name="emelet" className='w-full bg-[--navy] rounded-md p-2 text-[--grey]' value={formData.emelet}
             onChange={handleInputChange}/>
+              </div>
+
+              <div className='flex flex-col w-full lg:flex-row gap-4'>
+                <label htmlFor="text" className='min-w-[200px] text-[--grey]'>Válassz fizetési módot:*</label>
+                <select name="fizetesi" className='w-full bg-[--navy] rounded-md p-2 text-[--grey]' onChange={handleInputChange}>
+                  <option value="Készpénz">Készpénz</option>
+                  <option value="Bankkártya">Bankkártya</option>
+                  <option value="Szépkártya">Szépkártya</option>
+                </select>
               </div>
 
               <div className='flex flex-col w-full lg:flex-row gap-4'>

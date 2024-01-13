@@ -116,8 +116,8 @@ const termekekData = termekek.length > 0 ? termekek[0] : null;
         </div>
         <div className="relative flex flex-col gap-4 m-auto">
         
-        <div className="sticky lg:relative top-[63px] lg:top-0 w-full pb-2 overflow-x-auto bg-[--navy] z-40">
-        <div className="absolute block lg:hidden h-16 w-24 top-0 right-0 bg-gradient-to-r from-transparent to-[--navy] z-40"></div>
+        <div className="sticky lg:relative top-[63px] lg:top-0 w-full pb-2 overflow-x-auto bg-[--navy] z-40 ">
+        <div className="absolute block lg:hidden h-16 w-24 top-0 right-0 bg-gradient-to-r from-transparent to-[--navy] z-40 pointer-events-none"></div>
         <div className="sticky lg:relative top-[63px] lg:top-0 w-full overflow-x-auto">
           <ul className="relative flex flex-nowrap lg:flex-wrap justify-start lg:justify-center gap-2 lg:gap-4 h-full w-fit min-w-max lg:min-w-full py-2 z-30 mr-24 lg:mr-0">
             {categories.map((category: string, index: number) => (

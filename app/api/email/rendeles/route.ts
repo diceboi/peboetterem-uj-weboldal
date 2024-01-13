@@ -17,6 +17,7 @@ export async function POST(request: Request) {
     telepules,
     utca,
     emelet,
+    fizetesi,
     megjegyzes,
     adatkezelesi,
   } = formData;
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
       telepules,
       utca,
       emelet,
+      fizetesi,
       megjegyzes,
       adatkezelesi,
       cartItems,
@@ -54,6 +56,7 @@ export async function POST(request: Request) {
       telepules,
       utca,
       emelet,
+      fizetesi,
       megjegyzes,
       adatkezelesi,
       cartItems,

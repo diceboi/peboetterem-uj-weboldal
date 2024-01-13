@@ -12,7 +12,7 @@ import {
   } from '@react-email/components';
   import * as React from 'react';
   
-  interface ContactUsAdminProps {
+  interface RendelesAdminProps {
     nev: string;
     email: string;
     tel: string;
@@ -20,12 +20,17 @@ import {
     telepules: string;
     utca: string;
     emelet: string;
+    fizetesi: {
+      bankkartya: boolean;
+      keszpenz: boolean;
+      szepkartya: boolean;
+    }
     megjegyzes: string;
     adatkezelesi: boolean;
     cartItems: [];
   }
   
-  export const RendelesAdmin = ({ nev, email, tel, irszam, telepules, utca, emelet, megjegyzes, adatkezelesi, cartItems }:ContactUsAdminProps) => (
+  export const RendelesAdmin = ({ nev, email, tel, irszam, telepules, utca, emelet, fizetesi, megjegyzes, adatkezelesi, cartItems }:RendelesAdminProps) => (
     <Html>
       <Head />
       <Preview>{nev} most rendelt a weboldalról.</Preview>
@@ -75,6 +80,7 @@ import {
             <b>Település:</b> {telepules}<br></br>
             <b>Utca, házszám:</b> {utca}<br></br>
             <b>Emelet, ajtó:</b> {emelet}<br></br>
+            <b>Fizetési mód:</b> {fizetesi.keszpenz && <span>Készpénz</span>}{fizetesi.bankkartya && <span>Bankkártya</span>}{fizetesi.szepkartya && <span>Szépkártya</span>}<br></br>
             <b>Üzenet:</b> {megjegyzes}<br></br>
             <b>Adatkezelési tájékoztatót elfogadta?</b> {adatkezelesi ? 'Igen' : 'Nem'}<br></br>
           </Text>

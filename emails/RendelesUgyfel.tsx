@@ -12,7 +12,7 @@ import {
   } from '@react-email/components';
   import * as React from 'react';
   
-  interface ContactUsAdminProps {
+  interface RendelesUgyfelProps {
     nev: string;
     email: string;
     tel: string;
@@ -20,12 +20,17 @@ import {
     telepules: string;
     utca: string;
     emelet: string;
+    fizetesi: {
+      keszpenz: boolean;
+      bankkartya: boolean;
+      szepkartya: boolean;
+    }
     megjegyzes: string;
     adatkezelesi: boolean;
     cartItems: [];
   }
   
-  export const RendelesUgyfel = ({ nev, email, tel, irszam, telepules, utca, emelet, megjegyzes, adatkezelesi, cartItems }:ContactUsAdminProps) => (
+  export const RendelesUgyfel = ({ nev, email, tel, irszam, telepules, utca, emelet, fizetesi, megjegyzes, adatkezelesi, cartItems }:RendelesUgyfelProps) => (
     <Html>
       <Head />
       <Preview>Rendelésed feldolgozás alatt van!</Preview>
@@ -33,7 +38,6 @@ import {
         <Container style={container}>
           <Img src='https://peboetterem-online-rendeles.vercel.app/_next/image?url=%2Fpebo-hero-logo.png&w=384&q=75' style={{ width: '150px', height: 'auto', margin: 'auto', paddingTop: '20px' }} />
           <Heading style={{...h1, textAlign: 'center'}}>Kedves {nev}, rendelésedet megkaptuk.</Heading>
-          <Img src='elkeszult.gif' style={{ width: '250px', height: 'auto', margin: 'auto', paddingTop: '20px' }}/>
           <Text style={{ ...text, marginBottom: '24px'}}>
             A rendelésed feldolgozás alatt van, és a következőket tartalmazza:
           </Text>
@@ -77,6 +81,7 @@ import {
             <b>Település:</b> {telepules}<br></br>
             <b>Utca, házszám:</b> {utca}<br></br>
             <b>Emelet, ajtó:</b> {emelet}<br></br>
+            <b>Fizetési mód:</b> {fizetesi.keszpenz && <span>Készpénz</span>}{fizetesi.bankkartya && <span>Bankkártya</span>}{fizetesi.szepkartya && <span>Szépkártya</span>}<br></br>
             <b>Üzenet:</b> {megjegyzes}<br></br>
             <b>Adatkezelési tájékoztatót elfogadta?</b> {adatkezelesi ? 'Igen' : 'Nem'}<br></br>
           </Text><Text style={{...text}}>

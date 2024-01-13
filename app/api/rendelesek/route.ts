@@ -22,6 +22,7 @@ try {
           telepules: formData.telepules,
           utca: formData.utca,
           emelet: formData.emelet,
+          fizetesi: formData.fizetesi,
           megjegyzes: formData.megjegyzes,
           adatkezelesi: formData.adatkezelesi,
         },

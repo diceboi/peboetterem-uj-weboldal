@@ -117,7 +117,7 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
                     <p className="text-[--navy] font-bold text-base lg:text-lg">{termek.nev}</p>
                     Allergének: {termek.allergenek}
                 </div>
-                <div className="flex min-w-max gap-4 justify-start items-center">
+                <div className="flex flex-col lg:flex-row min-w-max gap-2 justify-start items-start">
                     {termek.elsodlegesar && (
                         <div className="flex gap-2 bg-[--shadowgrey] px-2 py-1 rounded-md">
                         <p className="menuprice text-[--navy]">{termek.elsoelotag}</p>
@@ -134,10 +134,10 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
             </div>
             <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} price={termek.elsodlegesar}/>
+                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} type={0}/>
               )}
               {termek.masodlagosar && (
-                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} price={termek.masodlagosar}/>
+                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} type={1}/>
               )}
             </div>
         </div>

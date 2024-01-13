@@ -12,12 +12,18 @@ const RendelesekSchema = new mongoose.Schema(
       telepules: String,
       utca: String,
       emelet: String,
+      fizetesi: {
+        keszpenz: Boolean,
+        bankkartya: Boolean,
+        szepkartya: Boolean,
+      },
       megjegyzes: String,
       adatkezelesi: Boolean,
     },
     cartItems: [
       {
         count: Number,
+        type: Number,
         elsodlegesar: String,
         masodlagosar: String,
         nev: String,
