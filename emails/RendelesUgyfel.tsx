@@ -1,4 +1,3 @@
-import { AddToCartContext } from '@/app/addToCart';
 import {
     Body,
     Container,
@@ -11,6 +10,7 @@ import {
     Text,
   } from '@react-email/components';
   import * as React from 'react';
+
   
   interface RendelesUgyfelProps {
     nev: string;
@@ -48,16 +48,22 @@ import {
                     <div key={index} style={{ ...grid }}>
                     <Text style={{ ...text, marginBottom: '10px'}} >
 
-                      {
-                        item.elsoelotag ? (
-                          <>{item.count + ' x ' + item.nev + `(${item.elsoelotag})` || item.menunev}</>
-                        ) : (
-                          <>{item.count + ' x ' + item.nev || item.menunev}</>
-                        )
-                      }
+                      {item.elsoelotag && item.tipus === 0 ? (
+                        <>
+                          {item.count + ' x ' + item.nev + `(${item.elsoelotag})`}
+                        </>
+                      ) : item.tipus === 1 ? (
+                        <>
+                          {item.count + ' x ' + item.nev + `(${item.masodikelotag})`}
+                        </>
+                      ) : (
+                        <>
+                          {item.count + ' x ' + item.nev || item.menunev}
+                        </>
+                      )}
                   
                   </Text>
-                    <Text style={{ ...text, marginBottom: '10px'}} >{item.elsodlegesar * item.count} Ft</Text>
+                    <Text style={{ ...text, marginBottom: '10px'}} >{item.tipus === 0 ? item.elsodlegesar * item.count : item.masodlagosar * item.count} Ft</Text>
                     </div>
 
                 ))
@@ -66,7 +72,10 @@ import {
 
             <div style={{ ...grid }}>
                 <Text style={{ ...text, marginBottom: '10px', color: '#dcad4d'}}><b>Összesen:</b></Text>
-                <Text style={{ ...text, marginBottom: '10px',color: '#dcad4d'}}><b>{cartItems.reduce((accumulator: number, currentItem: any) => accumulator + currentItem.elsodlegesar * currentItem.count, 0 )} Ft</b></Text>
+                <Text style={{ ...text, marginBottom: '10px',color: '#dcad4d'}}><b>{cartItems.reduce((accumulator: number, currentItem: any) => {
+      const itemPrice = currentItem.tipus === 0 ? currentItem.elsodlegesar : currentItem.masodlagosar;
+      return accumulator + itemPrice * currentItem.count;
+    }, 0)} Ft</b></Text>
             </div>
 
           
