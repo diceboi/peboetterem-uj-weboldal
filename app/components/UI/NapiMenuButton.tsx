@@ -14,7 +14,7 @@ export default function NapiMenuButton({
   const _id = menunev;
   const nev = menunev;
   const termek = { _id, elsodlegesar, nev };
-  const type = 0;
+  const tipus = 0;
 
   const { cartItems, handleAddToCart, setCartOpen }: any =
     useContext(AddToCartContext);
@@ -43,11 +43,11 @@ export default function NapiMenuButton({
         handleAddToCart({
           ...termek,
           count: cartItems[itemIndex].count + 1,
-          type: type,
+          tipus: tipus,
         });
       } else {
         // If the item doesn't exist, add it to the cart with count 1
-        handleAddToCart({ ...termek, count: 1, type: type });
+        handleAddToCart({ ...termek, count: 1, tipus: tipus });
       }
 
       if (!disabled) {

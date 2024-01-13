@@ -71,7 +71,7 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
                   </div>
                   <div className='flex flex-col gap-2 justify-start pb-2'>
 
-                    {isCurrentDay && (
+                  {isCurrentDay && (
                       <>
                       <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar}/>
                       <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel}/>
