@@ -23,7 +23,7 @@ const RendelesekSchema = new mongoose.Schema(
     cartItems: [
       {
         count: Number,
-        type: Number,
+        tipus: Number,
         elsodlegesar: String,
         masodlagosar: String,
         nev: String,

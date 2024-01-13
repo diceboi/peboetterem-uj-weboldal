@@ -8,9 +8,7 @@ import { TbArrowNarrowRight } from 'react-icons/tb'
 
 export default function Penztar() {
 
-  const { cartItems, getTotalPrice, itemNotes, updateItemNote }:any = useContext(AddToCartContext);
-
-  console.log("itemNotes:", itemNotes);
+  const { cartItems, getTotalPrice }:any = useContext(AddToCartContext);
 
   const [formData, setFormData] = useState({
     nev: '',
@@ -61,22 +59,17 @@ export default function Penztar() {
   
             {cartItems.map((item:any, index:any) => {
 
-
-          console.log("item._id:", item._id);
-          console.log("itemNotes[item._id]:", itemNotes[item._id]);
-          console.log(cartItems)
-
           return(
               <>
-                <div className='border-b border-[--lightnavy] py-2'>
-                  <div key={index} className='flex flex-row gap-4 justify-between items-end border-b border-[--lightnavy] py-2'>
+                <div key={index} className='border-b border-[--lightnavy] py-2'>
+                  <div  className='flex flex-row gap-4 justify-between items-end border-b border-[--lightnavy] py-2'>
                     <p className='text-[--grey] w-full lg:w-3/4'>
                       
-                    {item.elsoelotag && item.type === 0 ? (
+                    {item.elsoelotag && item.tipus === 0 ? (
                       <>
                         {item.count + ' x ' + item.nev + `(${item.elsoelotag})`}
                       </>
-                    ) : item.type === 1 ? (
+                    ) : item.tipus === 1 ? (
                       <>
                         {item.count + ' x ' + item.nev + `(${item.masodikelotag})`}
                       </>
@@ -87,15 +80,7 @@ export default function Penztar() {
                     )}
                 
                   </p>
-                    <p className="smartprice text-[--okker] min-w-max">{item.type === 0 ? item.elsodlegesar * item.count : item.masodlagosar * item.count} Ft</p>
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      placeholder='Megjegyzés a termékhez'
-                      value={itemNotes[item._id.toString()] || ''}
-                      onChange={(e) => updateItemNote(item._id.toString(), e.target.value)}
-                    />
+                    <p className="smartprice text-[--okker] min-w-max">{item.tipus === 0 ? item.elsodlegesar * item.count : item.masodlagosar * item.count} Ft</p>
                   </div>
                 </div>
               </>)  

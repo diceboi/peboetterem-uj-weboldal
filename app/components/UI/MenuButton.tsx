@@ -8,7 +8,7 @@ export default function MenuButton({
   disabled,
   rendelesfelvetel,
   termek,
-  type,
+  tipus,
 }: any) {
   const { cartItems, handleAddToCart, setCartOpen }: any =
     useContext(AddToCartContext);
@@ -32,19 +32,19 @@ export default function MenuButton({
         (item: any) => item._id === termek._id
       );
 
-      const modifiedId = type === 1 ? `${termek._id}masodlagos` : termek._id;
+      const modifiedId = tipus === 1 ? `${termek._id}masodlagos` : termek._id;
 
       if (itemIndex !== -1) {
         // If item exists, increase its count by 1
         handleAddToCart({
           ...termek,
           count: cartItems[itemIndex].count + 1,
-          type: type,
+          tipus: tipus,
           _id: modifiedId,
         });
       } else {
         // If the item doesn't exist, add it to the cart with count 1
-        handleAddToCart({ ...termek, count: 1, type: type, _id: modifiedId });
+        handleAddToCart({ ...termek, count: 1, tipus: tipus, _id: modifiedId });
       }
 
       if (!disabled) {

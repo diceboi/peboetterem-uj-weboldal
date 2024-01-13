@@ -160,6 +160,7 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
         toast.error('A rendelés nem sikerült.');
       }
     } catch (error) {
+      console.log(data);
       console.error('Error updating data:', error);
     }
   };

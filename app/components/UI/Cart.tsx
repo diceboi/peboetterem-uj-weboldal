@@ -34,7 +34,7 @@ export default function Cart({ cartClassName }: any) {
                   menuar: any;
                   masodlagosar: any;
                   count: any;
-                  type: any;
+                  tipus: any;
                 }) => (
                   <CartItem
                     _id={item._id}
@@ -47,7 +47,7 @@ export default function Cart({ cartClassName }: any) {
                     menuar={item.menuar}
                     masodlagosar={item.masodlagosar}
                     count={item.count}
-                    type={item.type}
+                    tipus={item.tipus}
                   />
                 )
               )

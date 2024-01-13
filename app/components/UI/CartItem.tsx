@@ -15,10 +15,10 @@ import { TbSquareMinus, TbSquarePlus, TbTrash } from "react-icons/tb";
       elsoelotag: string;
       masodikelotag: string;
       count: number;
-      type: number;
+      tipus: number;
     }
 
-  export default function CartItem({ _id, nev, menunev, elsodlegesar, elsoelotag, masodikelotag, menuar, masodlagosar, count: initialCount, type }:CartItem) {
+  export default function CartItem({ _id, nev, menunev, elsodlegesar, elsoelotag, masodikelotag, menuar, masodlagosar, count: initialCount, tipus }:CartItem) {
 
       const [count, setCount] = useState(initialCount);
       const { handleDecreaseCount, handleAddToCart, handleDeleteCartItem }: any = useContext(AddToCartContext);
@@ -52,7 +52,7 @@ import { TbSquareMinus, TbSquarePlus, TbTrash } from "react-icons/tb";
       };
 
       const calculatePrice = () => {
-        return type === 0 ? elsodlegesar * count : masodlagosar * count;
+        return tipus === 0 ? elsodlegesar * count : masodlagosar * count;
        
       };
 
@@ -62,11 +62,11 @@ import { TbSquareMinus, TbSquarePlus, TbTrash } from "react-icons/tb";
           <div className="flex items-start gap-4 justify-between">
             <h3 className="text-[--grey] text-sm text-bold tracking-[.125em]">
 
-            {elsoelotag && type === 0 ? (
+            {elsoelotag && tipus === 0 ? (
               <>
                 {count + ' x ' + nev + `(${elsoelotag})`}
               </>
-            ) : type === 1 ? (
+            ) : tipus === 1 ? (
               <>
                 {count + ' x ' + nev + `(${masodikelotag})`}
               </>

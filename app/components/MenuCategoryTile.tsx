@@ -134,10 +134,10 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
             </div>
             <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} type={0}/>
+                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={0}/>
               )}
               {termek.masodlagosar && (
-                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} type={1}/>
+                <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={1}/>
               )}
             </div>
         </div>
