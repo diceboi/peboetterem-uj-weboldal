@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AddToCartContext } from "@/app/addToCart";
 
 export default function Cart({ cartClassName }: any) {
+
   const { cartItems, setCartClose, getTotalPrice }: any =
     useContext(AddToCartContext);
 

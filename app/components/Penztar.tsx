@@ -5,8 +5,19 @@ import { AddToCartContext } from '../addToCart'
 import Link from 'next/link'
 import MegrendelesButton from './UI/MegrendelesButton'
 import { TbArrowNarrowRight } from 'react-icons/tb'
+import SzallitasiArakModal from './UI/SzallitasiArakModal'
 
 export default function Penztar() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+    
+  const openModal = () => {
+      setIsModalOpen(true);
+    };
+  
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const { cartItems, getTotalPrice }:any = useContext(AddToCartContext);
 
@@ -50,6 +61,8 @@ export default function Penztar() {
   };
 
   return (
+    <>
+    <SzallitasiArakModal isOpen={isModalOpen} closeModal={closeModal} />
     <section className='w-full py-20 bg-[--navy]'>
       <div className='container m-auto'>
         <div className='flex flex-col justify-center w-full lg:w-8/12 gap-8 m-auto'>
@@ -88,7 +101,10 @@ export default function Penztar() {
 
             <div className='flex flex-row justify-between items-end pt-4'>
                 <p className='text-[--okker] font-bebas text-3xl'>Összesen:</p>
-                <p className="text-[--grey] font-bebas text-3xl ">{getTotalPrice()} Ft</p>
+                <div className='flex flex-col justify-start'>
+                  <p className="text-[--grey] font-bebas text-3xl ">{getTotalPrice()} Ft</p>
+                  <p className='text-sm text-[--grey] underline cursor-pointer' onClick={openModal}>+ esetleges szállítási költség</p>
+                </div>
             </div>
 
           </div>
@@ -173,5 +189,6 @@ export default function Penztar() {
         </div>
       </div>
     </section>
+    </>
   )
 }

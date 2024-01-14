@@ -1,6 +1,6 @@
 import { AddToCartContext } from "@/app/addToCart";
 import { useContext } from "react";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 
 export default function MenuButton({
   title,
@@ -49,6 +49,13 @@ export default function MenuButton({
 
       if (!disabled) {
         setCartPopup();
+        toast.success(
+          `Az étel a kosárba került!`,
+          {
+            className: "warningtoaster",
+            duration: 5000,
+          }
+        );
       }
       console.log(cartItems);
     }
@@ -56,6 +63,7 @@ export default function MenuButton({
 
   return (
     <>
+      <Toaster richColors position="bottom-center"/>
       <button className={cursorClassName} onClick={handleClick}>
         {icon}
         {title}

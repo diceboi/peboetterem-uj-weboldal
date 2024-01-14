@@ -1,6 +1,6 @@
 import { AddToCartContext } from "@/app/addToCart";
 import { useContext } from "react";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 
 export default function NapiMenuButton({
   title,
@@ -52,6 +52,13 @@ export default function NapiMenuButton({
 
       if (!disabled) {
         setCartPopup();
+        toast.success(
+          `A mai menü a kosárba került.`,
+          {
+            className: "warningtoaster",
+            duration: 5000,
+          }
+        );
       }
       console.log(cartItems);
     }
@@ -59,6 +66,7 @@ export default function NapiMenuButton({
 
   return (
     <>
+      <Toaster richColors position="bottom-center"/>
       <button className={cursorClassName} onClick={handleClick}>
         {icon}
         {title}

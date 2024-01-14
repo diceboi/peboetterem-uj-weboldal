@@ -148,9 +148,13 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
       });
 
       if (res.ok) {
-        toast.success('Sikeres rendelés!', {
-          duration: 5000,
-        });
+        toast.success(
+          `Sikeres megrendelés!`,
+          {
+            className: "warningtoaster",
+            duration: 5000,
+          }
+        );
         console.log(data);
         emptyCart();
         setTimeout(() => {
@@ -167,12 +171,12 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
 
   return (
     <>
+    <Toaster richColors position="bottom-center"/>
     <button 
     className={cursorClassName} type='submit' onClick={(event) => {handleDb(); handleEmail(event);}}>
         {icon}
         {title}
     </button>
-    <Toaster richColors position="bottom-center"/>
     </>
   )
 }
