@@ -16,7 +16,9 @@ interface AddToCartContextProps {
   toggleCartOpen: () => void;
   setCartOpen: () => void;
   setCartClose: () => void;
+  setCartPopup: () => void;
   isMenuClosed: boolean,
+  isCartPopup: boolean,
   toggleMenuOpen: () => void,
   setMenuOpen: () => void,
   setMenuClose: () => void,
@@ -35,7 +37,9 @@ export const AddToCartContext = createContext<AddToCartContextProps>({
   toggleCartOpen: () => {},
   setCartOpen: () => {},
   setCartClose: () => {},
+  setCartPopup: () => {},
   isMenuClosed: true,
+  isCartPopup: false,
   toggleMenuOpen: () => {},
   setMenuOpen: () => {},
   setMenuClose: () => {},
@@ -46,10 +50,10 @@ export const AddToCartContext = createContext<AddToCartContextProps>({
 
 export default function AddToCartProvider({ children }: any) {
   const [isCartClosed, setIsCartClosed] = useState(true);
+  const [isCartPopup, setIsCartPopup] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isMenuClosed, setIsMenuClosed] = useState(false);
 
-  // Access `localStorage` only within this `useEffect` to ensure it’s client-side
   useEffect(() => {
     const storedCart = typeof window !== 'undefined' ? localStorage.getItem('pebocart') : null;
     if (storedCart) {
@@ -58,9 +62,10 @@ export default function AddToCartProvider({ children }: any) {
   }, []);
 
   useEffect(() => {
-    // Only update local storage if we have items
     if (cartItems.length > 0) {
       localStorage.setItem('pebocart', JSON.stringify(cartItems));
+    } else {
+      localStorage.removeItem('pebocart');
     }
   }, [cartItems]);
 
@@ -77,6 +82,16 @@ export default function AddToCartProvider({ children }: any) {
   const setCartClose = () => {
     setIsCartClosed(true);
   };
+
+  /*Cart popup*/
+
+  const setCartPopup = () => {
+    setIsCartPopup(true);
+  
+    setTimeout(() => {
+      setIsCartPopup(false);
+    }, 450);
+  }
 
   /*Menu opening toggle*/
 
@@ -159,7 +174,9 @@ export default function AddToCartProvider({ children }: any) {
       toggleCartOpen,
       setCartOpen,
       setCartClose,
+      setCartPopup,
       isMenuClosed,
+      isCartPopup,
       toggleMenuOpen,
       setMenuClose,
       setMenuOpen,

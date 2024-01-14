@@ -28,7 +28,7 @@ const getAlapadatok = async () => {
 };
 
 function parseTimeToMinutes(timeStr: any) {
-  if (timeStr === "Zárva") return -1;
+  if (timeStr === "Zárva" || !timeStr) return -1;
   const [hoursStr, minutesStr] = timeStr.split(":");
   const hours = parseInt(hoursStr, 10);
   const minutes = parseInt(minutesStr || "0", 10);
@@ -52,9 +52,9 @@ function isOpenNowWithAlapadatok(alapadatokData: any) {
   } else if (dayOfWeek === 6) {
     openingTimeStr = alapadatokData.nyitvatartasszo.split(" - ")[0];
     closingTimeStr = alapadatokData.nyitvatartasszo.split(" - ")[1];
-  } else {
-    // Sunday is always closed
-    return false;
+  } else if (dayOfWeek === 0){
+    openingTimeStr = alapadatokData.nyitvatartasv.split(" - ")[0];
+    closingTimeStr = alapadatokData.nyitvatartasv.split(" - ")[1];
   }
 
   const openingMinutes = parseTimeToMinutes(openingTimeStr);
@@ -71,7 +71,7 @@ function isOpenNowWithAlapadatok(alapadatokData: any) {
 
 export default function MainNav() {
 
-  const { isCartOpen, toggleCartOpen, setCartOpen, setCartClose, setMenuClose, isMenuClosed, toggleMenuOpen, getTotalItemCount }: any =
+  const { isCartOpen, toggleCartOpen, setCartPopup, isCartPopup, setCartClose, setMenuClose, isMenuClosed, toggleMenuOpen, getTotalItemCount }: any =
     useContext(AddToCartContext);
 
   const [alapadatok, setAlapadatok] = useState<any[]>([]);
@@ -252,7 +252,7 @@ export default function MainNav() {
                 {isRestaurantOpen ? "Nyitva" : "Zárva"}
               </p>
             </div>
-            <div className="relative flex items-center justify-center h-full w-[55px] text-[--grey]">
+            <div className={isCartPopup ? `relative flex items-center justify-center h-full w-[55px] rounded-md text-[--grey] bg-[--okker] animate-popup` : `relative flex items-center justify-center h-full w-[55px] text-[--grey]`}>
               {cartCountSpan}
               <TbShoppingCart
                 className={`p-3 w-full h-full cursor-pointer rounded-e-md ${
@@ -349,7 +349,7 @@ export default function MainNav() {
               </ul>
             </div>
           </div>
-          <div className='relative flex items-center justify-center h-full w-full rounded-md text-[--grey]' id="cart">
+          <div className={isCartPopup? `relative flex items-center justify-center h-full w-full rounded-md text-[--grey] bg-[--okker] animate-popup` : `relative flex items-center justify-center h-full w-full rounded-md text-[--grey]`} id="cart">
             {cartCountSpan}
             <TbShoppingCart
               className={`p-2 w-12 h-12 cursor-pointer ${isCartOpen ? " hidden" : ""}`}

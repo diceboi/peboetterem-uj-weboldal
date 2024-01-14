@@ -68,36 +68,38 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
     const alapadatokData = alapadatok.length > 0 ? alapadatok[0] : null;
 
     useEffect(() => {
-        if (
-          alapadatokData &&
-          alapadatokData.nyitvatartashepe &&
-          alapadatokData.nyitvatartasszo &&
-          alapadatokData.nyitvatartasv &&
-          alapadatokData.rendelesfelvetel
-        ) {
-          const currentTime = new Date();
-          const currentMinutesSinceMidnight = currentTime.getHours() * 60 + currentTime.getMinutes();
-          const currentDayOfWeek = currentTime.getDay();
-          const ordersClosingMinutes = parseTimeToMinutes(alapadatokData.rendelesfelvetel);
-
-          const isOpenToday = (openTimeStr: string, closeTimeStr: string) => {
-            if (openTimeStr === 'Zárva') return false;
-            const openingMinutes = parseTimeToMinutes(openTimeStr);
-            const closingMinutes = parseTimeToMinutes(closeTimeStr);
-            return currentMinutesSinceMidnight >= openingMinutes && currentMinutesSinceMidnight < closingMinutes;
-          };
-      
-          // Determine if the restaurant is currently open based on the day of the week.
-          let isDisabled = currentDayOfWeek === 0 ? !isOpenToday('00:00', '00:00') : // Sunday is always closed
-          currentDayOfWeek === 6 ? !isOpenToday(alapadatokData.nyitvatartasszo.split(' - ')[0], alapadatokData.nyitvatartasszo.split(' - ')[1]) : // Saturday
-          !isOpenToday(alapadatokData.nyitvatartashepe.split(' - ')[0], alapadatokData.nyitvatartashepe.split(' - ')[1]); // Weekdays
-
-          // Check if it's past the order acceptance time.
-          isDisabled = isDisabled || currentMinutesSinceMidnight > ordersClosingMinutes;
-
-          setIsButtonDisabled(isDisabled);
-        }
-      }, [alapadatokData]);
+      if (alapadatokData) {
+        const {
+          nyitvatartashepe,
+          nyitvatartasszo,
+          nyitvatartasv,
+          rendelesfelvetel,
+        } = alapadatokData;
+    
+        const currentTime = new Date();
+        const currentMinutesSinceMidnight = currentTime.getHours() * 60 + currentTime.getMinutes();
+        const currentDayOfWeek = currentTime.getDay();
+        const ordersClosingMinutes = parseTimeToMinutes(rendelesfelvetel);
+    
+        const isOpenOnDay = (openingHours: string) => {
+          if (openingHours === 'Zárva') return false;
+          const [openTimeStr, closeTimeStr] = openingHours.split(' - ');
+          const openingMinutes = parseTimeToMinutes(openTimeStr);
+          const closingMinutes = parseTimeToMinutes(closeTimeStr);
+          return currentMinutesSinceMidnight >= openingMinutes && currentMinutesSinceMidnight < closingMinutes;
+        };
+    
+        // Determine if the restaurant is currently open based on the day of the week.
+        let isDisabled = currentDayOfWeek === 0 ? !isOpenOnDay(nyitvatartasv) : // Sunday
+          currentDayOfWeek === 6 ? !isOpenOnDay(nyitvatartasszo) : // Saturday
+          !isOpenOnDay(nyitvatartashepe); // Weekdays
+    
+        // Check if it's past the order acceptance time.
+        isDisabled = isDisabled || currentMinutesSinceMidnight > ordersClosingMinutes;
+    
+        setIsButtonDisabled(isDisabled);
+      }
+    }, [alapadatokData]);
 
   return (
     <>
@@ -134,7 +136,7 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
             </div>
             <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={0}/>
+                <MenuButton title={`Kosárba ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus ={0}/>
               )}
               {termek.masodlagosar && (
                 <MenuButton title={`Kosárba ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={1}/>

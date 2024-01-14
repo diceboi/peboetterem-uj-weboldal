@@ -16,7 +16,7 @@ export default function NapiMenuButton({
   const termek = { _id, elsodlegesar, nev };
   const tipus = 0;
 
-  const { cartItems, handleAddToCart, setCartOpen }: any =
+  const { cartItems, handleAddToCart, setCartPopup }: any =
     useContext(AddToCartContext);
 
   const cursorClassName = disabled
@@ -51,7 +51,7 @@ export default function NapiMenuButton({
       }
 
       if (!disabled) {
-        setCartOpen();
+        setCartPopup();
       }
       console.log(cartItems);
     }

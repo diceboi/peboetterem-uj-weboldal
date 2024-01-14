@@ -10,7 +10,7 @@ export default function MenuButton({
   termek,
   tipus,
 }: any) {
-  const { cartItems, handleAddToCart, setCartOpen }: any =
+  const { cartItems, handleAddToCart, setCartPopup }: any =
     useContext(AddToCartContext);
 
   const cursorClassName = disabled
@@ -48,7 +48,7 @@ export default function MenuButton({
       }
 
       if (!disabled) {
-        setCartOpen();
+        setCartPopup();
       }
       console.log(cartItems);
     }

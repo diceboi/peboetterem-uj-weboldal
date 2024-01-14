@@ -311,3 +311,21 @@ p {
   ::-webkit-scrollbar-thumb:hover {
     background: var(--okker); 
   }
+
+  /*ANIMATION*/
+
+.animate-popup {
+    animation: popup .5s;
+}
+
+  @keyframes popup {
+    0% {
+        background-color: var(--navy);
+    }
+    10% {
+        background-color: var(--okker);
+    }
+    100% {
+        background-color: var(--navy);
+    }
+}
