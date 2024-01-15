@@ -126,7 +126,13 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
   
     if (!isValid) {
       // If validation failed, show error message to the user
-      toast.error('A csillaggal megjelölt mezők kitöltése kötelező');
+      toast.error(
+        `A csillaggal(*) megjelölt mezők kitöltése, és az adatkezelési tájékoztató elfogadása kötelező`,
+        {
+          className: "warningtoaster",
+          duration: 5000,
+        }
+      );
       return;
     }
   
