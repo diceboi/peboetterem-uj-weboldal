@@ -175,7 +175,7 @@ export default function Penztar() {
               <div className='flex flex-row gap-4'>
                 <input required id='adatkezelesi' name='adatkezelesi' type='checkbox' checked={formData.adatkezelesi}
             onChange={handleInputChange}></input>
-                <label className='text-xs text-[--grey]' htmlFor='adatkezelesi'>Elolvastam, megértettem, és elfogadom az <Link href="/adatkezelesi-tajekoztato" className='text-[--okker] underline'>adatkezelési tájékoztatóban</Link> foglaltakat. Elfogadom továbbá, hogy a megrendelés elküldésével fizetési kötelezettségem van a futár felé.</label>
+                <label className='text-xs text-[--grey]' htmlFor='adatkezelesi'>Elolvastam, megértettem, és elfogadom az <Link href="/adatkezelesi-tajekoztato" className='text-[--okker] underline'>adatkezelési tájékoztatóban</Link> foglaltakat. Elfogadom továbbá, hogy a megrendelés elküldésével fizetési kötelezettségem van a futár felé.*</label>
               </div>
 
               <div className='pt-4'>

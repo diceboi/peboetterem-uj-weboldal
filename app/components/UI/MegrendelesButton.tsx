@@ -96,6 +96,47 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
 
 
 
+  const validateRequiredFields = () => {
+    // List of required fields in the form
+    const requiredFields = ['nev', 'email', 'tel', 'irszam', 'telepules', 'utca', 'adatkezelesi'];
+  
+    // Check for each required field in formData
+    for (const field of requiredFields) {
+      const value = formData[field];
+  
+      // If the field is the adatkezelesi checkbox, check if it's not true (unchecked)
+      // For other fields, check if they're empty
+      if ((field === 'adatkezelesi' && !value) || (!value && field !== 'adatkezelesi')) {
+        // Return false as soon as a required field is missing
+        return false;
+      }
+    }
+  
+    // All required fields are filled, return true
+    return true;
+  };
+
+
+
+  const handleSubmit = async (event:any) => {
+    event.preventDefault();
+  
+    // Validate required fields before proceeding
+    const isValid = validateRequiredFields();
+  
+    if (!isValid) {
+      // If validation failed, show error message to the user
+      toast.error('A csillaggal megjelölt mezők kitöltése kötelező');
+      return;
+    }
+  
+    // If validation passed, proceed with handleDb and handleEmail
+    await handleDb();
+    handleEmail(event);
+  };
+
+
+
   async function handleEmail(event: any) {
     event.preventDefault();
 
@@ -105,7 +146,6 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
       setLoading(false);
       return;
     }
-
     const data = { formData, cartItems };
 
     const response = await fetch("/api/email/rendeles", {
@@ -173,7 +213,7 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
     <>
     <Toaster richColors position="bottom-center"/>
     <button 
-    className={cursorClassName} type='submit' onClick={(event) => {handleDb(); handleEmail(event);}}>
+    className={cursorClassName} type='submit' onClick={handleSubmit}>
         {icon}
         {title}
     </button>
