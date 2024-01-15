@@ -158,7 +158,7 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
                   <h2 className="price px-2 py-1 bg-[--okker] w-full text-base lg:text-xl text-center xl:min-w-max rounded-md">B menü csak főétel: <b>{napimenuadatData.bmenucsakfoetel} Ft</b></h2>
                 </div>
               {specialisarakData && (
-              <h3 className='text-[--okker]'>A csomagolás díja: {specialisarakData.csomagolas}Ft</h3>
+              {/*<h3 className='text-[--okker]'>A csomagolás díja: {specialisarakData.csomagolas}Ft</h3>*/}
               )}
             </div>
 
