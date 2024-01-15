@@ -196,7 +196,6 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
                 isCurrentDay={currentDayIndex === index}
                 menurendeles={menuData.menurendeles}
                 napimenuadatok={menuData}
-                csomagolas={specialisarakData.csomagolas}
               />
             )
           );

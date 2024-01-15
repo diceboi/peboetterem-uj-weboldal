@@ -5,7 +5,7 @@ import { GiHotMeal } from 'react-icons/gi'
 import { TbShoppingCartPlus, TbSoup } from 'react-icons/tb'
 import NapiMenuButton from './NapiMenuButton'
 
-export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bMenuLeves, bMenuFoetel, isCurrentDay, menurendeles, napimenuadatok, csomagolas }:any) {
+export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bMenuLeves, bMenuFoetel, isCurrentDay, menurendeles, napimenuadatok }:any) {
 
   const currentDayColor = isCurrentDay ? 'bg-[--lightestnavy]' : 'bg-[--lightnavy]';
 
@@ -73,8 +73,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                       <>
-                      <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar} csomagolas={csomagolas}/>
-                      <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel} csomagolas={csomagolas}/>
+                      <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar}/>
+                      <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel}/>
                       </>
                     )}
                 </div>
@@ -113,8 +113,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                     <>
-                    <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar} csomagolas={csomagolas}/>
-                    <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel} csomagolas={csomagolas}/>
+                    <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar}/>
+                    <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel}/>
                     </>
                   )}
 
