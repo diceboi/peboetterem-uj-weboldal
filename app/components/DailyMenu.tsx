@@ -152,11 +152,26 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
             <div className="flex flex-col justify-center items-center gap-4">
               <h1 className='py-8'>Napi menü</h1>
                 <div className='grid grid-cols-2 grid-rows-2 2xl:grid-cols-4 2xl:grid-rows-1 items-center gap-2 lg:gap-4'>
-                  <h2 className="price px-2 py-1 bg-[--okker] w-full text-base lg:text-xl text-center xl:min-w-max rounded-md">A menü: <b>{napimenuadatData.amenuar} Ft</b></h2>
-                  <h2 className="price px-2 py-1 bg-[--okker] w-full text-base lg:text-xl text-center xl:min-w-max rounded-md">B menü: <b>{napimenuadatData.bmenuar} Ft</b></h2>
-                  <h2 className="price px-2 py-1 bg-[--okker] w-full text-base lg:text-xl text-center xl:min-w-max rounded-md">A menü csak főétel: <b>{napimenuadatData.amenucsakfoetel} Ft</b></h2>
-                  <h2 className="price px-2 py-1 bg-[--okker] w-full text-base lg:text-xl text-center xl:min-w-max rounded-md">B menü csak főétel: <b>{napimenuadatData.bmenucsakfoetel} Ft</b></h2>
+                  <div className='px-2 py-1 bg-[--okker] w-full text-center rounded-md'>
+                    <h2 className="price text-base lg:text-xl">A menü: <b>{napimenuadatData.amenuar - 100}</b></h2>
+                    <p className='price text-sm'> + 100 Ft (csomagolás)</p>
+                  </div>
+                  <div className='px-2 py-1 bg-[--okker] w-full text-center rounded-md'>
+                    <h2 className="price text-base lg:text-xl">B menü: <b>{napimenuadatData.bmenuar - 100}</b></h2>
+                    <p className='price text-sm'> + 100 Ft (csomagolás)</p>
+                  </div>
+                  <div className='px-2 py-1 bg-[--okker] w-full text-center rounded-md'>
+                    <h2 className="price text-base lg:text-xl">A menü csak főétel: <b>{napimenuadatData.amenucsakfoetel - 50}</b></h2>
+                    <p className='price text-sm'> + 50 Ft (csomagolás)</p>
+                  </div>
+                  <div className='px-2 py-1 bg-[--okker] w-full text-center rounded-md'>
+                    <h2 className="price text-base lg:text-xl">B menü csak főétel: <b>{napimenuadatData.bmenucsakfoetel - 50}</b></h2>
+                    <p className='price text-sm'> + 50 Ft (csomagolás)</p>
+                  </div>
                 </div>
+              {specialisarakData && (
+              <h3 className='text-[--okker]'>A csomagolás díja teljes menünél: 100 Ft, csak főéletnél: 50 Ft</h3>
+              )}
             </div>
 
           )}
@@ -181,6 +196,7 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
                 isCurrentDay={currentDayIndex === index}
                 menurendeles={menuData.menurendeles}
                 napimenuadatok={menuData}
+                csomagolas={specialisarakData.csomagolas}
               />
             )
           );

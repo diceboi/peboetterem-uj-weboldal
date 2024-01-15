@@ -8,6 +8,7 @@ export default function NapiMenuButton({
   disabled,
   menurendeles,
   menuar,
+  csomagolas,
   menunev,
 }: any) {
   const elsodlegesar = menuar;
@@ -47,7 +48,7 @@ export default function NapiMenuButton({
         });
       } else {
         // If the item doesn't exist, add it to the cart with count 1
-        handleAddToCart({ ...termek, count: 1, tipus: tipus });
+        handleAddToCart({ ...termek, count: 1, tipus: tipus, });
       }
 
       if (!disabled) {
