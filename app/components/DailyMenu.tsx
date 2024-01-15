@@ -170,7 +170,7 @@ const specialisarakData = specialisarak.length > 0 ? specialisarak[0] : null;
                   </div>
                 </div>
               {specialisarakData && (
-              <h3 className='text-[--okker]'>A csomagolás díja teljes menünél: 100 Ft, csak főéletnél: 50 Ft</h3>
+              <h3 className='text-[--okker] text-center'>A csomagolás díja teljes menünél: 100 Ft, csak főéletnél: 50 Ft</h3>
               )}
             </div>
 
