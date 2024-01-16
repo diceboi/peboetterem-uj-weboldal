@@ -123,7 +123,12 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
                     {termek.elsodlegesar && (
                         <div className="flex gap-2 bg-[--shadowgrey] px-2 py-1 rounded-md">
                         <p className="menuprice text-[--navy]">{termek.elsoelotag}</p>
-                        <p className="menuprice text-[--navy]">{termek.elsodlegesar} Ft</p>
+                        <p className="menuprice text-[--navy]">
+                          {termek.kategoria === '4 személyes tálak'
+                            ? `${termek.elsodlegesar - 500} (+ 500 Ft csomagolás)`
+                            : `${termek.elsodlegesar} Ft`
+                          }
+                        </p>
                         </div>
                     )}
                     {termek.masodlagosar && (
