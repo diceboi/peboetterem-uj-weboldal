@@ -153,8 +153,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                     <>
-                    <BMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar} elfogyott={isbmenuOutOfStock}/>
-                    <BMenuLevesButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel} elfogyott={isbmenulevesOutOfStock}/>
+                    <BMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar} elfogyott={isbmenulevesOutOfStock}/>
+                    <BMenuLevesButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel} elfogyott={isbmenuOutOfStock}/>
                     </>
                   )}
 
