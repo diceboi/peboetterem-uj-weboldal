@@ -4,12 +4,20 @@ import { useEffect, useState } from 'react'
 import { GiHotMeal } from 'react-icons/gi'
 import { TbShoppingCartPlus, TbSoup } from 'react-icons/tb'
 import NapiMenuButton from './NapiMenuButton'
+import AMenuButton from './AMenuButton'
+import BMenuButton from './BMenuButton'
+import AMenuLevesButton from './AMenuLevesButton'
+import BMenuLevesButton from './BMenuLevesButton'
 
 export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bMenuLeves, bMenuFoetel, isCurrentDay, menurendeles, napimenuadatok }:any) {
 
   const currentDayColor = isCurrentDay ? 'bg-[--lightestnavy]' : 'bg-[--lightnavy]';
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isamenuOutOfStock, setIsAmenuOutOfStock] = useState(false);
+  const [isbmenuOutOfStock, setIsBmenuOutOfStock] = useState(false);
+  const [isamenulevesOutOfStock, setIsAmenuLevesOutOfStock] = useState(false);
+  const [isbmenulevesOutOfStock, setIsBmenuLevesOutOfStock] = useState(false);
 
   useEffect(() => {
     const currentTime = new Date();
@@ -29,6 +37,38 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
       setIsButtonDisabled(false);
     }
   }, [menurendeles]);
+
+  useEffect(() => {
+    if (napimenuadatok.amenuelfogyott === true) {
+      setIsAmenuOutOfStock(true);
+    } else {
+      setIsAmenuOutOfStock(false);
+    }
+  })
+
+  useEffect(() => {
+    if (napimenuadatok.bmenuelfogyott === true) {
+      setIsBmenuOutOfStock(true);
+    } else {
+      setIsBmenuOutOfStock(false);
+    }
+  })
+
+  useEffect(() => {
+    if (napimenuadatok.amenuleveselfogyott === true) {
+      setIsAmenuLevesOutOfStock(true);
+    } else {
+      setIsAmenuLevesOutOfStock(false);
+    }
+  })
+
+  useEffect(() => {
+    if (napimenuadatok.bmenuleveselfogyott === true) {
+      setIsBmenuLevesOutOfStock(true);
+    } else {
+      setIsBmenuLevesOutOfStock(false);
+    }
+  })
 
   return (
     <>
@@ -73,8 +113,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                       <>
-                      <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar}/>
-                      <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel}/>
+                      <AMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'A menü'} menuar={napimenuadatok.amenuar} elfogyott={isamenulevesOutOfStock}/>
+                      <AMenuLevesButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles}  menunev={'A menü (csak főétel)'} menuar={napimenuadatok.amenucsakfoetel} elfogyott={isamenuOutOfStock}/>
                       </>
                     )}
                 </div>
@@ -113,8 +153,8 @@ export default function NapiMenuTile({id, day, date, aMenuLeves, aMenuFoetel, bM
 
                   {isCurrentDay && (
                     <>
-                    <NapiMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar}/>
-                    <NapiMenuButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel}/>
+                    <BMenuButton title={"Kosárba"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü'} menuar={napimenuadatok.bmenuar} elfogyott={isbmenuOutOfStock}/>
+                    <BMenuLevesButton title={"Csak főétel"} icon={<TbShoppingCartPlus />} disabled={isButtonDisabled} menurendeles={menurendeles} menunev={'B menü (csak főétel)'} menuar={napimenuadatok.bmenucsakfoetel} elfogyott={isbmenulevesOutOfStock}/>
                     </>
                   )}
 

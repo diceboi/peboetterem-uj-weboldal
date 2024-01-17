@@ -8,7 +8,6 @@ export default function NapiMenuButton({
   disabled,
   menurendeles,
   menuar,
-  csomagolas,
   menunev,
 }: any) {
   const elsodlegesar = menuar;
