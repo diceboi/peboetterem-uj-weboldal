@@ -168,7 +168,7 @@ export default function Penztar() {
 
               <div className='flex flex-col w-full lg:flex-row gap-4'>
                 <label htmlFor="text" className='min-w-[200px] text-[--grey]'>Egyéb megjegyzés:</label>
-                <textarea rows={6} name="megjegyzes" className='w-full bg-[--navy] p-2 rounded-md text-[--grey]' value={formData.megjegyzes}
+                <textarea rows={6} name="megjegyzes" placeholder='Ide írhatod a termékkel kapcsolatos kívánságaidat, extra feltéteket stb.' className='w-full bg-[--navy] p-2 rounded-md text-[--grey]' value={formData.megjegyzes}
             onChange={handleInputChange}/>
               </div>
 
