@@ -150,7 +150,6 @@ menu.li {
         line-height: 1em;
         font-family: var(--font-bebas);
         letter-spacing: .1rem;
-        opacity: 50%;
         z-index: 1;
         color: var(--navy);
     }
@@ -162,7 +161,6 @@ menu.li {
         font-size: 2em;
         font-family: var(--font-bebas);
         letter-spacing: 1.5rem;
-        opacity: 25%;
         z-index: 1;
         color: var(--navy);
     }

@@ -63,7 +63,6 @@ export default function MenuButton({
 
   return (
     <>
-      <Toaster richColors position="bottom-center"/>
       <button className={cursorClassName} onClick={handleClick}>
         {icon}
         {title}

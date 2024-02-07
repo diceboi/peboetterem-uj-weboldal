@@ -5,8 +5,8 @@ import CurrentTile2 from "./UI/CurrentTile2";
 
 export default function Current() {
   return (
-    <div id="aktualis" className="flex flex-col items-center w-full -mt-0 lg:-mt-20 bg-[--navy]">
+    <section id="aktualis" className="flex flex-col items-center justify-center m-auto -mt-10 lg:-mt-20 bg-[--navy]">
       <CurrentTile />
-    </div>
+    </section>
   )
 }
