@@ -82,8 +82,10 @@ export default function CurrentTile() {
               <div className="flex flex-col pr-8 border p-4 rounded-md border-[--lightnavy] backdrop-blur-sm bg-[--navyblur] w-full lg:w-1/3">
                   <p className="font-bebas text-[--okker] text-3xl">Tiramisu 2 főre</p>
               </div>
+              
           </div>
-          <div className="flex justify-center w-min-max z-10">
+          <div className="flex flex-col justify-center items-center w-min-max z-10">
+            <p className="p-2 text-center text-white border border-white rounded-md my-8">Kiszállítás: 02.14-én telefonos egyeztetés alapján</p>
             <Link href={'/etlap'}><button className="flex flex-nowrap items-center gap-1 hover:gap-3 py-1 lg:py-2 px-2 lg:px-4 bg-[--okker] text-[--navy] font-bebas h-min text-lg hover:bg-[--okkerdark] rounded-md shadow-md hover:shadow-lg transition-all ease-in-out z-10">Előrendelés</button></Link>
           </div>
       </div>
