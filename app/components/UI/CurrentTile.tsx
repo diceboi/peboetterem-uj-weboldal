@@ -57,7 +57,7 @@ export default function CurrentTile() {
               className="opacity-25 rounded-md"
           />
           <div className="flex lg:flex-row flex-col items-center justify-center gap-8 ">
-            <h1 className='leading-[.75em] z-10  text-white'>Valentin napi ajánlat</h1>
+            <h1 className='leading-[.75em] z-10  text-white text-center'>Valentin napi ajánlat</h1>
             <p className="text-3xl text-[white] p-3 bg-[--alert] rounded-md ">9 990 Ft</p>
           </div>
           <div className="flex flex-col lg:flex-row items-center gap-0 lg:gap-8 py-8 text-white z-10">
