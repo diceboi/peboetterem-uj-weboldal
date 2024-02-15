@@ -10,7 +10,6 @@ export default function HomaPage() {
   return (
     <>
       <Hero />
-      <Current />
       <DailyMenu />
       <Menu />
       <AboutUs />
