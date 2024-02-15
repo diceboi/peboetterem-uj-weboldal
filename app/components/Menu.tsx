@@ -102,7 +102,7 @@ const handleCategoryClick = (category: string) => {
 useEffect(() => {
   if (categories.length > 0) {
     // Set the first category as the default when categories are available
-    setSelectedCategory(categories[12]);
+    setSelectedCategory(categories[0]);
   }
 }, [categories]);
 
@@ -120,25 +120,7 @@ const termekekData = termekek.length > 0 ? termekek[0] : null;
         <div className="absolute block lg:hidden h-16 w-24 top-0 right-0 bg-gradient-to-r from-transparent to-[--navy] z-40 pointer-events-none"></div>
         <div className="sticky lg:relative top-[63px] lg:top-0 w-full overflow-x-auto">
           <ul className="relative flex flex-nowrap lg:flex-wrap justify-start lg:justify-center gap-2 lg:gap-4 h-full w-fit min-w-max lg:min-w-full py-2 z-30 mr-24 lg:mr-0">
-            {['Valentin nap', ...categories.slice(13)].map((category, index) => (
-              <li
-                key={index}
-                className={`relative flex flex-row lg:flex-nowrap items-center p-1 gap-2 bg-[--shadowgrey] hover:bg-[--grey] rounded-md transition-all duration-200 cursor-pointer w-fit}`}
-                onClick={() => handleCategoryClick(category)}
-              >
-                <div className="flex justify-center items-center w-[40px] h-[40px]">
-                  <Image 
-                    src={`/12.svg`} // Assuming this is the icon for 'Valentin nap'
-                    alt={"Étel ikon"}
-                    width={40}
-                    height={40}
-                    style={{ objectFit: "contain", objectPosition: "50% 50%" }}
-                  />
-                </div>
-                <h2 className="lg:categorynames tracking-normal lg:tracking-widest text-xs lg:text-lg lg:text-left text-center font-bebas text-[--alert]">{category}</h2>
-              </li>
-            ))}
-            {categories.slice(0, 12).map((category: string, index: number) => (
+            {categories.map((category: string, index: number) => (
               <li
                 key={index}
                 className={`relative flex flex-row lg:flex-nowrap items-center p-1 gap-2 bg-[--shadowgrey] hover:bg-[--grey] rounded-md transition-all duration-200 cursor-pointer w-fit}`}
