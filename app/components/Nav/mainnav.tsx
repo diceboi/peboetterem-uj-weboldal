@@ -275,9 +275,11 @@ export default function MainNav() {
               <Cart cartClassName={cartClassName} />
             </div>
           </div>
+          
         </div>
+        
       </nav>
-
+      
       <div
         id="mobile-menu"
         className="fixed top-0 lg:hidden flex justify-between items-center w-full h-[64px] p-2 bg-[--navy] border-b border-[--lightnavy] shadow-lg z-50"
