@@ -12,7 +12,7 @@ export default function Hero() {
 
   useEffect(() => {
     // Code to execute after component mounts
-    toast.error(`A levelezőrendszerünk átmeneti hibája miatt előfordulhat, hogy rendelés után a visszaigazoló email nem érkezik meg. A hiba javításáig szíves türelmeteket kérnénk. Köszönjük!`, {
+    toast.error(`A levelezőrendszerünk átmeneti hibája miatt előfordulhat, hogy rendelés után a visszaigazoló email nem érkezik meg. A hiba javításáig szíves türelmet kérnénk. Köszönjük!`, {
       className: 'warningtoaster',
       duration: 10000,
     });
