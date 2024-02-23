@@ -1,32 +1,6 @@
 import Image from 'next/image';
-import { getClient } from '../lib/client'
-import { gql } from '@apollo/client'
-
-const query = gql`
-query getCategories {
-  page(id: "297", idType: DATABASE_ID) {
-    fooldalRolunk {
-      cim
-      hatter {
-        sourceUrl
-      }
-      rovidSzoveg
-    }
-  }
-}`
 
 export default async function AboutUs() {
-
-  const { data } = await getClient().query({ 
-    query, 
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
-  });
-
-  const htmlContent = { __html: data.page.fooldalRolunk.rovidSzoveg };
 
   return (
     <section id="rolunk" className="relative flex flex-col w-full bg-[--grey] overflow-hidden" >
