@@ -1,40 +1,10 @@
-import { gql } from "@apollo/client"
-import { getClient } from "@/app/lib/client";
-
-const query = gql`
-query getNyeremenyjatekPost {
-  page(id: "381", idType: DATABASE_ID) {
-    blocks {
-      saveContent
-    }
-    title
-  }
-}`
-
 export default async function NyeremenyjatekSzabalyzat() {
-
-  const { data } = await getClient().query({ 
-    query, 
-    context: {
-      fetchOptions: {
-        next: { revalidate: 5 },
-      },
-    },
-  });
 
     return (
       <section className='w-full py-40 bg-[--grey]'>
           <div className='container flex flex-col lg:flex-row gap-20 m-auto w-11/12 lg:w-8/12'>
-              <h1 className='lg:w-1/3'>{data.page.title}</h1>
-              <div className="flex flex-col gap-4 lg:w-2/3">
-              {data.page.blocks.map((page:any, index:any) => (
-                <p 
-                  className='text-sm lg:text-md'
-                  key={index}
-                  dangerouslySetInnerHTML={{ __html: page.saveContent }}
-                />
-              ))}
-              </div>
+              <h1 className='lg:w-1/3'>Nyereméjáték szabályzat</h1>
+              <div className="flex flex-col gap-4 lg:w-2/3"><p className="text-sm lg:text-md"><p><strong>1. A játék szervezője a Pebo Étterem és Kávézó (továbbiakban „Szervező”) “Nyerj 4 személyes tálat!” címmel nyereményjátékot (továbbiakban „Játék”, vagy „Nyereményjáték”) szervez.</strong></p></p><p className="text-sm lg:text-md"><p><strong>2. A játék leírása</strong></p></p><p className="text-sm lg:text-md"><p> A Játék során a Szervező nyereményjátékot hirdet meg, melyben arra kéri a játszani szándékozókat, hogy a játékot meghirdető, a Szervező saját Facebook oldalát (www.facebook.com/peboetterem) kedveljék, a bejegyzést (Nyereményjátékot) osszák meg, illetve a poszt alá kommentben válaszoljanak arra, hogy kikkel fogyasztanák el szívesen a nyereményt. A Szervező a nyertest a válaszadók között, véletlenszerűen, sorsolás útján választja ki.</p></p><p className="text-sm lg:text-md"><p><strong>3. A játékban történő részvétel feltételei</strong></p></p><p className="text-sm lg:text-md"><p>A Játékban kizárólag 18. életévét betöltött, magyarországi lakó- vagy tartózkodási hellyel rendelkező személy vehet részt, aki a 2-es pontban megfogalmazott követelményeket teljesíti. Nem minősül érvényes kommentnek egy másik felhasználó kommentjére adott válasz üzenetben feltöltött komment.</p></p><p className="text-sm lg:text-md"><p>A Játékosok által feltöltött kommenteket a Játékszabályzat feltételeinek teljesítése és az általános jó ízlésnek való megfelelés szempontjából a Szervező megvizsgálhatja, és amennyiben azok, illetve az azt leadó Játékos bármely okból nem felel meg a Játékszabályzat feltételeinek, úgy az érintett Játékost a Játékból kizárhatja, a jelentkezését törölheti. A Szervező kizárja a Játékból azt a kommentet, a) amely obszcén, erotikus, közszemérmet vagy más vallását, származását, nem identitását sértő képi vagy szöveges elemet, netán tiltott önkényuralmi jelképet tartalmaz vagy más büntető törvénykönyvbe ütköző tartalmat hordoz, vagy bárki számára sértő, megalázó, vagy zaklató tartalmú; b) a Szervezőre, annak Szolgáltatásaira vagy a Szervező oldalát követő személyekre nézve sértő jellegű; c) konkurenciát jelenít meg bármely formában.</p></p><p className="text-sm lg:text-md"><p><strong>4. A játék időtartama</strong></p></p><p className="text-sm lg:text-md"><p>A Játék időtartama: 2023. 10. 30.-tól 2023. 11.20.-ig tart.</p></p><p className="text-sm lg:text-md"><p><strong>5. Játék menete</strong></p></p><p className="text-sm lg:text-md"><p>Egy Játékos a Játék időtartama alatt leadott egy érvényes és tartalmilag helyes kommenttel vehet részt a sorsoláson. A nyertes komment kiválasztása véletlenszerű sorsolás útján történik. A sorsoláson minden Játékos egy hozzászólással vesz részt. A kiválasztás jellegét a Játékos elfogadja. A döntés ellen panasszal nem élhet.</p></p><p className="text-sm lg:text-md"><p>A sorsolás időpontja: 2023. 11. 20. 10:00 óra. A Szervező egy elsődleges nyertest és egy tartalék nyertest sorsol ki. Az elsődleges nyertest a Szervező a sorsolást követő 48 órán belül, privát facebook üzenetben értesíti és egyezteti a nyeremény átvételének részleteit. Amennyiben a nyertes az üzenetre 5 naptári napon belül nem reagál, úgy a Szervező a fenti módon felveszi a kapcsolatot a tartalék nyertessel. A Szervező a nyertes, illetve tartaléknyertes teljes nevét jogosult az általa üzemeltetett Facebook oldalon is nyilvánosságra hozni. 6. Nyeremény: A nyeremény egy 4 személyes tál, melyet a nyertes a PEBo Étterem és Kávézóban fogyaszthat el.&nbsp;</p></p><p className="text-sm lg:text-md"><p>A Nyeremény készpénzre nem váltható át, tovább nem értékesíthető. A nyertes Játékos minden esetben köteles a Szervezővel együttműködni annak érdekében, hogy az adott nyeremény átadására megfelelően sor kerüljön. Ha ezen együttműködési kötelezettségének a nyertes nem tesz eleget, és így a Nyeremény átadása meghiúsul, úgy ezen körülmény a Szervező terhére nem értékelhető. Nem jogosult a nyeremény átvételére az a Játékos, aki a jelen Játékszabályzat szerinti adatvédelmi hozzájárulását a 7. pont alkalmazásával a nyereményre való jogosultság megállapítását megelőzően visszavonja, illetve kéri személyes adatainak törlését.</p></p><p className="text-sm lg:text-md"><p><strong>6. Adózás</strong></p></p><p className="text-sm lg:text-md"><p>A Nyereményhez tartozó esetleges adófizetési kötelezettséget a Szervező viseli. Szervezőt a Nyeremény fentiek szerinti átadásán és adóvonzatuk kiegyenlítésén kívül további kötelezettség nem terheli.</p></p><p className="text-sm lg:text-md"><p><strong>7. Adatvédelem</strong></p></p><p className="text-sm lg:text-md"><p>A Szervező által a jelen szabályzattal meghirdetett nyereményjátékban való részvétel és személyes adatok szolgáltatása önkéntes. Az adatkezelés jogalapja a Játékos hozzájárulása. Az adatkezelés célja kizárólag a nyereményjátékban való részvétel, a Játékosokkal való kapcsolattartás. A Szervező szavatolja, hogy az adatkezelés mindenben a hatályos jogszabályi rendelkezések megtartásával történik. A Szervező bármikor lehetőséget biztosít a Játékosnak arra, hogy tájékoztatást kérjen személyes adatai kezeléséről, kérje azok törlését vagy helyesbítését. Ezen kívül a Játékost megilleti a személyes adatai kezelése elleni tiltakozás vagy korlátozás joga is. Amennyiben a tiltakozása alapján Szervező által meghozott döntéssel nem ért egyet, úgy a Játékos bírósághoz fordulhat. Az adatok kezelését és feldolgozását a Szervező végzi. A Szervező az adatokat harmadik személyek részére nem továbbítja.</p></p><p className="text-sm lg:text-md"><p><strong>8. Játékból kizárás esetei, felelősség</strong></p></p><p className="text-sm lg:text-md"><p>A Játékból ki vannak zárva a Szervező közeli hozzátartozói. A jelentkezések hiányosságáért/hibájáért, a Nyeremény nyertességének értesítéséről a nyertes Játékosnál felmerült okból történő elmaradásáért vagy késedelméért a Szervező semmilyen felelősséget nem vállal. A jelen Játékszabályzatra a magyar jog az irányadó. A Szervező jogosult jelen Játékszabályzat alkalmazására, értelmezésére, módosítására, illetve a jelen Játékszabályzat végrehajtásával kapcsolatos vagy a Játékszabályzatban nem szabályozott valamennyi kérdés elbírálásra. Felhívom a Résztvevők figyelmét, hogy a Játék alapvetően nem áll kapcsolatban a Facebookkal, azt a Facebook semmilyen módon nem szponzorálja, támogatja vagy szervezi, nem kezeli, így a Facebookot a Nyereményjátékból eredően, vagy azzal kapcsolatban felelősség semmilyen tekintetben nem terheli (ide nem értve a közzétett és kezelt adatok adatkezelésére vonatkozó szabályoka, pl.: tárolás időtartama), panaszkezelésre nem köteles és nem is jogosult. A Nyereményjáték tartalmáért kizárólag a Szervező felelős. A Játékban való részvétel kizárólag a jelen szabályzatban foglalt feltételekkel lehetséges. A Nyereményjátékban való részvétellel a Résztvevő kifejezetten elfogadja a jelen részvételi feltételeket. Szervező fenntartja a jogot, hogy a Játékszabályzatot indokolt esetben bármikor megváltoztathassa.</p></p><p className="text-sm lg:text-md"><p>Kaposvár, 2023. 10.30.</p></p><p className="text-sm lg:text-md"><p>PEBo Étterem és Kávézó</p></p><p className="text-sm lg:text-md"><p>Szervező</p></p></div>
           </div>
       </section>
     )
