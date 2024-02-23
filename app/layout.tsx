@@ -76,14 +76,11 @@ export default function RootLayout({
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
 
       <GoogleTagManager gtmId="GTM-M6QM75MD" />
-
-        <ApolloWrapper>
           <AddToCartProvider>
             <MainNav />
               {children}
             <Footer />
           </AddToCartProvider>
-        </ApolloWrapper>
       </body>
     </html>
   )
