@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Bebas_Neue, Inter, Playball } from 'next/font/google'
 import './globals.css'
 import MainNav from './components/Nav/mainnav';
-import { ApolloWrapper } from "./lib/apollo-wrapper";
 import Footer from './components/UI/Footer';
 import Script from 'next/script';
 import AddToCartProvider, { AddToCartContext } from './addToCart';
