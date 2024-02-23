@@ -37,18 +37,19 @@ export default function RootLayout({
     <html lang="en">
       <head>
 
-      <script>
-          {`(function(w: Window, d: Document, s: string, l: string, i: string) {
-            w[l] = w[l] || [];
-            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'GTM-M6QM75MD');`}
-      </script>
+      <Script
+        id='tagmanager'
+        strategy='afterInteractive'
+        dangerouslySetInnerHTML={{
+          __html:`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-M6QM75MD');
+          `
+        }}
+      ></Script>
 
       <Script 
         id='Hotjar' 
@@ -64,7 +65,7 @@ export default function RootLayout({
           a.appendChild(r);
           })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`
         }}
-      />
+      ></Script>
 
       <Script
         id="fb-pixel"
@@ -82,7 +83,7 @@ export default function RootLayout({
           fbq('init', '1522837111829084');
           fbq('track', 'PageView');`
         }}
-      />
+      ></Script>
 
       </head>
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
