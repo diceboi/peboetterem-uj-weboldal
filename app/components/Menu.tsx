@@ -95,8 +95,8 @@ useEffect(() => {
 const handleCategoryClick = (category: string) => {
   router.push('#etlap'); // Assuming this is where you want to navigate
 
-  // Update the selected category to trigger the filtering in MenuCategoryTile
-  setSelectedCategory(category === selectedCategory ? null : category);
+  // Update the selected category only if it's different from the current one
+  setSelectedCategory((prevCategory) => (category === prevCategory ? prevCategory : category));
 };
 
 useEffect(() => {
