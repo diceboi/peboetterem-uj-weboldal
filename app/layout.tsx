@@ -6,6 +6,7 @@ import Footer from './components/UI/Footer';
 import Script from 'next/script';
 import AddToCartProvider, { AddToCartContext } from './addToCart';
 import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -89,6 +90,7 @@ export default function RootLayout({
               {children}
             <Footer />
           </AddToCartProvider>
+          <GoogleAnalytics gaId="G-GJ550E23DX" />
           <GoogleTagManager gtmId="GTM-M6QM75MD" />
       </body>
     </html>
