@@ -105,6 +105,15 @@ export default function RootLayout({
           style={{ display: 'none'}}
         />
       </noscript>
+
+      <Script
+      id="fb-track"
+      strategy="beforeInteractive"
+      dangerouslySetInnerHTML={{
+        __html: 
+        `fbq('track','Purchase');`
+      }}
+      ></Script>
       
           <AddToCartProvider>
             <MainNav />
