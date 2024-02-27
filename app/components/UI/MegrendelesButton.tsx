@@ -22,7 +22,7 @@ const getAlapadatok = async () => {
 
 export default function MegrendelesButton({title, icon, formData, elkeszult, kiszallitva}:any) {
 
-  const {cartItems, emptyCart}:any = useContext(AddToCartContext)
+  const {cartItems, emptyCart, getTotalPrice}:any = useContext(AddToCartContext)
 
   const router = useRouter()
 
@@ -196,7 +196,7 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
       if (res.ok) {
         emptyCart();
         setTimeout(() => {
-          router.push('/koszonjuk');
+          router.push(`/koszonjuk?value=${getTotalPrice()}&currency=HUF`);
         }, 1000);
       } else {
         toast.error('A rendelés nem sikerült.');
