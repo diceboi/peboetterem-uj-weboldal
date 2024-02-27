@@ -80,7 +80,7 @@ export default function RootLayout({
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '1522837111829084');
+          fbq('init', '1047230559705012');
           fbq('track', 'PageView');`
         }}
       ></Script>
@@ -95,6 +95,15 @@ export default function RootLayout({
           width="0" 
           style={{ display: 'none', visibility: 'hidden' }}>
         </iframe>
+      </noscript>
+
+      <noscript>
+        <img 
+          src="https://fwww.facebook.com/tr?id=1047230559705012&ev=PageView&noscript=1"
+          height="1" 
+          width="1" 
+          style={{ display: 'none'}}
+        />
       </noscript>
       
           <AddToCartProvider>
