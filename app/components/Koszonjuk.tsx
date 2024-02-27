@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { sendGTMEvent } from "@next/third-parties/google";
 
 export default function Koszonjuk() {
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
+
+    sendGTMEvent({ event: 'pageLoaded', value: 'koszonjukPage' });
+
     const countdownInterval = setInterval(() => {
       setCountdown((prevCount) => {
         if (prevCount === 1) {

@@ -194,18 +194,10 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
       });
 
       if (res.ok) {
-        toast.success(
-          `Sikeres megrendelés!`,
-          {
-            className: "warningtoaster",
-            duration: 5000,
-          }
-        );
-        console.log(data);
         emptyCart();
         setTimeout(() => {
           router.push('/koszonjuk');
-        }, 4000);
+        }, 1000);
       } else {
         toast.error('A rendelés nem sikerült.');
       }
