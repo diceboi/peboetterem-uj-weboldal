@@ -5,15 +5,13 @@ import { useRouter } from 'next/navigation';
 import { sendGTMEvent } from "@next/third-parties/google";
 import { useSearchParams } from 'next/navigation'
 
-export default function Koszonjuk() {
+export default function Koszonjuk({params}:any) {
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
-  const searchParams = useSearchParams()
-
-  const value = searchParams.get('value')
+  const value = params.get('value')
 
   useEffect(() => {
-
+    
     sendGTMEvent({ event: 'pageLoaded', value: 'koszonjukPage' });
 
     const countdownInterval = setInterval(() => {
