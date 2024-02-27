@@ -17,7 +17,11 @@ const nextConfig = {
       ],
     },
     experimental: {
-      serverComponentsExternalPackages: ['@react-email/render', '@react-email/tailwind']
+      serverComponentsExternalPackages: [
+          '@react-email/components',
+          '@react-email/render',
+          '@react-email/tailwind'
+      ]
     },
     async headers() {
       return [

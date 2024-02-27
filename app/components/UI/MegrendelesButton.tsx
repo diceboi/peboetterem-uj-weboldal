@@ -204,7 +204,7 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
         console.log(data);
         emptyCart();
         setTimeout(() => {
-          router.push('/');
+          router.push('/koszonjuk');
         }, 4000);
       } else {
         toast.error('A rendelés nem sikerült.');

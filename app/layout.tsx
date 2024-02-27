@@ -5,6 +5,7 @@ import MainNav from './components/Nav/mainnav';
 import Footer from './components/UI/Footer';
 import Script from 'next/script';
 import AddToCartProvider, { AddToCartContext } from './addToCart';
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -36,20 +37,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
-      <Script
-        id='tagmanager'
-        strategy='afterInteractive'
-        dangerouslySetInnerHTML={{
-          __html:`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-M6QM75MD');
-          `
-        }}
-      ></Script>
 
       <Script 
         id='Hotjar' 
@@ -89,15 +76,6 @@ export default function RootLayout({
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
 
       <noscript>
-        <iframe 
-          src="https://www.googletagmanager.com/ns.html?id=GTM-M6QM75MD"
-          height="0" 
-          width="0" 
-          style={{ display: 'none', visibility: 'hidden' }}>
-        </iframe>
-      </noscript>
-
-      <noscript>
         <img 
           src="https://fwww.facebook.com/tr?id=1047230559705012&ev=PageView&noscript=1"
           height="1" 
@@ -105,21 +83,13 @@ export default function RootLayout({
           style={{ display: 'none'}}
         />
       </noscript>
-
-      <Script
-      id="fb-track"
-      strategy="beforeInteractive"
-      dangerouslySetInnerHTML={{
-        __html: 
-        `fbq('track','Purchase');`
-      }}
-      ></Script>
       
           <AddToCartProvider>
             <MainNav />
               {children}
             <Footer />
           </AddToCartProvider>
+          <GoogleTagManager gtmId="GTM-M6QM75MD" />
       </body>
     </html>
   )
