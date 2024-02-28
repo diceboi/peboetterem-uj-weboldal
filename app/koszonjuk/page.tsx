@@ -10,7 +10,7 @@ export default function Kapcsolat({params, searchParams}:any) {
         strategy='afterInteractive' 
         dangerouslySetInnerHTML={{
             __html:
-            `fbq('track', 'Purchase', {value: '${value}', currency: 'HUF'});`
+            `fbq('track', 'Purchase', {value: '${searchParams.value}', currency: 'HUF'});`
         }}
     ></Script>
     <Koszonjuk />
