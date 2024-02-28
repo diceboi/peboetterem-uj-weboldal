@@ -72,6 +72,15 @@ export default function RootLayout({
         }}
       ></Script>
 
+      <Script 
+          id='fb-purchase' 
+          strategy='afterInteractive' 
+          dangerouslySetInnerHTML={{
+              __html:
+              `fbq('track', 'Purchase', {value: '100', currency: 'EUR'});`
+          }}
+      ></Script>
+
       </head>
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
 
