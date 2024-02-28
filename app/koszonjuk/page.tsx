@@ -5,7 +5,14 @@ export default function Kapcsolat({params, searchParams}:any) {
 
   return (
     <>
-
+    <Script 
+        id='fb-purchase' 
+        strategy='afterInteractive' 
+        dangerouslySetInnerHTML={{
+            __html:
+            `fbq('track', 'Purchase', {value: '${value}', currency: 'HUF'});`
+        }}
+    ></Script>
     <Koszonjuk />
     </>
   )
