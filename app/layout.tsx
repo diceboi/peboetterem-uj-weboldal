@@ -5,7 +5,7 @@ import MainNav from './components/Nav/mainnav';
 import Footer from './components/UI/Footer';
 import Script from 'next/script';
 import AddToCartProvider, { AddToCartContext } from './addToCart';
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const bebasNeue = Bebas_Neue({ 
   subsets: ['latin'], 
@@ -72,15 +72,6 @@ export default function RootLayout({
         }}
       ></Script>
 
-      <Script 
-          id='fb-purchase' 
-          strategy='afterInteractive' 
-          dangerouslySetInnerHTML={{
-              __html:
-              `fbq('track', 'Purchase', {value: '100', currency: 'EUR'});`
-          }}
-      ></Script>
-
       </head>
       <body className={`${bebasNeue.variable} ${inter.variable} ${playball.variable}`}>
 
@@ -98,7 +89,7 @@ export default function RootLayout({
               {children}
             <Footer />
           </AddToCartProvider>
-          <GoogleTagManager gtmId="GTM-M6QM75MD" />
+          <GoogleAnalytics gaId="G-GJ550E23DX" />
       </body>
     </html>
   )
