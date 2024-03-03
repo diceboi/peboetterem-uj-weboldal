@@ -12,6 +12,16 @@ export default function Koszonjuk() {
   const searchParams = useSearchParams()
   const value = searchParams.get('value')
 
+  useEffect(() => {
+    // Trigger GTM event when the component mounts
+    sendGTMEvent({ event: 'purchase', value: {value} });
+
+    // Cleanup function (optional)
+    return () => {
+      // Any cleanup code if needed
+    };
+  }, []);
+
   return (
     <>
     <section className='flex flex-col items-center justify-center w-full h-[100vh] bg-[--navy] py-4'>
