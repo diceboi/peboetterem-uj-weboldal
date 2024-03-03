@@ -4,6 +4,7 @@ import { AddToCartContext } from '@/app/addToCart';
 import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { Toaster, toast } from 'sonner';
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const getAlapadatok = async () => {
   try {
@@ -21,6 +22,8 @@ const getAlapadatok = async () => {
 };
 
 export default function MegrendelesButton({title, icon, formData, elkeszult, kiszallitva}:any) {
+
+  const currentDate = new Date();
 
   const {cartItems, emptyCart, getTotalPrice}:any = useContext(AddToCartContext)
 
@@ -123,6 +126,20 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
   
     // Validate required fields before proceeding
     const isValid = validateRequiredFields();
+
+    sendGTMEvent({
+      event: "purchase",
+      ecommerce: {
+        transaction_id: currentDate.toISOString().replace(/\D/g, '').slice(0, -3),
+        value: getTotalPrice(),
+        currency: "HUF",
+        items: [
+          cartItems.map((item: { _id: any; nev: any; }) => ({
+            item_id: item._id, // Adjust this based on your actual data structure
+            item_name: item.nev, // Adjust this based on your actual data structure
+          }))]
+      } 
+    });
   
     if (!isValid) {
       // If validation failed, show error message to the user
