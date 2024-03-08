@@ -134,9 +134,12 @@ export default function MegrendelesButton({title, icon, formData, elkeszult, kis
         value: getTotalPrice(),
         currency: "HUF",
         items: [
-          cartItems.map((item: { _id: any; nev: any; }) => ({
-            item_id: item._id, // Adjust this based on your actual data structure
-            item_name: item.nev, // Adjust this based on your actual data structure
+          cartItems.map((item: { _id: any; nev: any; elsodlegesar:any; masodlagosar:any; tipus:any; count:any }) => ({
+            item_id: item._id,
+            item_name: item.nev,
+            price: item.tipus === 0 ? item.elsodlegesar : item.masodlagosar,
+            currency: "HUF",
+            quantity: item.count,
           }))]
       } 
     });
