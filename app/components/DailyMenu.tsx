@@ -67,7 +67,7 @@ const getSpecialisarak = async () => {
 
 export default function DailyMenu() {
 
-  const days = ['Hétfő' , 'Kedd' , 'Szerda' , 'Csütörtök' , 'Péntek']
+  const days = ['Hétfő' , 'Kedd' , 'Szerda' , 'Csütörtök' , 'Péntek (Nemzeti ünnep)']
   const currentDayIndex = new Date().getDay() - 1;
 
   const [napimenu, setNapimenu] = useState<any[]>([]);
