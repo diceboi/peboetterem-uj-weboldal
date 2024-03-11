@@ -102,7 +102,7 @@ const handleCategoryClick = (category: string) => {
 useEffect(() => {
   if (categories.length > 0) {
     // Set the first category as the default when categories are available
-    setSelectedCategory(categories[12]);
+    setSelectedCategory(categories[0]);
   }
 }, [categories]);
 
