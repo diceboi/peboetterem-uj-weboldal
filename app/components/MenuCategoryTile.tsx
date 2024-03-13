@@ -143,10 +143,10 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
             </div>
             <div className="flex flex-col xl:flex-row gap-2 min-w-max">
             {alapadatokData && (
-                <MenuButton title={`${category === 'Valentin nap' ? 'Előrendelés' : 'Kosárba'} ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={category === 'Valentin nap' ? false : isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus ={0}/>
+                <MenuButton title={`${category === 'Húsvét' ? 'Előrendelés' : 'Kosárba'} ${termek.elsoelotag}`} icon={<TbShoppingCartPlus />} disabled={category === 'Húsvét' ? false : isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus ={0}/>
               )}
               {termek.masodlagosar && (
-                <MenuButton title={`${category === 'Valentin nap' ? 'Előrendelés' : 'Kosárba'} ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={category === 'Valentin nap' ? false : isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={1}/>
+                <MenuButton title={`${category === 'Húsvét' ? 'Előrendelés' : 'Kosárba'} ${termek.masodikelotag}`} icon={<TbShoppingCartPlus />} disabled={category === 'Húsvét' ? false : isButtonDisabled} rendelesfelvetel={alapadatokData.rendelesfelvetel} termek={termek} tipus={1}/>
               )}
             </div>
         </div>
