@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-
+      <meta property="og:image" content="/pebo-og.jpg" />
       <Script 
         id='Hotjar' 
         strategy='beforeInteractive' 
