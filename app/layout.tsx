@@ -27,6 +27,15 @@ const playball = Playball({
 export const metadata: Metadata = {
   title: 'PEBo Étterem és Kávézó - Olaszos ízek Kaposvár szívében',
   description: 'Olaszos és klasszikus ízekkel várunk Kaposvár szívében, vagy egy igazán jó kávéval. Szerezz örömteli pillanatokat nálunk hangulatos környezetben.',
+  openGraph: {
+    images: [
+      {
+        url: "https://www.peboetterem.hu/_next/image?url=%2Fpebo-og.jpg&w=384&q=75",
+        width: 800,
+        height: 600,
+      },
+    ]
+  }
 }
 
 export default function RootLayout({
