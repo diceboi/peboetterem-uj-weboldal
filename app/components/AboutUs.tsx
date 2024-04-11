@@ -16,19 +16,21 @@ export default async function AboutUs() {
       <div className="container m-auto flex flex-col justify-center lg:gap-20 gap-4 lg:flex-row py-40">
         <h1 className='text-[--navy] z-20'>Rólunk</h1>
         <div className='flex flex-col lg:w-3/5 z-20'>
-          <div className='text-[--navy] gap-4'>
+          <div className='flex flex-col text-[--navy] gap-8'>
             <p>
-            Több éves vendéglátós tapasztalattal a hátunk mögött úgy döntöttünk 2023-ban megvalósítjuk álmainkat és nyitunk egy saját éttermet Kaposváron.
-
-            Nálunk az olaszos ízek mellett a klasszikus ételeket is megtalálod. À La Carte választékunk mellett napi menüvel is várunk minden nap, melyet rendelésre is kérhetsz.
-
-            Ha csak egy kávéra vágysz, akkor is jó helyen jársz - éttermünk egyben kávézó is! Tölts el hangulatos pillanatokat nálunk!
-
-            Otthonról szeretnél rendelni, vagy esetleg munkahelyedre? Nálunk ezt is megteheted, rendelésedet kiszállítjuk! Nekünk fontos a pontosság - ha tőlünk rendelsz, nem kell órákat várnod hogy kézhez kapd megrendelésedet!
-
-            Rendezvényeket is vállalunk!
-
-            Rendezvényeket 40 főig vállalunk. Legyen az szülinap, egy összejövetel, netán egy céges buli, ránk számíthatsz! Keress minket bátran üzenetben, vagy az alábbi telefonszámok egyikén: 06 82 310 633, 06 30 494 0959
+            Több éves vendéglátós tapasztalattal a hátunk mögött úgy döntöttünk <b>2023-ban megvalósítjuk álmainkat és nyitunk egy saját éttermet Kaposváron.</b>
+            </p>
+            <p>
+            Nálunk az olaszos ízek mellett a klasszikus ételeket is megtalálod. <b>À La Carte</b> választékunk mellett <b>napi menüvel</b> is várunk minden nap, melyet rendelésre is kérhetsz.
+            </p>
+            <p>
+            Ha csak egy kávéra vágysz, akkor is jó helyen jársz - <b>éttermünk egyben kávézó is</b>! Tölts el hangulatos pillanatokat nálunk!
+            </p>
+            <p>
+            Otthonról szeretnél rendelni, vagy esetleg munkahelyedre? Nálunk ezt is megteheted, <b>rendelésedet kiszállítjuk!</b> Nekünk fontos a pontosság - ha tőlünk rendelsz, nem kell órákat várnod hogy kézhez kapd megrendelésedet!
+            </p>
+            <p>
+            <b>Rendezvényeket 40 főig vállalunk.</b> Legyen az <b>szülinap, egy összejövetel, netán egy céges buli,</b> ránk számíthatsz! Keress minket bátran üzenetben, vagy az alábbi telefonszámok egyikén: <a href="tel:06 82 310 633" className='underline'>06 82 310 633</a>, <a href="tel:06 30 494 0959" className='underline'>06 30 494 0959</a>
             </p>
           </div>
         </div>
