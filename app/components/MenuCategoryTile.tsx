@@ -127,7 +127,7 @@ const MenuCategoryTile: React.FC<MenuCategoryTileProps> = ({ category, termekek 
                           {termek.kategoria === '4 személyes tálak'
                             ? `${termek.elsodlegesar - 500} (+ 500 Ft csomagolás)`
                             : termek.kategoria === 'Ballagás'
-                              ? `${termek.elsodlegesar - 500} (+ 500 Ft csomagolás)`
+                              ? `${termek.elsodlegesar - 100} (+ 100 Ft csomagolás)`
                               : `${termek.elsodlegesar} Ft`
                           }
                         </p>

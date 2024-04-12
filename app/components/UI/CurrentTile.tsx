@@ -60,7 +60,7 @@ export default function CurrentTile() {
           />
           <div className="flex lg:flex-row flex-col items-center justify-center gap-8 ">
             <h1 className='leading-[.75em] z-10  text-[--navy] text-center'>Ballagási ajánlat</h1>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-[white] p-3 bg-[--alert] rounded-md"><p className="text-4xl font-bebas">5 500 Ft</p><p className="text-xs">+ 500 Ft csomagolás</p></div>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-[white] p-3 bg-[--alert] rounded-md"><p className="text-4xl font-bebas">5 500 Ft</p><p className="text-xs">+ 100 Ft csomagolás</p></div>
           </div>
           <div className="flex flex-col lg:flex-row justify-center items-center w-full m-auto gap-0 lg:gap-8 py-8 text-white z-10">
               <div className="flex flex-col items-center justify-center p-4 rounded-md  bg-[#ffffff15] backdrop-blur-sm shadow-2xl w-full lg:w-1/3">
@@ -81,8 +81,9 @@ export default function CurrentTile() {
 
               </div>
           </div>
+          <p></p>
           <div className="flex flex-col justify-center items-center w-min-max z-10">
-            
+            <p className="p-2 text-center text-white bg-[--lightnavy] rounded-md my-8"><strong>Előrendelést </strong>2024.04.30. 20:00-ig veszünk fel. <strong>Kiszállítás</strong> telefonos egyeztetés alapján!</p>
             <Link href={'/etlap'}><button className="flex flex-nowrap items-center gap-1 hover:gap-3 py-1 lg:py-2 px-2 lg:px-4 bg-[--alert] text-white font-bebas h-min text-2xl hover:bg-[--alerthover] rounded-md shadow-md hover:shadow-lg transition-all ease-in-out z-10">Előrendelés</button></Link>
           </div>
       </div>
