@@ -60,6 +60,13 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col justify-start gap-4">
                     <h3 className="footertitle">Nyitvatartás</h3>
+                    <div className="flex flex-col bg-[--alert] p-2 text-white">
+                      <p>Ideiglenes nyitvatartás:</p>
+                      <p className="footerparagraph">05.01.: Zárva</p>
+                      <p className="footerparagraph">05.02.: Zárva</p>
+                      <p className="footerparagraph">05.03.: Nyitva (csak Á la Carte rendelés)</p>
+                      <p className="footerparagraph">05.04.: Zárva (Tálak átadása)</p>
+                    </div>
                     <p className="footerparagraph">H - P: {alapadatokData.nyitvatartashepe}</p>
                     <p className="footerparagraph">Szo: {alapadatokData.nyitvatartasszo}</p>
                     <p className="footerparagraph">V: {alapadatokData.nyitvatartasv}</p>
